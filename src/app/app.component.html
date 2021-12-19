@@ -1,6 +1,12 @@
 <div class="main">
-  <app-table [tableTitle]="'Расходы'" [data]="appData.expenses"></app-table>
-  <app-table [tableTitle]="'Доходы'" [data]="appData.income"></app-table>
+  <app-table
+    [tableTitle]="tablesTypes.Expenses"
+    [data]="appData.expenses"
+  ></app-table>
+  <app-table
+    [tableTitle]="tablesTypes.Income"
+    [data]="appData.income"
+  ></app-table>
 </div>
 
 <div class="controls">

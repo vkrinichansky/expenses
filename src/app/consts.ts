@@ -50,7 +50,7 @@ export const data: AppData = {
   balance: 0,
 };
 
-export enum TablesTypesEnum {
+export enum TablesTitlesEnum {
   Expenses = 'Расходы',
   Income = 'Доходы',
 }
