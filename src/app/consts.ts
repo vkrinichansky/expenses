@@ -49,3 +49,8 @@ export const data: AppData = {
   ],
   balance: 0,
 };
+
+export enum TablesTypesEnum {
+  Expenses = 'Расходы',
+  Income = 'Доходы',
+}
