@@ -97,8 +97,7 @@ export class AppDataService {
   }
 
   getDataFromStorage(): void {
-    const data: AppData = JSON.parse(localStorage.getItem('appData') as string);
-    this.appData = data;
+    this.appData = JSON.parse(localStorage.getItem('appData') as string);
   }
 
   setDataToStorage(): void {
