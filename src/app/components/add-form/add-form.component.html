@@ -1,0 +1,12 @@
+<form class="add-form" [formGroup]="form" (ngSubmit)="submit()">
+  <h3 class="add-form__title">
+    {{ addFormState.mode === "add" ? "Добавить" : "Редактировать" }} в '{{
+      addFormState.category
+    }}' в '{{ addFormState.table === "expenses" ? "Расходы" : "Доходы" }}'
+  </h3>
+  <input class="add-form__input" formControlName="money" type="number" />
+  <button class="add-form__submit" type="submit" [disabled]="form.invalid">
+    {{ addFormState.mode === "add" ? "Добавить" : "Редактировать" }}
+  </button>
+  <button class="add-form__close" (click)="closeForm()">Закрыть</button>
+</form>

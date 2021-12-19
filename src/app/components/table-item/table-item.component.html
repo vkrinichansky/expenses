@@ -1,0 +1,32 @@
+<div
+  class="table-item"
+  [ngClass]="{
+    none: table === 'none'
+  }"
+>
+  <button
+    *ngIf="table !== 'none'"
+    class="table-item__remove"
+    (click)="removeItem()"
+  >
+    X
+  </button>
+  <p class="table-item__category">{{ item.name }}</p>
+  <p class="table-item__category-value">{{ item.value }}</p>
+
+  <button
+    *ngIf="table !== 'none'"
+    class="table-item__add"
+    (click)="mode = 'add'; openFormToAdd()"
+  >
+    Добавить
+  </button>
+
+  <button
+    *ngIf="table !== 'none'"
+    class="table-item__edit"
+    (click)="mode = 'edit'; openFormToAdd()"
+  >
+    Редактировать
+  </button>
+</div>

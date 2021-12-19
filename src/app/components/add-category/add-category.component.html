@@ -1,0 +1,18 @@
+<form [formGroup]="form" class="add-category" (ngSubmit)="addCategory()">
+  <h3 class="add-category__title">Добавить категорию</h3>
+  <select formControlName="table" class="add-category__dropdown">
+    <option value="expenses">Расходы</option>
+    <option value="income">Доходы</option>
+  </select>
+
+  <input
+    class="add-category__input"
+    formControlName="category"
+    type="text"
+    required
+    value=""
+  />
+  <button class="add-category__submit" type="submit" [disabled]="form.invalid">
+    Добавить
+  </button>
+</form>

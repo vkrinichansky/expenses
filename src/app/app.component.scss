@@ -1,0 +1,19 @@
+:host {
+}
+
+.main,
+.controls {
+  display: flex;
+}
+
+.main {
+  justify-content: space-evenly;
+}
+
+.controls {
+  justify-content: flex-start;
+}
+
+.controls {
+  margin: 30px 0 0;
+}
