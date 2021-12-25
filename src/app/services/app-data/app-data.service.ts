@@ -98,6 +98,13 @@ export class AppDataService {
 
   getDataFromStorage(): void {
     this.appData = JSON.parse(localStorage.getItem('appData') as string);
+    if (!this.appData) {
+      this.appData = {
+        balance: 0,
+        income: [],
+        expenses: [],
+      };
+    }
   }
 
   setDataToStorage(): void {

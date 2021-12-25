@@ -27,14 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.appDataService.getDataFromStorage();
-
-    if (!this.appData) {
-      this.appDataService.appData = {
-        balance: 0,
-        income: [],
-        expenses: [],
-      };
-    }
   }
 
   ngOnDestroy() {

@@ -8,3 +8,7 @@ interface AppData {
   income: TableItem[];
   balance: number;
 }
+
+interface HistoryItem {
+  date: object;
+}
