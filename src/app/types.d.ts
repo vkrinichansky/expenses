@@ -7,9 +7,13 @@ interface AppData {
   expenses: TableItem[];
   income: TableItem[];
   balance: number;
-  history: HistoryItem[];
+  history: TransactionsHistory;
 }
 
-interface HistoryItem {
-  date: object;
+interface TransactionsHistory {
+  [date: string]: {
+    [table: string]: {
+      [category: string]: number;
+    };
+  };
 }

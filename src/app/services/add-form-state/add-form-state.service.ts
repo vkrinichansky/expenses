@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { FormModesEnum, TableTypesEnum } from '../../consts';
 
 export interface AddFormState {
-  mode: 'edit' | 'add';
+  mode: FormModesEnum;
   isOpen: boolean;
-  table: 'expenses' | 'income';
+  table: TableTypesEnum;
   category: string;
   categoryValue: number;
 }
@@ -12,13 +13,11 @@ export interface AddFormState {
   providedIn: 'root',
 })
 export class AddFormStateService {
-  constructor() {}
-
   addFormState$: BehaviorSubject<AddFormState> =
     new BehaviorSubject<AddFormState>({
       isOpen: false,
-      mode: 'add',
-      table: 'expenses',
+      mode: FormModesEnum.Add,
+      table: TableTypesEnum.Expenses,
       category: '',
       categoryValue: 0,
     });

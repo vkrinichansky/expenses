@@ -5,6 +5,7 @@ import {
 } from '../../services/add-form-state/add-form-state.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
+import { FormModesEnum, TableTypesEnum } from '../../consts';
 
 @Component({
   selector: 'app-add-form',
@@ -22,7 +23,6 @@ export class AddFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.addFormState.categoryValue);
     this.form = new FormGroup({
       money: new FormControl(
         this.addFormState.categoryValue,
@@ -52,8 +52,8 @@ export class AddFormComponent implements OnInit {
   closeForm(): void {
     this.addFormStateService.updateState({
       isOpen: false,
-      table: 'expenses',
-      mode: 'add',
+      table: TableTypesEnum.Expenses,
+      mode: FormModesEnum.Add,
       category: '',
       categoryValue: 0,
     });

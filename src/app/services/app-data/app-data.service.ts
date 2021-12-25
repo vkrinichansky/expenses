@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { TableTypesEnum } from '../../consts';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class AppDataService {
     expenses: [],
     income: [],
     balance: 0,
-    history: [],
+    history: {},
   });
 
   get appData(): AppData {
@@ -20,9 +21,7 @@ export class AppDataService {
     this.appData$.next(data);
   }
 
-  constructor() {}
-
-  addCategory(category: string, table: 'expenses' | 'income'): void {
+  addCategory(category: string, table: TableTypesEnum): void {
     const newItem: TableItem = {
       name: category,
       value: 0,
@@ -31,7 +30,7 @@ export class AppDataService {
     this.setDataToStorage();
   }
 
-  removeCategory(category: string, table: 'expenses' | 'income'): void {
+  removeCategory(category: string, table: TableTypesEnum): void {
     this.appData[table] = this.appData[table].filter(
       (item) => item.name !== category
     );
@@ -45,7 +44,7 @@ export class AppDataService {
 
   addValueToCategory(
     value: number,
-    table: 'expenses' | 'income',
+    table: TableTypesEnum,
     category: string
   ): void {
     this.appData[table].map((item) => {
@@ -53,12 +52,14 @@ export class AppDataService {
         item.value += value;
       }
     });
+
+    this.resolveTransactionHistory(table, category, value);
     this.setDataToStorage();
   }
 
   editValueOfCategory(
     value: number,
-    table: 'expenses' | 'income',
+    table: TableTypesEnum,
     category: string
   ): void {
     this.appData[table].map((item) => {
@@ -71,12 +72,8 @@ export class AppDataService {
 
   resetTables(): void {
     this.appData.balance = this.calcBalance();
-    for (let i = 0; i < this.appData.expenses.length; i++) {
-      this.appData.expenses[i].value = 0;
-    }
-    for (let i = 0; i < this.appData.income.length; i++) {
-      this.appData.income[i].value = 0;
-    }
+    this.appData.expenses.forEach((category) => (category.value = 0));
+    this.appData.income.forEach((category) => (category.value = 0));
     this.setDataToStorage();
   }
 
@@ -86,14 +83,14 @@ export class AppDataService {
   }
 
   calcBalance(): number {
-    let expensesSum = 0;
-    let incomeSum = 0;
-    for (let i = 0; i < this.appData.expenses.length; i++) {
-      expensesSum += this.appData.expenses[i].value;
-    }
-    for (let i = 0; i < this.appData.income.length; i++) {
-      incomeSum += this.appData.income[i].value;
-    }
+    const expensesSum = this.appData.expenses.reduce(
+      (result, currentValue) => result + currentValue.value,
+      0
+    );
+    const incomeSum = this.appData.income.reduce(
+      (result, currentValue) => result + currentValue.value,
+      0
+    );
     return this.appData.balance + incomeSum - expensesSum;
   }
 
@@ -104,12 +101,44 @@ export class AppDataService {
         balance: 0,
         income: [],
         expenses: [],
-        history: [],
+        history: {},
       };
     }
   }
 
   setDataToStorage(): void {
     localStorage.setItem('appData', JSON.stringify(this.appData));
+  }
+
+  private resolveTransactionHistory(
+    table: TableTypesEnum,
+    category: string,
+    value: number
+  ) {
+    const currentDate = new Date().toLocaleDateString('ru-RU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+
+    if (currentDate in this.appData?.history) {
+      if (table in this.appData.history[currentDate]) {
+        if (category in this.appData.history?.[currentDate][table]) {
+          this.appData.history[currentDate][table][category] += value;
+        } else {
+          this.appData.history[currentDate][table][category] = value;
+        }
+      } else {
+        this.appData.history[currentDate][table] = {
+          [category]: value,
+        };
+      }
+    } else {
+      this.appData.history[currentDate] = {
+        [table]: {
+          [category]: value,
+        },
+      };
+    }
   }
 }
