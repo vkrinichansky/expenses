@@ -7,6 +7,7 @@ interface AppData {
   expenses: TableItem[];
   income: TableItem[];
   balance: number;
+  history: HistoryItem[];
 }
 
 interface HistoryItem {

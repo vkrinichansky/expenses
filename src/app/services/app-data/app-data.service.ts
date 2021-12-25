@@ -9,6 +9,7 @@ export class AppDataService {
     expenses: [],
     income: [],
     balance: 0,
+    history: [],
   });
 
   get appData(): AppData {
@@ -103,6 +104,7 @@ export class AppDataService {
         balance: 0,
         income: [],
         expenses: [],
+        history: [],
       };
     }
   }
