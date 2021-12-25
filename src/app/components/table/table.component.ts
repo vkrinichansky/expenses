@@ -1,17 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TablesTitlesEnum, TableTypesEnum, WordsEnum } from '../../consts';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
-  @Input() tableTitle!: string;
-  @Input() data!: TableItem[];
-
-  constructor() {}
-
-  ngOnInit(): void {}
+export class TableComponent {
+  @Input() tableTitle: TablesTitlesEnum;
+  @Input() data: TableItem[];
+  tableTitles = TablesTitlesEnum;
+  tableTypes = TableTypesEnum;
+  words = WordsEnum;
 
   calcSum(): number {
     let totalSum = 0;

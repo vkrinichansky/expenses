@@ -1,13 +1,11 @@
-<div class="main">
-  <app-table
-    [tableTitle]="tablesTypes.Expenses"
-    [data]="appData.expenses"
-  ></app-table>
-  <app-table
-    [tableTitle]="tablesTypes.Income"
-    [data]="appData.income"
-  ></app-table>
-</div>
+<app-table
+  [tableTitle]="tablesTypes.Expenses"
+  [data]="appData.expenses"
+></app-table>
+<app-table
+  [tableTitle]="tablesTypes.Income"
+  [data]="appData.income"
+></app-table>
 
 <div class="controls">
   <app-current-balance [data]="appData"></app-current-balance>

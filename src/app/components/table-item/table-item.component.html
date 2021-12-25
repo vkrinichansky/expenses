@@ -1,32 +1,63 @@
 <div
   class="table-item"
   [ngClass]="{
-    none: table === 'none'
+    none: !displayControls
   }"
 >
-  <button
-    *ngIf="table !== 'none'"
-    class="table-item__remove"
-    (click)="removeItem()"
-  >
-    X
-  </button>
-  <p class="table-item__category">{{ item.name }}</p>
-  <p class="table-item__category-value">{{ item.value }}</p>
+  <div class="table-item__category">
+    <button
+      *ngIf="displayControls"
+      class="table-item__remove"
+      (click)="removeItem()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"
+        />
+      </svg>
+    </button>
+    <span>{{ item.name }}</span>
+  </div>
+  <span class="table-item__category-value">{{ item.value }}</span>
 
-  <button
-    *ngIf="table !== 'none'"
-    class="table-item__add"
-    (click)="mode = 'add'; openFormToAdd()"
-  >
-    Добавить
-  </button>
+  <div class="table-item__controls">
+    <button
+      *ngIf="displayControls"
+      class="table-item__add"
+      (click)="openFormToAdd(formModes.Add)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"
+        />
+      </svg>
+    </button>
 
-  <button
-    *ngIf="table !== 'none'"
-    class="table-item__edit"
-    (click)="mode = 'edit'; openFormToAdd()"
-  >
-    Редактировать
-  </button>
+    <button
+      *ngIf="displayControls"
+      class="table-item__edit"
+      (click)="openFormToAdd(formModes.Edit)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.994 12.964l3.106 3.105-4.112.931 1.006-4.036zm9.994-3.764l-5.84 5.921-3.202-3.202 5.841-5.919 3.201 3.2z"
+        />
+      </svg>
+    </button>
+  </div>
 </div>

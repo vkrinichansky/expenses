@@ -1,15 +1,15 @@
-:host {
-  margin-right: 50px;
-}
 .add-category {
   display: flex;
   flex-direction: column;
-  border: 1px dashed black;
   padding: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 3px grey;
 
   &__title {
     font-size: 20px;
     margin: 0 0 15px;
+    text-align: center;
   }
 
   &__dropdown,

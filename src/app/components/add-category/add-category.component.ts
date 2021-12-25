@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
+import { TablesTitlesEnum, WordsEnum } from '../../consts';
 
 @Component({
   selector: 'app-add-category',
@@ -8,7 +9,10 @@ import { AppDataService } from '../../services/app-data/app-data.service';
   styleUrls: ['./add-category.component.scss'],
 })
 export class AddCategoryComponent implements OnInit {
-  form!: FormGroup;
+  tableTitles = TablesTitlesEnum;
+  words = WordsEnum;
+  form: FormGroup;
+
   constructor(private appDataService: AppDataService) {}
 
   ngOnInit(): void {

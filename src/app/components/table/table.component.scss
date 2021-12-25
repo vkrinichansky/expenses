@@ -1,51 +1,41 @@
 :host {
   display: block;
   box-sizing: border-box;
-  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 3px grey;
 }
 .table {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-
   &__header {
-    margin: 0;
     padding: 5px;
     border-bottom: 5px solid black;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     background-color: chocolate;
     color: white;
-    width: 100%;
-    box-sizing: border-box;
   }
   &__second-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr;
   }
 
   &__category-title,
-  &__category-value-title {
-    font-size: 20px;
+  &__category-value-title,
+  &__controls {
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
-    margin: 0;
-    padding: 10px 0;
     color: white;
+    padding: 5px 10px;
+    border-bottom: 3px solid black;
   }
 
   &__category-title {
-    width: 230px;
     background-color: royalblue;
   }
 
   &__category-value-title {
-    width: 410px;
-
     &.expenses {
       background-color: orangered;
     }
@@ -53,5 +43,9 @@
     &.income {
       background-color: darkgreen;
     }
+  }
+
+  &__controls {
+    background-color: darkslateblue;
   }
 }

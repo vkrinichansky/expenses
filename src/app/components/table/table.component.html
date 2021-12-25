@@ -1,27 +1,35 @@
 <div class="table">
-  <p class="table__header">{{ tableTitle }}</p>
+  <div class="table__header">
+    <span>{{ tableTitle }}</span>
+  </div>
   <div class="table__second-header">
-    <p class="table__category-title">Категория</p>
-    <p
+    <div class="table__category-title">{{ words.Category }}</div>
+    <div
       class="table__category-value-title"
       [ngClass]="{
-        expenses: tableTitle === 'Расходы',
-        income: tableTitle !== 'Расходы'
+        expenses: tableTitle === tableTitles.Expenses,
+        income: tableTitle === tableTitles.Income
       }"
     >
-      {{ tableTitle === "Расходы" ? "Потрачено" : "Получено" }}, грн.
-    </p>
+      {{ tableTitle === tableTitles.Expenses ? words.Spent : words.Received }},
+      {{ words.Currency }}
+    </div>
+    <div class="table__controls">{{ words.Controls }}</div>
   </div>
 
   <app-table-item
     *ngFor="let item of data"
     [item]="item"
-    [table]="tableTitle === 'Расходы' ? 'expenses' : 'income'"
+    [table]="
+      tableTitle === tableTitles.Expenses
+        ? tableTypes.Expenses
+        : tableTypes.Income
+    "
   ></app-table-item>
 
   <app-table-item
     class="total-sum"
-    [item]="{ name: 'Всего', value: calcSum() }"
-    [table]="'none'"
+    [item]="{ name: words.Total, value: calcSum() }"
+    [displayControls]="false"
   ></app-table-item>
 </div>
