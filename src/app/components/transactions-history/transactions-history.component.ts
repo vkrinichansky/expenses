@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Record, TransactionsHistory } from '../../types';
-import { TablesTitlesEnum, TableTypesEnum } from '../../consts';
+import { TablesTitlesEnum, TableTypesEnum, WordsEnum } from '../../consts';
 
 @Component({
   selector: 'app-transactions-history',
@@ -13,6 +13,7 @@ export class TransactionsHistoryComponent implements OnChanges {
 
   tableTitles = TablesTitlesEnum;
   tableTypes = TableTypesEnum;
+  words = WordsEnum;
 
   historyRecords: Record[] = [];
 

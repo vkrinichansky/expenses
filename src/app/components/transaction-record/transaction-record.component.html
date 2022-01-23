@@ -1,9 +1,19 @@
 <div class="{{ tableType }}">{{ tableTitle }}</div>
-<div class="add">{{ words.Adding }}</div>
-<div *ngFor="let item of record.record.expenses.add" class="record">
-  {{ item.category }} : {{ item.value }}
-</div>
-<div class="edit">{{ words.Editing }}</div>
-<div *ngFor="let item of record.record.expenses.edit" class="record">
-  {{ item.category }} : {{ item.previousValue }} > {{ item.currentValue }}
-</div>
+
+<ng-container *ngIf="record.record.expenses.add as addHistory">
+  <ng-container *ngIf="addHistory?.length">
+    <div class="add">{{ words.Adding }}</div>
+    <div *ngFor="let item of addHistory" class="record">
+      {{ item.category }} : {{ item.value }}
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="record.record.expenses.edit as editHistory">
+  <ng-container *ngIf="editHistory?.length">
+    <div class="edit">{{ words.Editing }}</div>
+    <div *ngFor="let item of editHistory" class="record">
+      {{ item.category }} : {{ item.previousValue }} > {{ item.currentValue }}
+    </div>
+  </ng-container>
+</ng-container>

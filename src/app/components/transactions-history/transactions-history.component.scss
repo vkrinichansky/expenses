@@ -7,6 +7,14 @@
   max-height: calc(100% - 30px);
   overflow-y: scroll;
 
+  .history {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: darkblue;
+  }
+
   .date {
     margin: 0 0 5px;
     font-size: 16px;
