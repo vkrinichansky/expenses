@@ -1,6 +1,6 @@
 <div class="{{ tableType }}">{{ tableTitle }}</div>
 
-<ng-container *ngIf="record.record.expenses.add as addHistory">
+<ng-container *ngIf="record.record[tableType].add as addHistory">
   <ng-container *ngIf="addHistory?.length">
     <div class="add">{{ words.Adding }}</div>
     <div *ngFor="let item of addHistory" class="record">
@@ -9,7 +9,7 @@
   </ng-container>
 </ng-container>
 
-<ng-container *ngIf="record.record.expenses.edit as editHistory">
+<ng-container *ngIf="record.record[tableType].edit as editHistory">
   <ng-container *ngIf="editHistory?.length">
     <div class="edit">{{ words.Editing }}</div>
     <div *ngFor="let item of editHistory" class="record">

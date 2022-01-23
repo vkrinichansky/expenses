@@ -27,7 +27,6 @@ export class AppDataService {
       name: category,
       value: 0,
     };
-    console.log(this.appData);
     this.appData[table].push(newItem);
     this.setDataToStorage();
   }
@@ -125,6 +124,7 @@ export class AppDataService {
     category: string,
     value: number
   ): void {
+    console.log(this.appData);
     const currentDate = new Date().toLocaleDateString('ru-RU', {
       day: 'numeric',
       month: 'long',
@@ -204,5 +204,10 @@ export class AppDataService {
         },
       ];
     }
+  }
+
+  cleanHistory(): void {
+    this.appData.history = {};
+    this.setDataToStorage();
   }
 }

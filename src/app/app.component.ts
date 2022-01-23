@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppDataService } from './services/app-data/app-data.service';
 import { AddFormStateService } from './services/add-form-state/add-form-state.service';
 import { TablesTitlesEnum } from './consts';
-import {AppData} from "./types";
+import { AppData } from './types';
 
 @Component({
   selector: 'app-root',
