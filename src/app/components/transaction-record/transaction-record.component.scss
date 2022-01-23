@@ -1,0 +1,28 @@
+:host {
+  .expenses,
+  .income {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .expenses {
+    color: red;
+  }
+
+  .income {
+    color: green;
+  }
+
+  .add,
+  .edit {
+    font-weight: bold;
+    color: dodgerblue;
+    padding-left: 15px;
+    margin: 0 0 5px;
+  }
+
+  .record {
+    padding-left: 15px;
+    margin: 0 0 5px;
+  }
+}

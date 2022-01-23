@@ -5,7 +5,12 @@ import {
 } from '../../services/add-form-state/add-form-state.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
-import { FormModesEnum, TableTypesEnum } from '../../consts';
+import {
+  FormModesEnum,
+  TablesTitlesEnum,
+  TableTypesEnum,
+  WordsEnum,
+} from '../../consts';
 
 @Component({
   selector: 'app-add-form',
@@ -13,7 +18,12 @@ import { FormModesEnum, TableTypesEnum } from '../../consts';
   styleUrls: ['./add-form.component.scss'],
 })
 export class AddFormComponent implements OnInit {
-  form!: FormGroup;
+  form: FormGroup;
+  previousValue: number;
+
+  words = WordsEnum;
+  tableTitles = TablesTitlesEnum;
+
   get addFormState(): AddFormState {
     return this.addFormStateService.addFormState;
   }
@@ -29,6 +39,7 @@ export class AddFormComponent implements OnInit {
         Validators.required
       ),
     });
+    this.previousValue = this.addFormState.categoryValue;
   }
 
   submit(): void {
@@ -40,6 +51,7 @@ export class AddFormComponent implements OnInit {
       );
     } else {
       this.appDataService.editValueOfCategory(
+        this.previousValue,
         this.form.value.money,
         this.addFormState.table,
         this.addFormState.category

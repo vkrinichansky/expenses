@@ -12,3 +12,7 @@
   <app-add-category></app-add-category>
   <app-add-form *ngIf="isOpen"></app-add-form>
 </div>
+
+<app-transactions-history
+  [history]="appData.history"
+></app-transactions-history>

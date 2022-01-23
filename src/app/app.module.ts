@@ -8,9 +8,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableItemComponent } from './components/table-item/table-item.component';
 import { CurrentBalanceComponent } from './components/current-balance/current-balance.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
+import { TransactionsHistoryComponent } from './components/transactions-history/transactions-history.component';
+import { TransactionRecordComponent } from './components/transaction-record/transaction-record.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, AddCategoryComponent, TableItemComponent, CurrentBalanceComponent, AddFormComponent],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    AddCategoryComponent,
+    TableItemComponent,
+    CurrentBalanceComponent,
+    AddFormComponent,
+    TransactionsHistoryComponent,
+    TransactionRecordComponent,
+  ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

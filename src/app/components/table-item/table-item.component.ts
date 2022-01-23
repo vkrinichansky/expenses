@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { AddFormStateService } from '../../services/add-form-state/add-form-state.service';
 import { FormModesEnum, TableTypesEnum } from '../../consts';
+import { TableItem } from '../../types';
 
 @Component({
   selector: 'app-table-item',

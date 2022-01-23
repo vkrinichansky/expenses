@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 3px grey;
+  max-height: calc(100% - 30px);
+  overflow-y: scroll;
+
+  .date {
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .date-wrapper {
+    margin: 0 0 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TablesTitlesEnum, TableTypesEnum, WordsEnum } from '../../consts';
+import { TableItem } from '../../types';
 
 @Component({
   selector: 'app-table',
@@ -15,7 +16,7 @@ export class TableComponent {
 
   calcSum(): number {
     let totalSum = 0;
-    for (let i = 0; i < this.data.length; i++) {
+    for (let i = 0; i < this.data?.length; i++) {
       totalSum += this.data[i].value;
     }
     return totalSum;

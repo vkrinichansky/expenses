@@ -1,0 +1,17 @@
+<ng-container *ngFor="let record of historyRecords">
+  <div class="date-wrapper">
+    <div class="date">{{ record.date }}</div>
+
+    <app-transaction-record
+      [tableTitle]="tableTitles.Expenses"
+      [tableType]="tableTypes.Expenses"
+      [record]="record"
+    ></app-transaction-record>
+
+    <app-transaction-record
+      [tableTitle]="tableTitles.Income"
+      [tableType]="tableTypes.Income"
+      [record]="record"
+    ></app-transaction-record>
+  </div>
+</ng-container>
