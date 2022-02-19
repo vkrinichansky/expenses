@@ -1,4 +1,18 @@
-<form [formGroup]="form" class="add-category" (ngSubmit)="addCategory()">
+<div *ngIf="(flow$ | async) === undefined" class="choose-action frame">
+  <span class="choose-action__title">{{ words.CategoryManagement }}</span>
+  <div class="choose-action__buttons">
+    <button type="button" (click)="changeFlow(flows.AddCategory)">
+      {{ words.AddCategory }}
+    </button>
+    <button type="button">{{ words.RemoveCategory }}</button>
+  </div>
+</div>
+
+<form
+  *ngIf="(flow$ | async) === flows.AddCategory"
+  [formGroup]="form"
+  class="add-category frame"
+>
   <h3 class="add-category__title">{{ words.AddCategory }}</h3>
   <select formControlName="table" class="add-category__dropdown">
     <option value="expenses">{{ tableTitles.Expenses }}</option>
@@ -13,7 +27,15 @@
     value=""
     [placeholder]="words.AddCategoryPlaceholder"
   />
-  <button class="add-category__submit" type="submit" [disabled]="form.invalid">
+  <button
+    class="add-category__submit"
+    type="button"
+    [disabled]="form.invalid"
+    (click)="addCategory()"
+  >
     {{ words.Add }}
+  </button>
+  <button class="add-category__go-back" type="button" (click)="resetFlow()">
+    {{ words.GoBack }}
   </button>
 </form>

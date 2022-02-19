@@ -13,12 +13,11 @@ export enum WordsEnum {
   Total = 'Всего',
   Controls = 'Управление',
   AddCategory = 'Добавить категорию',
+  RemoveCategory = 'Удалить категорию',
   AddCategoryPlaceholder = 'Название категории',
   Add = 'Добавить',
-  Edit = 'Редактировать',
   Adding = 'Добавление',
   Editing = 'Редактирование',
-  Close = 'Закрыть',
   CurrentBalance = 'Текущий баланс',
   ResetBalance = 'Сбросить баланс',
   ResetTables = 'Сбросить таблицы',
@@ -26,6 +25,8 @@ export enum WordsEnum {
   AddToTable = 'Добавить в таблицу',
   Yes = 'Да',
   No = 'Нет',
+  CategoryManagement = 'Управление категориями',
+  GoBack = 'Назад',
 }
 
 export enum TablesTypesEnum {
