@@ -13,14 +13,18 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AppDataService {
-  appData$: BehaviorSubject<AppData> = new BehaviorSubject<AppData>(emptyData);
+  _appData$: BehaviorSubject<AppData> = new BehaviorSubject<AppData>(emptyData);
 
   get appData(): AppData {
-    return this.appData$.getValue();
+    return this._appData$.getValue();
   }
 
   set appData(data: AppData) {
-    this.appData$.next(data);
+    this._appData$.next(data);
+  }
+
+  get appData$(): Observable<AppData> {
+    return this._appData$;
   }
 
   set balance(balance: number) {

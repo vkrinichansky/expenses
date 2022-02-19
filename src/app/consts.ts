@@ -23,6 +23,9 @@ export enum WordsEnum {
   ResetBalance = 'Сбросить баланс',
   ResetTables = 'Сбросить таблицы',
   History = 'История',
+  AddToTable = 'Добавить в таблицу',
+  Yes = 'Да',
+  No = 'Нет',
 }
 
 export enum TableTypesEnum {
