@@ -29,7 +29,6 @@ export class TableItemComponent implements OnInit {
 
   openFormToAdd(): void {
     this.addFormStateService.updateState({
-      isOpen: true,
       table: this.table,
       category: this.item.name,
       categoryValue: 0,

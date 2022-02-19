@@ -44,12 +44,10 @@ export class AddFormComponent implements OnInit {
       this.addFormState.category
     );
     this.form.reset();
-    this.addFormStateService.IsOpen = false;
   }
 
   closeForm(): void {
     this.addFormStateService.updateState({
-      isOpen: false,
       table: TableTypesEnum.Expenses,
       category: '',
       categoryValue: 0,

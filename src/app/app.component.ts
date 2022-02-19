@@ -17,10 +17,6 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.appDataService.appData;
   }
 
-  get isOpen(): boolean {
-    return this.addFormStateService.isOpen;
-  }
-
   constructor(
     private appDataService: AppDataService,
     private addFormStateService: AddFormStateService
