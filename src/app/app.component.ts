@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppDataService } from './services/app-data/app-data.service';
-import { AddFormStateService } from './services/add-form-state/add-form-state.service';
 import { TablesTitlesEnum } from './consts';
 import { AppData } from './types';
 
@@ -17,10 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.appDataService.appData;
   }
 
-  constructor(
-    private appDataService: AppDataService,
-    private addFormStateService: AddFormStateService
-  ) {}
+  constructor(private appDataService: AppDataService) {}
 
   ngOnInit() {
     this.appDataService.getDataFromStorage();
