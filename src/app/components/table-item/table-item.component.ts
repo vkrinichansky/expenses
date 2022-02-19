@@ -27,14 +27,12 @@ export class TableItemComponent implements OnInit {
     this.appDataService.removeCategory(this.item.name, this.table);
   }
 
-  openFormToAdd(mode: FormModesEnum): void {
-    this.mode = mode;
+  openFormToAdd(): void {
     this.addFormStateService.updateState({
       isOpen: true,
       table: this.table,
       category: this.item.name,
-      mode: this.mode,
-      categoryValue: this.mode === FormModesEnum.Add ? 0 : this.item.value,
+      categoryValue: 0,
     });
   }
 }
