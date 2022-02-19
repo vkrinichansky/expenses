@@ -32,6 +32,6 @@ export class TransactionsHistoryComponent {
   }
 
   cleanHistory(): void {
-    this.appDataService.cleanHistory();
+    this.appDataService.resetHistory();
   }
 }

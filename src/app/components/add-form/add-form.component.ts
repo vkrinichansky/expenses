@@ -49,13 +49,6 @@ export class AddFormComponent implements OnInit {
         this.addFormState.table,
         this.addFormState.category
       );
-    } else {
-      this.appDataService.editValueOfCategory(
-        this.previousValue,
-        this.form.value.money,
-        this.addFormState.table,
-        this.addFormState.category
-      );
     }
     this.form.reset();
     this.addFormStateService.IsOpen = false;

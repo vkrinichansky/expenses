@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   emptyData,
   emptyHistoryItem,
@@ -7,6 +7,7 @@ import {
   TableTypesEnum,
 } from '../../consts';
 import { AppData, TableItem } from '../../types';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -22,24 +23,35 @@ export class AppDataService {
     this.appData$.next(data);
   }
 
-  addCategory(category: string, table: TableTypesEnum): void {
-    const newItem: TableItem = {
-      name: category,
-      value: 0,
+  set balance(balance: number) {
+    this.appData = {
+      ...this.appData,
+      balance: balance,
     };
-    this.appData[table].push(newItem);
+    this.setDataToStorage();
+  }
+
+  get balance() {
+    return this.appData.balance;
+  }
+
+  get balance$(): Observable<number> {
+    return this.appData$.pipe(map((data) => data.balance));
+  }
+
+  addCategory(category: string, table: TableTypesEnum): void {
+    this.appData = {
+      ...this.appData,
+      [table]: [...this.appData[table], this.createNewTableItem(category)],
+    };
     this.setDataToStorage();
   }
 
   removeCategory(category: string, table: TableTypesEnum): void {
-    this.appData[table] = this.appData[table].filter(
-      (item) => item.name !== category
-    );
-    this.setDataToStorage();
-  }
-
-  setBalance(balance: number): void {
-    this.appData.balance = balance;
+    this.appData = {
+      ...this.appData,
+      [table]: this.appData[table].filter((item) => item.name !== category),
+    };
     this.setDataToStorage();
   }
 
@@ -55,68 +67,12 @@ export class AppDataService {
     });
 
     this.resolveAddedItemsHistory(table, category, value);
-    console.log(this.appData.history);
-    this.setDataToStorage();
-  }
-
-  editValueOfCategory(
-    previousValue: number,
-    currentValue: number,
-    table: TableTypesEnum,
-    category: string
-  ): void {
-    this.appData[table].map((item) => {
-      if (item.name === category) {
-        item.value = currentValue;
-      }
-    });
-
-    this.resolveEditedItemsHistory(
-      table,
-      category,
-      previousValue,
-      currentValue
-    );
-    console.log(this.appData.history);
-    this.setDataToStorage();
-  }
-
-  resetTables(): void {
-    this.appData.balance = this.calcBalance();
-    this.appData.expenses.forEach((category) => (category.value = 0));
-    this.appData.income.forEach((category) => (category.value = 0));
-    this.setDataToStorage();
-  }
-
-  resetBalance(): void {
-    this.appData.balance = 0;
-    this.setDataToStorage();
-  }
-
-  calcBalance(): number {
-    if (this.appData.expenses) {
-      const expensesSum = this.appData.expenses.reduce(
-        (result, currentValue) => result + currentValue.value,
-        0
-      );
-      const incomeSum = this.appData.income.reduce(
-        (result, currentValue) => result + currentValue.value,
-        0
-      );
-      return this.appData.balance + incomeSum - expensesSum;
+    if (table === TableTypesEnum.Expenses) {
+      this.balance -= value;
+    } else {
+      this.balance += value;
     }
-    return 0;
-  }
-
-  getDataFromStorage(): void {
-    this.appData = JSON.parse(localStorage.getItem('appData') as string);
-    if (!this.appData) {
-      this.appData = emptyData;
-    }
-  }
-
-  setDataToStorage(): void {
-    localStorage.setItem('appData', JSON.stringify(this.appData));
+    this.setDataToStorage();
   }
 
   resolveAddedItemsHistory(
@@ -124,7 +80,6 @@ export class AppDataService {
     category: string,
     value: number
   ): void {
-    console.log(this.appData);
     const currentDate = new Date().toLocaleDateString('ru-RU', {
       day: 'numeric',
       month: 'long',
@@ -161,53 +116,48 @@ export class AppDataService {
     }
   }
 
-  resolveEditedItemsHistory(
-    table: TableTypesEnum,
-    category: string,
-    previousValue: number,
-    currentValue: number
-  ): void {
-    const currentDate = new Date().toLocaleDateString('ru-RU', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
+  resetTables(): void {
+    this.appData = {
+      ...this.appData,
+      expenses: this.appData.expenses.map((category) => {
+        category.value = 0;
+        return category;
+      }),
+      income: this.appData.income.map((category) => {
+        category.value = 0;
+        return category;
+      }),
+    };
+    this.setDataToStorage();
+  }
 
-    if (this.appData.history.hasOwnProperty(currentDate)) {
-      const foundItem = this.appData.history[currentDate][table][
-        FormModesEnum.Edit
-      ].find((item) => item.category === category);
+  resetBalance(): void {
+    this.balance = 0;
+  }
 
-      if (foundItem) {
-        this.appData.history[currentDate][table][FormModesEnum.Edit].map(
-          (item) => {
-            if (item.category === category) {
-              item.previousValue = previousValue;
-              item.currentValue = currentValue;
-            }
-          }
-        );
-      } else {
-        this.appData.history[currentDate][table][FormModesEnum.Edit].push({
-          previousValue: previousValue,
-          currentValue: currentValue,
-          category: category,
-        });
-      }
-    } else {
-      this.appData.history[currentDate] = emptyHistoryItem;
-      this.appData.history[currentDate][table][FormModesEnum.Edit] = [
-        {
-          previousValue: previousValue,
-          currentValue: currentValue,
-          category: category,
-        },
-      ];
+  resetHistory(): void {
+    this.appData = {
+      ...this.appData,
+      history: {},
+    };
+    this.setDataToStorage();
+  }
+
+  getDataFromStorage(): void {
+    this.appData = JSON.parse(localStorage.getItem('appData') as string);
+    if (!this.appData) {
+      this.appData = emptyData;
     }
   }
 
-  cleanHistory(): void {
-    this.appData.history = {};
-    this.setDataToStorage();
+  setDataToStorage(): void {
+    localStorage.setItem('appData', JSON.stringify(this.appData));
+  }
+
+  private createNewTableItem(category: string): TableItem {
+    return {
+      name: category,
+      value: 0,
+    };
   }
 }

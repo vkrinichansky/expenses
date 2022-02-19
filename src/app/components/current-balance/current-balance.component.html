@@ -1,6 +1,6 @@
 <div class="balance">
   <h3 class="balance__title">{{ words.CurrentBalance }}</h3>
-  <p class="balance__value">{{ calcBalance() }}, грн.</p>
+  <p class="balance__value">{{ balance$ | async }}, грн.</p>
   <button class="balance__reset" (click)="resetTables()">
     {{ words.ResetTables }}
   </button>
