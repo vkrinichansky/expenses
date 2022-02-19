@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AddFormStateService } from '../../services/add-form-state/add-form-state.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
@@ -24,10 +23,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
   appData$: Observable<AppData>;
   isConfirmationOpen$ = new BehaviorSubject(false);
 
-  constructor(
-    private addFormStateService: AddFormStateService,
-    private appDataService: AppDataService
-  ) {}
+  constructor(private appDataService: AppDataService) {}
 
   ngOnInit(): void {
     this.appData$ = this.appDataService.appData$;
