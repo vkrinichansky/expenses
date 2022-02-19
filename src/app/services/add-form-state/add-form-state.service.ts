@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { TableTypesEnum } from '../../consts';
+import { TablesTypesEnum } from '../../consts';
 
 export interface AddFormState {
-  table: TableTypesEnum;
+  table: TablesTypesEnum;
   category: string;
   categoryValue: number;
 }
@@ -13,7 +13,7 @@ export interface AddFormState {
 export class AddFormStateService {
   addFormState$: BehaviorSubject<AddFormState> =
     new BehaviorSubject<AddFormState>({
-      table: TableTypesEnum.Expenses,
+      table: TablesTypesEnum.Expenses,
       category: '',
       categoryValue: 0,
     });

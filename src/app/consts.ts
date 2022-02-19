@@ -28,7 +28,7 @@ export enum WordsEnum {
   No = 'Нет',
 }
 
-export enum TableTypesEnum {
+export enum TablesTypesEnum {
   Expenses = 'expenses',
   Income = 'income',
 }
@@ -46,11 +46,11 @@ export const emptyData: AppData = {
 };
 
 export const emptyHistoryItem: HistoryItem = {
-  [TableTypesEnum.Expenses]: {
+  [TablesTypesEnum.Expenses]: {
     [FormModesEnum.Add]: [],
     [FormModesEnum.Edit]: [],
   },
-  [TableTypesEnum.Income]: {
+  [TablesTypesEnum.Income]: {
     [FormModesEnum.Add]: [],
     [FormModesEnum.Edit]: [],
   },

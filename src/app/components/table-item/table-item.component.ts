@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { AddFormStateService } from '../../services/add-form-state/add-form-state.service';
-import { FormModesEnum, TableTypesEnum } from '../../consts';
+import { FormModesEnum, TablesTypesEnum } from '../../consts';
 import { TableItem } from '../../types';
 
 @Component({
@@ -11,7 +11,7 @@ import { TableItem } from '../../types';
 })
 export class TableItemComponent implements OnInit {
   @Input() item: TableItem;
-  @Input() table: TableTypesEnum;
+  @Input() table: TablesTypesEnum;
   @Input() displayControls = true;
   mode: FormModesEnum;
   formModes = FormModesEnum;

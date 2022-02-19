@@ -11,13 +11,13 @@
         income: tableTitle === tableTitles.Income
       }"
     >
-      {{ tableTitle === tableTitles.Expenses ? words.Spent : words.Received }},
+      {{ tableType === tableTypes.Expenses ? words.Spent : words.Received }},
       {{ words.Currency }}
     </div>
   </div>
 
   <app-table-item
-    *ngFor="let item of data"
+    *ngFor="let item of tableData$ | async"
     [item]="item"
     [table]="
       tableTitle === tableTitles.Expenses
@@ -27,8 +27,9 @@
   ></app-table-item>
 
   <app-table-item
+    *ngIf="tableSumItem$ | async as tableSumItem"
     class="total-sum"
-    [item]="{ name: words.Total, value: calcSum() }"
+    [item]="tableSumItem"
     [displayControls]="false"
   ></app-table-item>
 </div>

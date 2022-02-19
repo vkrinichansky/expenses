@@ -4,7 +4,7 @@ import {
   emptyData,
   emptyHistoryItem,
   FormModesEnum,
-  TableTypesEnum,
+  TablesTypesEnum,
 } from '../../consts';
 import { AppData, TableItem } from '../../types';
 import { map } from 'rxjs/operators';
@@ -43,7 +43,15 @@ export class AppDataService {
     return this.appData$.pipe(map((data) => data.balance));
   }
 
-  addCategory(category: string, table: TableTypesEnum): void {
+  get expenses$(): Observable<TableItem[]> {
+    return this.appData$.pipe(map((data) => data.expenses));
+  }
+
+  get income$(): Observable<TableItem[]> {
+    return this.appData$.pipe(map((data) => data.income));
+  }
+
+  addCategory(category: string, table: TablesTypesEnum): void {
     this.appData = {
       ...this.appData,
       [table]: [...this.appData[table], this.createNewTableItem(category)],
@@ -51,7 +59,7 @@ export class AppDataService {
     this.setDataToStorage();
   }
 
-  removeCategory(category: string, table: TableTypesEnum): void {
+  removeCategory(category: string, table: TablesTypesEnum): void {
     this.appData = {
       ...this.appData,
       [table]: this.appData[table].filter((item) => item.name !== category),
@@ -61,7 +69,7 @@ export class AppDataService {
 
   addValueToCategory(
     value: number,
-    table: TableTypesEnum,
+    table: TablesTypesEnum,
     category: string
   ): void {
     this.appData[table].map((item) => {
@@ -71,7 +79,7 @@ export class AppDataService {
     });
 
     this.resolveAddedItemsHistory(table, category, value);
-    if (table === TableTypesEnum.Expenses) {
+    if (table === TablesTypesEnum.Expenses) {
       this.balance -= value;
     } else {
       this.balance += value;
@@ -80,7 +88,7 @@ export class AppDataService {
   }
 
   resolveAddedItemsHistory(
-    table: TableTypesEnum,
+    table: TablesTypesEnum,
     category: string,
     value: number
   ): void {

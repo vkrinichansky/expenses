@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Record, TransactionsHistory } from '../../types';
-import { TablesTitlesEnum, TableTypesEnum, WordsEnum } from '../../consts';
+import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { AppDataService } from '../../services/app-data/app-data.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class TransactionsHistoryComponent {
   history: TransactionsHistory;
 
   tableTitles = TablesTitlesEnum;
-  tableTypes = TableTypesEnum;
+  tableTypes = TablesTypesEnum;
   words = WordsEnum;
 
   historyRecords: Record[] = [];

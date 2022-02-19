@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddFormStateService } from '../../services/add-form-state/add-form-state.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
-import { TablesTitlesEnum, TableTypesEnum, WordsEnum } from '../../consts';
+import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { AppData } from '../../types';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -81,11 +81,11 @@ export class AddFormComponent implements OnInit, OnDestroy {
     this.closeConfirmation();
   }
 
-  private resolveTable(tableDisplayName: string): TableTypesEnum {
+  private resolveTable(tableDisplayName: string): TablesTypesEnum {
     if (tableDisplayName === TablesTitlesEnum.Expenses) {
-      return TableTypesEnum.Expenses;
+      return TablesTypesEnum.Expenses;
     } else {
-      return TableTypesEnum.Income;
+      return TablesTypesEnum.Income;
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Record } from '../../types';
-import { TablesTitlesEnum, TableTypesEnum, WordsEnum } from '../../consts';
+import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 
 @Component({
   selector: 'app-transaction-record',
@@ -14,7 +14,7 @@ export class TransactionRecordComponent {
   tableTitle: TablesTitlesEnum;
 
   @Input()
-  tableType: TableTypesEnum;
+  tableType: TablesTypesEnum;
 
   @Input()
   record: Record;

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppDataService } from './services/app-data/app-data.service';
-import { TablesTitlesEnum } from './consts';
+import { TablesTitlesEnum, TablesTypesEnum } from './consts';
 import { AppData } from './types';
 
 @Component({
@@ -9,7 +9,9 @@ import { AppData } from './types';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  tablesTypes = TablesTitlesEnum;
+  tablesTitlesEnum = TablesTitlesEnum;
+  tablesTypesEnum = TablesTypesEnum;
+
   title = 'expenses';
 
   get appData(): AppData {

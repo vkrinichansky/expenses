@@ -1,4 +1,4 @@
-import { FormModesEnum, TableTypesEnum } from './consts';
+import { FormModesEnum, TablesTypesEnum } from './consts';
 
 export interface TableItem {
   name: string;
@@ -24,11 +24,11 @@ export interface EditedHistoryItem {
 }
 
 export interface HistoryItem {
-  [TableTypesEnum.Expenses]: {
+  [TablesTypesEnum.Expenses]: {
     [FormModesEnum.Add]: AddedHistoryItem[];
     [FormModesEnum.Edit]: EditedHistoryItem[];
   };
-  [TableTypesEnum.Income]: {
+  [TablesTypesEnum.Income]: {
     [FormModesEnum.Add]: AddedHistoryItem[];
     [FormModesEnum.Edit]: EditedHistoryItem[];
   };
