@@ -17,3 +17,7 @@
   <app-add-category></app-add-category>
   <app-data-controls></app-data-controls>
 </div>
+
+<div *ngIf="isMessageShown$ | async" class="message">
+  <button type="button" (click)="reset()">{{ words.MonthlyReset }}</button>
+</div>

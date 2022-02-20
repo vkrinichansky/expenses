@@ -180,6 +180,7 @@ export class AppDataService {
 
   getDataFromStorage(): void {
     this.appData = JSON.parse(localStorage.getItem('appData') as string);
+    console.log(this.appData);
     if (!this.appData) {
       this.appData = emptyData;
     }
