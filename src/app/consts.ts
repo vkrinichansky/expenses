@@ -28,6 +28,7 @@ export enum WordsEnum {
   CategoryManagement = 'Категории',
   GoBack = 'Назад',
   CleanHistory = 'Очистить историю',
+  NoHistoryYet = 'История пуста',
 }
 
 export enum TablesTypesEnum {

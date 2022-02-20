@@ -1,32 +1,39 @@
-<div class="history">
-  <span>{{ words.History }}</span>
-</div>
-<ng-container *ngFor="let date of historyDates$ | async">
-  <div class="date-wrapper">
-    <div class="date">{{ date }}</div>
+<p class="title">{{ words.History }}</p>
 
-    <ng-container *ngIf="history$ | async as history">
-      <ng-container
-        *ngIf="history[date][tableTypes.Expenses] as expensesHistoryItems"
-      >
-        <app-transaction-record
-          *ngIf="expensesHistoryItems.length"
-          [tableTitle]="tableTitles.Expenses"
-          [tableType]="tableTypes.Expenses"
-          [items]="expensesHistoryItems"
-        ></app-transaction-record>
-      </ng-container>
+<div class="content">
+  <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
+    <ng-container *ngFor="let date of historyDates$ | async">
+      <div class="date-wrapper">
+        <div class="date">{{ date }}</div>
 
-      <ng-container
-        *ngIf="history[date][tableTypes.Income] as incomeHistoryItems"
-      >
-        <app-transaction-record
-          *ngIf="incomeHistoryItems.length"
-          [tableTitle]="tableTitles.Income"
-          [tableType]="tableTypes.Income"
-          [items]="incomeHistoryItems"
-        ></app-transaction-record>
-      </ng-container>
+        <ng-container *ngIf="history$ | async as history">
+          <ng-container
+            *ngIf="history[date][tableTypes.Expenses] as expensesHistoryItems"
+          >
+            <app-transaction-record
+              *ngIf="expensesHistoryItems.length"
+              [tableTitle]="tableTitles.Expenses"
+              [tableType]="tableTypes.Expenses"
+              [items]="expensesHistoryItems"
+            ></app-transaction-record>
+          </ng-container>
+
+          <ng-container
+            *ngIf="history[date][tableTypes.Income] as incomeHistoryItems"
+          >
+            <app-transaction-record
+              *ngIf="incomeHistoryItems.length"
+              [tableTitle]="tableTitles.Income"
+              [tableType]="tableTypes.Income"
+              [items]="incomeHistoryItems"
+            ></app-transaction-record>
+          </ng-container>
+        </ng-container>
+      </div>
     </ng-container>
-  </div>
-</ng-container>
+  </ng-container>
+
+  <ng-template #noHistoryYet>
+    <span class="no-history">{{ words.NoHistoryYet }}</span>
+  </ng-template>
+</div>
