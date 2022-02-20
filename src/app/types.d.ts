@@ -13,7 +13,7 @@ export interface AppData {
 }
 
 export interface HistoryCategoryItem {
-  category: string;
+  categoryName: string;
   value: number;
 }
 

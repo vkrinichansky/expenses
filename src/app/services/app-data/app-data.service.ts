@@ -93,27 +93,29 @@ export class AppDataService {
     category: string,
     value: number
   ): void {
-    console.log(table, category, value);
     const currentDate = this.getCurrentDate();
 
     if (currentDate in this.appData.history) {
-      if (this.appData.history[currentDate][table].length) {
+      const foundItem = this.appData.history[currentDate][table].find(
+        (item) => item.categoryName === category
+      );
+      if (foundItem) {
         this.appData.history[currentDate][table].map((item) => {
-          if (item.category === category) {
+          if (item.categoryName === category) {
             item.value += value;
           }
         });
       } else {
         this.appData.history[currentDate][table].push({
           value: value,
-          category: category,
+          categoryName: category,
         });
       }
     } else {
       this.appData.history[currentDate] = emptyHistoryItem;
       this.appData.history[currentDate][table].push({
         value: value,
-        category: category,
+        categoryName: category,
       });
     }
   }
