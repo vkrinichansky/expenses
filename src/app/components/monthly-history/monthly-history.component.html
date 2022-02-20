@@ -1,0 +1,25 @@
+<p class="title">{{ words.History }}</p>
+
+<div class="content">
+  <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
+    <ng-container *ngFor="let date of historyDates$ | async">
+      <div class="date-wrapper">
+        <div class="date">{{ date }}</div>
+
+        <ng-container *ngIf="history$ | async as history">
+          <div class="monthly-item">
+            <span
+              >{{ tableTitles.Expenses }}: {{ history[date].expenses }}</span
+            >
+            <span>{{ tableTitles.Income }}: {{ history[date].income }}</span>
+            <span>{{ words.CurrentBalance }}: {{ history[date].balance }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noHistoryYet>
+    <span class="no-history">{{ words.NoHistoryYet }}</span>
+  </ng-template>
+</div>

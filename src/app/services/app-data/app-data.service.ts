@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { emptyData, emptyHistoryItem, TablesTypesEnum } from '../../consts';
-import { AppData, TableItem, TransactionsHistory } from '../../types';
+import {
+  AppData,
+  MonthlyHistory,
+  TableItem,
+  TransactionsHistory,
+} from '../../types';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -64,6 +69,10 @@ export class AppDataService {
 
   get history$(): Observable<TransactionsHistory> {
     return this.appData$.pipe(map((data) => data.history));
+  }
+
+  get monthlyHistory$(): Observable<MonthlyHistory> {
+    return this.appData$.pipe(map((data) => data.monthlyHistory));
   }
 
   addCategory(category: string, table: TablesTypesEnum): void {
@@ -170,10 +179,16 @@ export class AppDataService {
   }
 
   monthlyReset(dateKey: string): void {
-    this.appData.monthlyHistory[dateKey] = {
-      expenses: this.expensesSum,
-      income: this.incomeSum,
-      balance: this.balance,
+    this.appData = {
+      ...this.appData,
+      monthlyHistory: {
+        ...this.appData.monthlyHistory,
+        [dateKey]: {
+          expenses: this.expensesSum,
+          income: this.incomeSum,
+          balance: this.balance,
+        },
+      },
     };
     this.setDataToStorage();
   }

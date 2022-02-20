@@ -11,6 +11,7 @@ import { AddFormComponent } from './components/add-form/add-form.component';
 import { TransactionsHistoryComponent } from './components/transactions-history/transactions-history.component';
 import { TransactionRecordComponent } from './components/transaction-record/transaction-record.component';
 import { DataControlsComponent } from './components/data-controls/data-controls.component';
+import { MonthlyHistoryComponent } from './components/monthly-history/monthly-history.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DataControlsComponent } from './components/data-controls/data-controls.
     TransactionsHistoryComponent,
     TransactionRecordComponent,
     DataControlsComponent,
+    MonthlyHistoryComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
