@@ -6,7 +6,7 @@ import {
   FormModesEnum,
   TablesTypesEnum,
 } from '../../consts';
-import { AppData, TableItem } from '../../types';
+import { AppData, TableItem, TransactionsHistory } from '../../types';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -49,6 +49,10 @@ export class AppDataService {
 
   get income$(): Observable<TableItem[]> {
     return this.appData$.pipe(map((data) => data.income));
+  }
+
+  get history$(): Observable<TransactionsHistory> {
+    return this.appData$.pipe(map((data) => data.history));
   }
 
   addCategory(category: string, table: TablesTypesEnum): void {

@@ -8,12 +8,3 @@
     </div>
   </ng-container>
 </ng-container>
-
-<ng-container *ngIf="record.record[tableType].edit as editHistory">
-  <ng-container *ngIf="editHistory?.length">
-    <div class="edit">{{ words.Editing }}</div>
-    <div *ngFor="let item of editHistory" class="record">
-      {{ item.category }} : {{ item.previousValue }} > {{ item.currentValue }}
-    </div>
-  </ng-container>
-</ng-container>
