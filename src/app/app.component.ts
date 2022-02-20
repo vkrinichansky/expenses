@@ -21,10 +21,26 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private appDataService: AppDataService) {}
 
   ngOnInit() {
-    this.appDataService.getDataFromStorage();
+    const date = new Date();
   }
 
   ngOnDestroy() {
     this.appDataService.setDataToStorage();
+  }
+
+  shouldDoMonthlyReset(date: Date): boolean {
+    const day = date.getDate();
+    return (
+      day >= 1 &&
+      !(this.getDateKey(date) in this.appDataService.appData.monthlyHistory)
+    );
+  }
+
+  getDateKey(date: Date): string {
+    const previousDate = new Date(date.getFullYear(), date.getMonth() - 1);
+    return previousDate.toLocaleDateString('ru-RU', {
+      month: 'long',
+      year: 'numeric',
+    });
   }
 }

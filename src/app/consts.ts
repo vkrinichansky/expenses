@@ -28,6 +28,8 @@ export enum WordsEnum {
   CategoryManagement = 'Категории',
   GoBack = 'Назад',
   CleanHistory = 'Очистить историю',
+  CleanMonthlyHistory = 'Очистить по месяцам',
+
   NoHistoryYet = 'История пуста',
 }
 
@@ -41,6 +43,7 @@ export const emptyData: AppData = {
   income: [],
   balance: 0,
   history: {},
+  monthlyHistory: {},
 };
 
 export const emptyHistoryItem: HistoryItem = {

@@ -10,6 +10,7 @@ export interface AppData {
   income: TableItem[];
   balance: number;
   history: TransactionsHistory;
+  monthlyHistory: MonthlyHistory;
 }
 
 export interface HistoryCategoryItem {
@@ -24,4 +25,14 @@ export interface HistoryItem {
 
 export interface TransactionsHistory {
   [date: string]: HistoryItem;
+}
+
+export interface MonthlyHistoryItem {
+  expenses: number;
+  income: number;
+  balance: number;
+}
+
+export interface MonthlyHistory {
+  [date: string]: MonthlyHistoryItem;
 }

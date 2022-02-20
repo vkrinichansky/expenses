@@ -32,8 +32,22 @@ export class AppDataService {
     this.setDataToStorage();
   }
 
-  get balance() {
+  get balance(): number {
     return this.appData.balance;
+  }
+
+  get expensesSum(): number {
+    return this.appData.expenses.reduce(
+      (previousValue, currentValue) => previousValue + currentValue.value,
+      0
+    );
+  }
+
+  get incomeSum(): number {
+    return this.appData.income.reduce(
+      (previousValue, currentValue) => previousValue + currentValue.value,
+      0
+    );
   }
 
   get balance$(): Observable<number> {
@@ -143,6 +157,23 @@ export class AppDataService {
     this.appData = {
       ...this.appData,
       history: {},
+    };
+    this.setDataToStorage();
+  }
+
+  resetMonthlyHistory(): void {
+    this.appData = {
+      ...this.appData,
+      monthlyHistory: {},
+    };
+    this.setDataToStorage();
+  }
+
+  monthlyReset(dateKey: string): void {
+    this.appData.monthlyHistory[dateKey] = {
+      expenses: this.expensesSum,
+      income: this.incomeSum,
+      balance: this.balance,
     };
     this.setDataToStorage();
   }

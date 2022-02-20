@@ -8,6 +8,10 @@
   {{ words.CleanHistory }}
 </button>
 
+<button (click)="openConfirmation(flows.CleanMonthlyHistory)">
+  {{ words.CleanMonthlyHistory }}
+</button>
+
 <div *ngIf="isConfirmationOpen$ | async" class="confirmation frame">
   <span class="confirmation__message" ngSwitch="{{ flow$ | async }}">
     <ng-container *ngSwitchCase="flows.ResetTables"
@@ -18,6 +22,9 @@
     >
     <ng-container *ngSwitchCase="flows.CleanHistory"
       >{{ words.CleanHistory }}?</ng-container
+    >
+    <ng-container *ngSwitchCase="flows.CleanMonthlyHistory"
+      >{{ words.CleanMonthlyHistory }}?</ng-container
     >
   </span>
   <div class="confirmation__buttons">

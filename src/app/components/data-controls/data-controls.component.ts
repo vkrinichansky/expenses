@@ -7,6 +7,7 @@ enum FlowEnum {
   ResetTables = 'Reset Tables',
   ResetBalance = 'Reset Balance',
   CleanHistory = 'Clean History',
+  CleanMonthlyHistory = 'Clean Monthly History',
 }
 
 @Component({
@@ -24,18 +25,6 @@ export class DataControlsComponent {
   constructor(private appDataService: AppDataService) {}
 
   ngOnInit(): void {}
-
-  resetTables(): void {
-    this.appDataService.resetTables();
-  }
-
-  resetBalance(): void {
-    this.appDataService.resetBalance();
-  }
-
-  resetHistory(): void {
-    this.appDataService.resetHistory();
-  }
 
   openConfirmation(flow: FlowEnum): void {
     this.isConfirmationOpen$.next(true);
@@ -57,7 +46,26 @@ export class DataControlsComponent {
       case FlowEnum.CleanHistory:
         this.resetHistory();
         break;
+      case FlowEnum.CleanMonthlyHistory:
+        this.resetMonthlyHistory();
+        break;
     }
     this.closeConfirmation();
+  }
+
+  private resetTables(): void {
+    this.appDataService.resetTables();
+  }
+
+  private resetBalance(): void {
+    this.appDataService.resetBalance();
+  }
+
+  private resetHistory(): void {
+    this.appDataService.resetHistory();
+  }
+
+  private resetMonthlyHistory(): void {
+    this.appDataService.resetMonthlyHistory();
   }
 }
