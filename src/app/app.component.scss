@@ -14,8 +14,12 @@
   }
 
   .info {
+    height: 100%;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr 1fr;
     row-gap: 15px;
+    overflow-y: hidden;
+    padding: 15px;
+    margin: -15px;
   }
 }
