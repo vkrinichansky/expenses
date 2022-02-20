@@ -1,14 +1,10 @@
 :host {
   position: relative;
-  display: block;
   overflow: hidden;
   box-shadow: 0 0 10px 3px grey;
   padding: 10px;
   border-radius: 5px;
-
-  .add-form {
-    .submit {
-      margin: 0;
-    }
-  }
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 15px;
 }

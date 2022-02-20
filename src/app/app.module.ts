@@ -10,6 +10,7 @@ import { CurrentBalanceComponent } from './components/current-balance/current-ba
 import { AddFormComponent } from './components/add-form/add-form.component';
 import { TransactionsHistoryComponent } from './components/transactions-history/transactions-history.component';
 import { TransactionRecordComponent } from './components/transaction-record/transaction-record.component';
+import { DataControlsComponent } from './components/data-controls/data-controls.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TransactionRecordComponent } from './components/transaction-record/tran
     AddFormComponent,
     TransactionsHistoryComponent,
     TransactionRecordComponent,
+    DataControlsComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],

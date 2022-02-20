@@ -7,14 +7,15 @@
   [tableType]="tablesTypesEnum.Income"
 ></app-table>
 
-<div class="controls">
-  <app-add-form></app-add-form>
-  <app-add-category></app-add-category>
-</div>
-
 <div class="info">
   <app-current-balance></app-current-balance>
   <app-transactions-history
     [history]="appData.history"
   ></app-transactions-history>
+</div>
+
+<div class="controls">
+  <app-add-form></app-add-form>
+  <app-add-category></app-add-category>
+  <app-data-controls></app-data-controls>
 </div>

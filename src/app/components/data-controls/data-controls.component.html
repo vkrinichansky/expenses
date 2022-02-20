@@ -1,0 +1,29 @@
+<button (click)="openConfirmation(flows.ResetTables)">
+  {{ words.ResetTables }}
+</button>
+<button (click)="openConfirmation(flows.ResetBalance)">
+  {{ words.ResetBalance }}
+</button>
+<button (click)="openConfirmation(flows.CleanHistory)">
+  {{ words.CleanHistory }}
+</button>
+
+<div *ngIf="isConfirmationOpen$ | async" class="confirmation frame">
+  <span class="confirmation__message" ngSwitch="{{ flow$ | async }}">
+    <ng-container *ngSwitchCase="flows.ResetTables"
+      >{{ words.ResetTables }}?</ng-container
+    >
+    <ng-container *ngSwitchCase="flows.ResetBalance"
+      >{{ words.ResetBalance }}?</ng-container
+    >
+    <ng-container *ngSwitchCase="flows.CleanHistory"
+      >{{ words.CleanHistory }}?</ng-container
+    >
+  </span>
+  <div class="confirmation__buttons">
+    <button type="button" (click)="resolveAction()">{{ words.Yes }}</button>
+    <button type="button" (click)="closeConfirmation()">
+      {{ words.No }}
+    </button>
+  </div>
+</div>
