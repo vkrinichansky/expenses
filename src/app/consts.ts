@@ -49,12 +49,6 @@ export const emptyData: AppData = {
 };
 
 export const emptyHistoryItem: HistoryItem = {
-  [TablesTypesEnum.Expenses]: {
-    [FormModesEnum.Add]: [],
-    [FormModesEnum.Edit]: [],
-  },
-  [TablesTypesEnum.Income]: {
-    [FormModesEnum.Add]: [],
-    [FormModesEnum.Edit]: [],
-  },
+  [TablesTypesEnum.Expenses]: [],
+  [TablesTypesEnum.Income]: [],
 };

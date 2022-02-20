@@ -6,18 +6,14 @@
     <div class="date">{{ record.date }}</div>
 
     <app-transaction-record
-      *ngIf="
-        record.record.expenses.add.length || record.record.expenses.edit.length
-      "
+      *ngIf="record.record.expenses.length"
       [tableTitle]="tableTitles.Expenses"
       [tableType]="tableTypes.Expenses"
       [record]="record"
     ></app-transaction-record>
 
     <app-transaction-record
-      *ngIf="
-        record.record.income.add.length || record.record.income.edit.length
-      "
+      *ngIf="record.record.income.length"
       [tableTitle]="tableTitles.Income"
       [tableType]="tableTypes.Income"
       [record]="record"

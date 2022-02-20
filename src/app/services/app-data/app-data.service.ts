@@ -96,34 +96,22 @@ export class AppDataService {
     category: string,
     value: number
   ): void {
-    const currentDate = new Date().toLocaleDateString('ru-RU', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
+    const currentDate = this.getCurrentDate();
 
-    if (this.appData.history.hasOwnProperty(currentDate)) {
-      const foundItem = this.appData.history[currentDate][table][
-        FormModesEnum.Add
-      ].find((item) => item.category === category);
-
-      if (foundItem) {
-        this.appData.history[currentDate][table][FormModesEnum.Add].map(
-          (item) => {
-            if (item.category === category) {
-              item.value += value;
-            }
-          }
-        );
-      } else {
-        this.appData.history[currentDate][table][FormModesEnum.Add].push({
-          value: value,
-          category: category,
-        });
-      }
+    if (currentDate in this.appData.history) {
+      this.appData.history[currentDate][table].map((item) => {
+        if (item.category === category) {
+          item.value += value;
+        } else {
+          this.appData.history[currentDate][table].push({
+            value: value,
+            category: category,
+          });
+        }
+      });
     } else {
       this.appData.history[currentDate] = emptyHistoryItem;
-      this.appData.history[currentDate][table][FormModesEnum.Add] = [
+      this.appData.history[currentDate][table] = [
         {
           value: value,
           category: category,
@@ -175,5 +163,13 @@ export class AppDataService {
       name: category,
       value: 0,
     };
+  }
+
+  private getCurrentDate(): string {
+    return new Date().toLocaleDateString('ru-RU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
   }
 }

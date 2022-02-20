@@ -17,21 +17,9 @@ export interface AddedHistoryItem {
   value: number;
 }
 
-export interface EditedHistoryItem {
-  category: string;
-  previousValue: number;
-  currentValue: number;
-}
-
 export interface HistoryItem {
-  [TablesTypesEnum.Expenses]: {
-    [FormModesEnum.Add]: AddedHistoryItem[];
-    [FormModesEnum.Edit]: EditedHistoryItem[];
-  };
-  [TablesTypesEnum.Income]: {
-    [FormModesEnum.Add]: AddedHistoryItem[];
-    [FormModesEnum.Edit]: EditedHistoryItem[];
-  };
+  [TablesTypesEnum.Expenses]: AddedHistoryItem[];
+  [TablesTypesEnum.Income]: AddedHistoryItem[];
 }
 
 export interface TransactionsHistory {
