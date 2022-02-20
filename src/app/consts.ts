@@ -16,6 +16,7 @@ export enum WordsEnum {
   RemoveCategory = 'Удалить категорию',
   AddCategoryPlaceholder = 'Название категории',
   Add = 'Добавить',
+  Remove = 'Удалить',
   Adding = 'Добавление',
   Editing = 'Редактирование',
   CurrentBalance = 'Текущий баланс',

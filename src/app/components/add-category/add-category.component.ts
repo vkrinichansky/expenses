@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
-import { TablesTitlesEnum, WordsEnum } from '../../consts';
-import { BehaviorSubject } from 'rxjs';
+import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { AppData } from '../../types';
 
 enum FlowsEnum {
   AddCategory = 'Add Category',
@@ -16,27 +18,67 @@ enum FlowsEnum {
 })
 export class AddCategoryComponent implements OnInit {
   tableTitles = TablesTitlesEnum;
+  tables = [TablesTitlesEnum.Expenses, TablesTitlesEnum.Income];
   flows = FlowsEnum;
   words = WordsEnum;
-  form: FormGroup;
+  addForm: FormGroup;
+  removeForm: FormGroup;
+
+  subscription: Subscription;
+  categories: string[];
 
   flow$ = new BehaviorSubject<FlowsEnum | undefined>(undefined);
+  appData$: Observable<AppData>;
 
   constructor(private appDataService: AppDataService) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
+    this.appData$ = this.appDataService.appData$;
+
+    this.addForm = new FormGroup({
       table: new FormControl('expenses', Validators.required),
       category: new FormControl('', Validators.required),
     });
+
+    this.removeForm = new FormGroup({
+      table: new FormControl(undefined, Validators.required),
+      category: new FormControl(undefined, Validators.required),
+    });
+
+    this.subscription = this.removeForm.controls.table.valueChanges
+      .pipe(
+        switchMap((table) =>
+          this.appData$.pipe(
+            map((appData) =>
+              appData[this.resolveTable(table)].map((category) => category.name)
+            )
+          )
+        )
+      )
+      .subscribe((categories) => {
+        this.categories = categories;
+        this.removeForm.controls.category.setValue(this.categories[0]);
+      });
+    this.removeForm.controls.table.setValue(this.tables[0]);
   }
 
   addCategory(): void {
     this.appDataService.addCategory(
-      this.form.value.category,
-      this.form.value.table
+      this.addForm.value.category,
+      this.addForm.value.table
     );
-    this.form.controls.category.reset();
+    this.addForm.controls.category.reset();
+  }
+
+  removeCategory(): void {
+    this.appDataService.removeCategory(
+      this.removeForm.value.category,
+      this.resolveTable(this.removeForm.value.table)
+    );
+    this.removeForm.reset({
+      table: this.tables[0],
+      category: this.categories[0],
+    });
   }
 
   changeFlow(flow: FlowsEnum): void {
@@ -45,5 +87,13 @@ export class AddCategoryComponent implements OnInit {
 
   resetFlow(): void {
     this.flow$.next(undefined);
+  }
+
+  private resolveTable(tableDisplayName: string): TablesTypesEnum {
+    if (tableDisplayName === TablesTitlesEnum.Expenses) {
+      return TablesTypesEnum.Expenses;
+    } else {
+      return TablesTypesEnum.Income;
+    }
   }
 }
