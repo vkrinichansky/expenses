@@ -1,4 +1,4 @@
-import { FormModesEnum, TablesTypesEnum } from './consts';
+import { TablesTypesEnum } from './consts';
 
 export interface TableItem {
   name: string;
@@ -12,21 +12,16 @@ export interface AppData {
   history: TransactionsHistory;
 }
 
-export interface AddedHistoryItem {
+export interface HistoryCategoryItem {
   category: string;
   value: number;
 }
 
 export interface HistoryItem {
-  [TablesTypesEnum.Expenses]: AddedHistoryItem[];
-  [TablesTypesEnum.Income]: AddedHistoryItem[];
+  [TablesTypesEnum.Expenses]: HistoryCategoryItem[];
+  [TablesTypesEnum.Income]: HistoryCategoryItem[];
 }
 
 export interface TransactionsHistory {
   [date: string]: HistoryItem;
-}
-
-interface Record {
-  date: string;
-  record: HistoryItem;
 }

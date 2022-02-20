@@ -18,7 +18,6 @@ export enum WordsEnum {
   Add = 'Добавить',
   Remove = 'Удалить',
   Adding = 'Добавление',
-  Editing = 'Редактирование',
   CurrentBalance = 'Баланс',
   ResetBalance = 'Сбросить баланс',
   ResetTables = 'Сбросить таблицы',
@@ -34,11 +33,6 @@ export enum WordsEnum {
 export enum TablesTypesEnum {
   Expenses = 'expenses',
   Income = 'income',
-}
-
-export enum FormModesEnum {
-  Add = 'add',
-  Edit = 'edit',
 }
 
 export const emptyData: AppData = {

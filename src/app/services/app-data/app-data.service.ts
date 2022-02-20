@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  emptyData,
-  emptyHistoryItem,
-  FormModesEnum,
-  TablesTypesEnum,
-} from '../../consts';
+import { emptyData, emptyHistoryItem, TablesTypesEnum } from '../../consts';
 import { AppData, TableItem, TransactionsHistory } from '../../types';
 import { map } from 'rxjs/operators';
 
@@ -13,7 +8,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AppDataService {
-  _appData$: BehaviorSubject<AppData> = new BehaviorSubject<AppData>(emptyData);
+  private _appData$: BehaviorSubject<AppData> = new BehaviorSubject<AppData>(
+    emptyData
+  );
 
   get appData(): AppData {
     return this._appData$.getValue();
@@ -96,27 +93,28 @@ export class AppDataService {
     category: string,
     value: number
   ): void {
+    console.log(table, category, value);
     const currentDate = this.getCurrentDate();
 
     if (currentDate in this.appData.history) {
-      this.appData.history[currentDate][table].map((item) => {
-        if (item.category === category) {
-          item.value += value;
-        } else {
-          this.appData.history[currentDate][table].push({
-            value: value,
-            category: category,
-          });
-        }
-      });
-    } else {
-      this.appData.history[currentDate] = emptyHistoryItem;
-      this.appData.history[currentDate][table] = [
-        {
+      if (this.appData.history[currentDate][table].length) {
+        this.appData.history[currentDate][table].map((item) => {
+          if (item.category === category) {
+            item.value += value;
+          }
+        });
+      } else {
+        this.appData.history[currentDate][table].push({
           value: value,
           category: category,
-        },
-      ];
+        });
+      }
+    } else {
+      this.appData.history[currentDate] = emptyHistoryItem;
+      this.appData.history[currentDate][table].push({
+        value: value,
+        category: category,
+      });
     }
   }
 
