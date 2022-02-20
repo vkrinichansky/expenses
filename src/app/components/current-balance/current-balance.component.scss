@@ -1,28 +1,22 @@
-.balance {
+:host {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 15px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 10px 3px grey;
 
-  &__title {
+  .title {
     text-align: center;
     margin: 0 0 15px;
     font-size: 20px;
+    font-weight: bold;
   }
 
-  &__value {
+  .value {
     font-size: 18px;
     font-weight: bold;
-    margin: 0 0 15px;
     text-align: center;
-  }
-
-  &__reset {
-    font-size: 16px;
-    &:not(:last-of-type) {
-      margin: 0 0 15px;
-    }
   }
 }

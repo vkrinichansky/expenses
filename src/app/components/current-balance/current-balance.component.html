@@ -1,10 +1,2 @@
-<div class="balance">
-  <h3 class="balance__title">{{ words.CurrentBalance }}</h3>
-  <p class="balance__value">{{ balance$ | async }}, грн.</p>
-  <button class="balance__reset" (click)="resetTables()">
-    {{ words.ResetTables }}
-  </button>
-  <button class="balance__reset" (click)="resetBalance()">
-    {{ words.ResetBalance }}
-  </button>
-</div>
+<span class="title">{{ words.CurrentBalance }}</span>
+<span class="value">{{ balance$ | async }}, грн.</span>

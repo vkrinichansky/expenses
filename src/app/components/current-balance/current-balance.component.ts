@@ -18,12 +18,4 @@ export class CurrentBalanceComponent implements OnInit {
   ngOnInit(): void {
     this.balance$ = this.appDataService.balance$;
   }
-
-  resetTables(): void {
-    this.appDataService.resetTables();
-  }
-
-  resetBalance(): void {
-    this.appDataService.resetBalance();
-  }
 }

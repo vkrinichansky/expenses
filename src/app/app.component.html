@@ -8,11 +8,13 @@
 ></app-table>
 
 <div class="controls">
-  <app-current-balance></app-current-balance>
-  <app-add-category></app-add-category>
   <app-add-form></app-add-form>
+  <app-add-category></app-add-category>
 </div>
 
-<app-transactions-history
-  [history]="appData.history"
-></app-transactions-history>
+<div class="info">
+  <app-current-balance></app-current-balance>
+  <app-transactions-history
+    [history]="appData.history"
+  ></app-transactions-history>
+</div>
