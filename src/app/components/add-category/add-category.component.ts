@@ -29,6 +29,7 @@ export class AddCategoryComponent implements OnInit {
 
   flow$ = new BehaviorSubject<FlowsEnum | undefined>(undefined);
   appData$: Observable<AppData>;
+  isConfirmationOpen$ = new BehaviorSubject(false);
 
   constructor(private appDataService: AppDataService) {}
 
@@ -36,7 +37,7 @@ export class AddCategoryComponent implements OnInit {
     this.appData$ = this.appDataService.appData$;
 
     this.addForm = new FormGroup({
-      table: new FormControl('expenses', Validators.required),
+      table: new FormControl(this.tables[0], Validators.required),
       category: new FormControl('', Validators.required),
     });
 
@@ -65,9 +66,10 @@ export class AddCategoryComponent implements OnInit {
   addCategory(): void {
     this.appDataService.addCategory(
       this.addForm.value.category,
-      this.addForm.value.table
+      this.resolveTable(this.addForm.value.table)
     );
     this.addForm.controls.category.reset();
+    this.closeConfirmation();
   }
 
   removeCategory(): void {
@@ -79,6 +81,7 @@ export class AddCategoryComponent implements OnInit {
       table: this.tables[0],
       category: this.categories[0],
     });
+    this.closeConfirmation();
   }
 
   changeFlow(flow: FlowsEnum): void {
@@ -87,6 +90,14 @@ export class AddCategoryComponent implements OnInit {
 
   resetFlow(): void {
     this.flow$.next(undefined);
+  }
+
+  openConfirmation(): void {
+    this.isConfirmationOpen$.next(true);
+  }
+
+  closeConfirmation(): void {
+    this.isConfirmationOpen$.next(false);
   }
 
   private resolveTable(tableDisplayName: string): TablesTypesEnum {
