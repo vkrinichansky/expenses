@@ -12,26 +12,13 @@
   width: 100%;
   border-bottom: 1px solid black;
 
-  &.none {
-    .table-item__category {
-      grid-template-columns: 1fr;
-    }
-  }
-
   &__category,
-  &__category-value,
-  &__controls {
+  &__category-value {
     font-size: 16px;
     font-weight: bold;
     text-align: center;
     margin: 0;
     padding: 5px 10px;
-  }
-
-  &__category {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 5fr;
   }
 
   &__category-value {
