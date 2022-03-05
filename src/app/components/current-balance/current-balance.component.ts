@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { WordsEnum } from '../../consts';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   selector: 'app-current-balance',
   templateUrl: './current-balance.component.html',
   styleUrls: ['./current-balance.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentBalanceComponent implements OnInit {
   words = WordsEnum;
