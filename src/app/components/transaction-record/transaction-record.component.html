@@ -1,7 +1,13 @@
-<div class="table-title {{ tableType }}">{{ tableTitle }}</div>
+<div
+  class="table-title {{
+    tableType === tableTypes.Expenses ? 'text-red' : 'text-green'
+  }}"
+>
+  {{ tableTitle }}
+</div>
 
 <ng-container *ngIf="items?.length">
   <div *ngFor="let item of items" class="record">
-    {{ item.categoryName }} : {{ item.value }}
+    {{ item.categoryName }} : {{ item.value }} грн.t
   </div>
 </ng-container>

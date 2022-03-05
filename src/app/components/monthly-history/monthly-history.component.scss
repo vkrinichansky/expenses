@@ -1,10 +1,9 @@
+@import "src/styles/mixins";
+
 :host {
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 3px grey;
-  overflow: hidden;
+  @include boxStyles();
 
   .title {
     position: sticky;
@@ -26,7 +25,7 @@
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     row-gap: 5px;
-    margin-left: 15px;
+    margin-left: 10px;
 
     .expenses {
       color: red;
@@ -43,8 +42,9 @@
 
   .content {
     overflow-y: scroll;
-    margin-right: -15px;
+    margin-right: -10px;
     margin-bottom: -15px;
+    padding-right: 5px;
     height: 100%;
   }
 
@@ -58,10 +58,7 @@
   .date-wrapper {
     border: 1px solid black;
     border-radius: 5px;
-
-    &:not(:last-child) {
-      margin: 0 0 15px;
-    }
+    margin: 0 0 15px;
   }
 
   .bold {

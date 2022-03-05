@@ -1,4 +1,4 @@
-<p class="title">{{ words.History }}</p>
+<p class="title">{{ words.MonthlyHistory }}</p>
 
 <div class="content">
   <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
@@ -8,17 +8,17 @@
 
         <ng-container *ngIf="history$ | async as history">
           <div class="monthly-item">
-            <span class="expenses"
+            <span class="text-red"
               ><span class="bold">{{ tableTitles.Expenses }}</span
-              >: {{ history[date].expenses }}</span
+              >: {{ history[date].expenses }} грн.</span
             >
-            <span class="income"
+            <span class="text-green"
               ><span class="bold">{{ tableTitles.Income }}</span
-              >: {{ history[date].income }}</span
+              >: {{ history[date].income }} грн.</span
             >
-            <span class="balance"
+            <span class="text-blue"
               ><span class="bold">{{ words.CurrentBalance }}</span
-              >: {{ history[date].balance }}</span
+              >: {{ history[date].balance }} грн.</span
             >
           </div>
         </ng-container>

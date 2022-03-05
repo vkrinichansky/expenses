@@ -31,6 +31,7 @@ export enum WordsEnum {
   CleanMonthlyHistory = 'Очистить по месяцам',
   NoHistoryYet = 'История пуста',
   MonthlyReset = 'Ежемесячный сброс',
+  MonthlyHistory = 'По месяцам',
 }
 
 export enum TablesTypesEnum {

@@ -1,9 +1,10 @@
+@import "src/styles/mixins";
+
 :host {
   display: block;
   box-sizing: border-box;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 0 10px 3px grey;
+  @include boxStyles();
+  padding: 0;
 
   .primary-header {
     padding: 5px;

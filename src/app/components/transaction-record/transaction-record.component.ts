@@ -9,6 +9,7 @@ import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 })
 export class TransactionRecordComponent {
   words = WordsEnum;
+  tableTypes = TablesTypesEnum;
 
   @Input()
   tableTitle: TablesTitlesEnum;
