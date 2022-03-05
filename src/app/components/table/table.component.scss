@@ -4,48 +4,29 @@
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 10px 3px grey;
-}
-.table {
-  &__header {
+
+  .primary-header {
     padding: 5px;
-    border-bottom: 5px solid black;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
     background-color: chocolate;
     color: white;
   }
-  &__second-header {
+
+  .secondary-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
-  &__category-title,
-  &__category-value-title,
-  &__controls {
+  .category-title,
+  .category-value-title,
+  .controls {
     font-size: 16px;
     font-weight: bold;
     text-align: center;
     color: white;
     padding: 5px 10px;
     border-bottom: 3px solid black;
-  }
-
-  &__category-title {
-    background-color: royalblue;
-  }
-
-  &__category-value-title {
-    &.expenses {
-      background-color: orangered;
-    }
-
-    &.income {
-      background-color: darkgreen;
-    }
-  }
-
-  &__controls {
-    background-color: darkslateblue;
   }
 }
