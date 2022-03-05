@@ -4,7 +4,7 @@
   <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
     <ng-container *ngFor="let date of historyDates$ | async">
       <div class="date-wrapper">
-        <div class="date">{{ formatDate(date) }}</div>
+        <div class="date {{ getMonthColor(date) }}">{{ formatDate(date) }}</div>
 
         <ng-container *ngIf="history$ | async as history">
           <div class="monthly-item">

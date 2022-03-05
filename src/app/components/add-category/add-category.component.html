@@ -1,5 +1,5 @@
 <div *ngIf="(flow$ | async) === undefined" class="choose-action">
-  <span class="choose-action__title">{{ words.CategoryManagement }}</span>
+  <span class="title">{{ words.CategoryManagement }}</span>
   <div class="choose-action__buttons">
     <button type="button" (click)="changeFlow(flows.AddCategory)">
       {{ words.AddCategory }}

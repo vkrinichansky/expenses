@@ -1,0 +1,33 @@
+@import "mixins";
+
+.title {
+  position: sticky;
+  top: 0;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.date {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.date-wrapper {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0 0 15px;
+}
+
+.no-history {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.content {
+  @include scrollBox();
+}

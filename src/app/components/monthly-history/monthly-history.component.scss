@@ -1,24 +1,12 @@
-@import "src/styles/mixins";
+@import "src/styles/history";
 
 :host {
   display: flex;
   flex-direction: column;
   @include boxStyles();
 
-  .title {
-    position: sticky;
-    top: 0;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 0 0 20px;
-    text-align: center;
-  }
-
   .date {
-    font-size: 16px;
-    font-weight: bold;
     border-bottom: 3px solid black;
-    text-align: center;
   }
 
   .monthly-item {
@@ -26,42 +14,5 @@
     grid-template-rows: 1fr 1fr 1fr;
     row-gap: 5px;
     margin-left: 10px;
-
-    .expenses {
-      color: red;
-    }
-
-    .income {
-      color: green;
-    }
-
-    .balance {
-      color: blue;
-    }
-  }
-
-  .content {
-    overflow-y: scroll;
-    margin-right: -10px;
-    margin-bottom: -15px;
-    padding-right: 5px;
-    height: 100%;
-  }
-
-  .no-history {
-    display: block;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .date-wrapper {
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 0 0 15px;
-  }
-
-  .bold {
-    font-weight: bold;
   }
 }
