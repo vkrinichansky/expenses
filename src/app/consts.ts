@@ -43,7 +43,7 @@ export const emptyData: AppData = {
   expenses: [],
   income: [],
   balance: 0,
-  history: {},
+  dailyHistory: {},
   monthlyHistory: {},
 };
 

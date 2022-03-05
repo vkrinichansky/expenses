@@ -9,18 +9,18 @@ export interface AppData {
   expenses: TableItem[];
   income: TableItem[];
   balance: number;
-  history: DailyHistory;
+  dailyHistory: DailyHistory;
   monthlyHistory: MonthlyHistory;
 }
 
-export interface HistoryCategoryItem {
+export interface DailyHistoryCategoryItem {
   categoryName: string;
   value: number;
 }
 
 export interface DailyHistoryItem {
-  [TablesTypesEnum.Expenses]: HistoryCategoryItem[];
-  [TablesTypesEnum.Income]: HistoryCategoryItem[];
+  [TablesTypesEnum.Expenses]: DailyHistoryCategoryItem[];
+  [TablesTypesEnum.Income]: DailyHistoryCategoryItem[];
 }
 
 export interface DailyHistory {

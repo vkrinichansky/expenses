@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HistoryCategoryItem } from '../../types';
+import { DailyHistoryCategoryItem } from '../../types';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 
 @Component({
@@ -18,5 +18,5 @@ export class TransactionRecordComponent {
   tableType: TablesTypesEnum;
 
   @Input()
-  items: HistoryCategoryItem[];
+  items: DailyHistoryCategoryItem[];
 }

@@ -63,7 +63,7 @@ export class AppDataService {
   }
 
   get history$(): Observable<DailyHistory> {
-    return this.appData$.pipe(map((data) => data.history));
+    return this.appData$.pipe(map((data) => data.dailyHistory));
   }
 
   get monthlyHistory$(): Observable<MonthlyHistory> {
@@ -113,25 +113,25 @@ export class AppDataService {
   ): void {
     const currentDate = this.getCurrentDate();
 
-    if (currentDate in this.appData.history) {
-      const foundItem = this.appData.history[currentDate][table].find(
+    if (currentDate in this.appData.dailyHistory) {
+      const foundItem = this.appData.dailyHistory[currentDate][table].find(
         (item) => item.categoryName === category
       );
       if (foundItem) {
-        this.appData.history[currentDate][table].map((item) => {
+        this.appData.dailyHistory[currentDate][table].map((item) => {
           if (item.categoryName === category) {
             item.value += value;
           }
         });
       } else {
-        this.appData.history[currentDate][table].push({
+        this.appData.dailyHistory[currentDate][table].push({
           value: value,
           categoryName: category,
         });
       }
     } else {
-      this.appData.history[currentDate] = emptyHistoryItem;
-      this.appData.history[currentDate][table].push({
+      this.appData.dailyHistory[currentDate] = emptyHistoryItem;
+      this.appData.dailyHistory[currentDate][table].push({
         value: value,
         categoryName: category,
       });
@@ -160,7 +160,7 @@ export class AppDataService {
   resetHistory(): void {
     this.appData = {
       ...this.appData,
-      history: {},
+      dailyHistory: {},
     };
     this.setDataToStorage();
   }
