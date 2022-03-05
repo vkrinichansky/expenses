@@ -1,4 +1,4 @@
-import { AppData, HistoryItem } from './types';
+import { AppData, DailyHistoryItem } from './types';
 
 export enum TablesTitlesEnum {
   Expenses = 'Расходы',
@@ -47,7 +47,7 @@ export const emptyData: AppData = {
   monthlyHistory: {},
 };
 
-export const emptyHistoryItem: HistoryItem = {
+export const emptyHistoryItem: DailyHistoryItem = {
   [TablesTypesEnum.Expenses]: [],
   [TablesTypesEnum.Income]: [],
 };

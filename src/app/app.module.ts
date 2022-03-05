@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableItemComponent } from './components/table-item/table-item.component';
 import { CurrentBalanceComponent } from './components/current-balance/current-balance.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
-import { TransactionsHistoryComponent } from './components/transactions-history/transactions-history.component';
+import { DailyHistoryComponent } from './components/daily-history/daily-history.component';
 import { TransactionRecordComponent } from './components/transaction-record/transaction-record.component';
 import { DataControlsComponent } from './components/data-controls/data-controls.component';
 import { MonthlyHistoryComponent } from './components/monthly-history/monthly-history.component';
@@ -21,7 +21,7 @@ import { MonthlyHistoryComponent } from './components/monthly-history/monthly-hi
     TableItemComponent,
     CurrentBalanceComponent,
     AddFormComponent,
-    TransactionsHistoryComponent,
+    DailyHistoryComponent,
     TransactionRecordComponent,
     DataControlsComponent,
     MonthlyHistoryComponent,

@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { emptyData, emptyHistoryItem, TablesTypesEnum } from '../../consts';
-import {
-  AppData,
-  MonthlyHistory,
-  TableItem,
-  TransactionsHistory,
-} from '../../types';
+import { AppData, MonthlyHistory, TableItem, DailyHistory } from '../../types';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -67,7 +62,7 @@ export class AppDataService {
     return this.appData$.pipe(map((data) => data.income));
   }
 
-  get history$(): Observable<TransactionsHistory> {
+  get history$(): Observable<DailyHistory> {
     return this.appData$.pipe(map((data) => data.history));
   }
 

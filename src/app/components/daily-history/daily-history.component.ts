@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionsHistory } from '../../types';
+import { DailyHistory } from '../../types';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-transactions-history',
-  templateUrl: './transactions-history.component.html',
-  styleUrls: ['./transactions-history.component.scss'],
+  selector: 'app-daily-history',
+  templateUrl: './daily-history.component.html',
+  styleUrls: ['./daily-history.component.scss'],
 })
-export class TransactionsHistoryComponent implements OnInit {
+export class DailyHistoryComponent implements OnInit {
   tableTitles = TablesTitlesEnum;
   tableTypes = TablesTypesEnum;
   words = WordsEnum;
 
   historyDates$: Observable<string[]>;
-  history$: Observable<TransactionsHistory>;
+  history$: Observable<DailyHistory>;
 
   constructor(private appDataService: AppDataService) {}
 
