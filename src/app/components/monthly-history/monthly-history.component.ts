@@ -25,4 +25,8 @@ export class MonthlyHistoryComponent implements OnInit {
       map((monthlyHistory) => Object.keys(monthlyHistory))
     );
   }
+
+  formatDate(date: string): string {
+    return date.substr(0, 1).toUpperCase() + date.substr(1);
+  }
 }

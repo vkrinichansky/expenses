@@ -16,9 +16,10 @@
   }
 
   .date {
-    margin: 0 0 5px;
     font-size: 16px;
     font-weight: bold;
+    border-bottom: 3px solid black;
+    text-align: center;
   }
 
   .monthly-item {
@@ -27,15 +28,15 @@
     row-gap: 5px;
     margin-left: 15px;
 
-    span:nth-child(1) {
+    .expenses {
       color: red;
     }
 
-    span:nth-child(2) {
+    .income {
       color: green;
     }
 
-    span:nth-child(3) {
+    .balance {
       color: blue;
     }
   }
@@ -52,5 +53,18 @@
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+  }
+
+  .date-wrapper {
+    border: 1px solid black;
+    border-radius: 5px;
+
+    &:not(:last-child) {
+      margin: 0 0 15px;
+    }
+  }
+
+  .bold {
+    font-weight: bold;
   }
 }

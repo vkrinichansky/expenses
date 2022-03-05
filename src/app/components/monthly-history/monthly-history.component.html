@@ -4,15 +4,22 @@
   <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
     <ng-container *ngFor="let date of historyDates$ | async">
       <div class="date-wrapper">
-        <div class="date">{{ date }}</div>
+        <div class="date">{{ formatDate(date) }}</div>
 
         <ng-container *ngIf="history$ | async as history">
           <div class="monthly-item">
-            <span
-              >{{ tableTitles.Expenses }}: {{ history[date].expenses }}</span
+            <span class="expenses"
+              ><span class="bold">{{ tableTitles.Expenses }}</span
+              >: {{ history[date].expenses }}</span
             >
-            <span>{{ tableTitles.Income }}: {{ history[date].income }}</span>
-            <span>{{ words.CurrentBalance }}: {{ history[date].balance }}</span>
+            <span class="income"
+              ><span class="bold">{{ tableTitles.Income }}</span
+              >: {{ history[date].income }}</span
+            >
+            <span class="balance"
+              ><span class="bold">{{ words.CurrentBalance }}</span
+              >: {{ history[date].balance }}</span
+            >
           </div>
         </ng-container>
       </div>

@@ -13,8 +13,13 @@
     color: green;
   }
 
-  .add,
-  .edit {
+  .table-title {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+  }
+
+  .add {
     font-weight: bold;
     color: dodgerblue;
     padding-left: 15px;
@@ -23,6 +28,9 @@
 
   .record {
     padding-left: 15px;
-    margin: 0 0 5px;
+
+    &:not(:last-child) {
+      margin: 0 0 5px;
+    }
   }
 }
