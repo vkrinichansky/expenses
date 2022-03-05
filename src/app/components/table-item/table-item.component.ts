@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { TablesTypesEnum } from '../../consts';
 import { TableItem } from '../../types';
 
@@ -10,4 +10,10 @@ import { TableItem } from '../../types';
 export class TableItemComponent {
   @Input() item: TableItem;
   @Input() table: TablesTypesEnum;
+  @Input() isSumItem: boolean = false;
+
+  @HostBinding('class.sum-item')
+  private get sumItem(): boolean {
+    return this.isSumItem;
+  }
 }

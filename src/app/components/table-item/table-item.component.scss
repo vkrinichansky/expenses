@@ -1,19 +1,12 @@
-:host.total-sum {
-  .table-item {
-    border: none;
-    border-top: 3px solid black;
-  }
-}
-
-.table-item {
+:host {
   display: grid;
   align-items: stretch;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   border-bottom: 1px solid black;
 
-  &__category,
-  &__category-value {
+  .category-name,
+  .category-value {
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -21,32 +14,14 @@
     padding: 5px 10px;
   }
 
-  &__category-value {
+  .category-value {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  &__controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-  }
-
-  &__remove,
-  &__add,
-  &__edit {
-    cursor: pointer;
-    width: 30px;
-    padding: 0;
-    height: 30px;
+  &.sum-item {
     border: none;
-    display: block;
-    background-color: transparent;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
+    border-top: 2px solid black;
   }
 }

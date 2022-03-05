@@ -1,4 +1,4 @@
-<div class="primary-header">
+<div class="primary-header bg-orange">
   <span>{{ tableTitle }}</span>
 </div>
 <div class="secondary-header">
@@ -15,17 +15,22 @@
   </div>
 </div>
 
-<app-table-item
-  *ngFor="let item of tableData$ | async"
-  [item]="item"
-  [table]="
-    tableTitle === tableTitles.Expenses
-      ? tableTypes.Expenses
-      : tableTypes.Income
-  "
-></app-table-item>
+<ng-container *ngIf="tableData$ | async as tableData">
+  <app-table-item
+    *ngFor="let item of tableData"
+    [item]="item"
+    [table]="
+      tableTitle === tableTitles.Expenses
+        ? tableTypes.Expenses
+        : tableTypes.Income
+    "
+  ></app-table-item>
 
-<app-table-item
-  *ngIf="tableSumItem$ | async as tableSumItem"
-  [item]="tableSumItem"
-></app-table-item>
+  <ng-container *ngIf="tableData.length">
+    <app-table-item
+      *ngIf="tableSumItem$ | async as tableSumItem"
+      [item]="tableSumItem"
+      [isSumItem]="true"
+    ></app-table-item>
+  </ng-container>
+</ng-container>
