@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TableItemComponent } from './table-item.component';
 
 describe('TableItemComponent', () => {
@@ -8,9 +7,8 @@ describe('TableItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableItemComponent ]
-    })
-    .compileComponents();
+      declarations: [TableItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

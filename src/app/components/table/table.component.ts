@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { TableItem } from '../../types';
 import { AppDataService } from '../../services/app-data/app-data.service';
@@ -9,6 +14,7 @@ import { map } from 'rxjs/operators';
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnInit {
   tableTitles = TablesTitlesEnum;

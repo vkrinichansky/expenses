@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { TablesTypesEnum } from '../../consts';
-import { TableItem } from '../../types';
+import { TablesTypesEnum } from '../../../consts';
+import { TableItem } from '../../../types';
 
 @Component({
   selector: 'app-table-item',

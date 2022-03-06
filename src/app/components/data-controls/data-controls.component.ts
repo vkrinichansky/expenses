@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { WordsEnum } from '../../consts';
 import { BehaviorSubject } from 'rxjs';
@@ -14,6 +14,7 @@ enum FlowEnum {
   selector: 'app-data-controls',
   templateUrl: './data-controls.component.html',
   styleUrls: ['./data-controls.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataControlsComponent {
   words = WordsEnum;
@@ -23,8 +24,6 @@ export class DataControlsComponent {
   flow$ = new BehaviorSubject<FlowEnum | undefined>(undefined);
 
   constructor(private appDataService: AppDataService) {}
-
-  ngOnInit(): void {}
 
   openConfirmation(flow: FlowEnum): void {
     this.isConfirmationOpen$.next(true);
