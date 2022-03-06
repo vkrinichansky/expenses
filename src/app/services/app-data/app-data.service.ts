@@ -123,23 +123,40 @@ export class AppDataService {
         (item) => item.categoryName === category
       );
       if (foundItem) {
-        this.appData.dailyHistory[currentDate][table].map((item) => {
-          if (item.categoryName === category) {
-            item.value += value;
-          }
-        });
+        this.appData.dailyHistory[currentDate] = {
+          ...this.appData.dailyHistory[currentDate],
+          [table]: this.appData.dailyHistory[currentDate][table].map((item) => {
+            if (item.categoryName === category) {
+              item.value += value;
+              return { ...item };
+            }
+            return item;
+          }),
+        };
       } else {
-        this.appData.dailyHistory[currentDate][table].push({
-          value: value,
-          categoryName: category,
-        });
+        this.appData.dailyHistory[currentDate] = {
+          ...this.appData.dailyHistory[currentDate],
+          [table]: [
+            ...this.appData.dailyHistory[currentDate][table],
+            {
+              value: value,
+              categoryName: category,
+            },
+          ],
+        };
       }
     } else {
       this.appData.dailyHistory[currentDate] = emptyHistoryItem;
-      this.appData.dailyHistory[currentDate][table].push({
-        value: value,
-        categoryName: category,
-      });
+      this.appData.dailyHistory[currentDate] = {
+        ...this.appData.dailyHistory[currentDate],
+        [table]: [
+          ...this.appData.dailyHistory[currentDate][table],
+          {
+            value: value,
+            categoryName: category,
+          },
+        ],
+      };
     }
   }
 

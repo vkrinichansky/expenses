@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { MonthlyHistory } from '../../../types';
 import { TablesTitlesEnum, WordsEnum } from '../../../consts';
 
@@ -6,6 +11,7 @@ import { TablesTitlesEnum, WordsEnum } from '../../../consts';
   selector: 'app-monthly-history-item',
   templateUrl: './monthly-history-item.component.html',
   styleUrls: ['./monthly-history-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonthlyHistoryItemComponent implements OnInit {
   words = WordsEnum;
