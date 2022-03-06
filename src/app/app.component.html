@@ -1,11 +1,16 @@
-<app-table
-  [tableTitle]="tablesTitlesEnum.Expenses"
-  [tableType]="tablesTypesEnum.Expenses"
-></app-table>
-<app-table
-  [tableTitle]="tablesTitlesEnum.Income"
-  [tableType]="tablesTypesEnum.Income"
-></app-table>
+<div class="left-section">
+  <app-table
+    [tableTitle]="tablesTitlesEnum.Expenses"
+    [tableType]="tablesTypesEnum.Expenses"
+  ></app-table>
+  <app-table
+    [tableTitle]="tablesTitlesEnum.Income"
+    [tableType]="tablesTypesEnum.Income"
+  ></app-table>
+
+  <app-pie-chart></app-pie-chart>
+  <app-pie-chart></app-pie-chart>
+</div>
 
 <div class="info">
   <app-current-balance></app-current-balance>

@@ -1,11 +1,26 @@
 :host {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr;
   align-items: start;
   column-gap: 15px;
   padding: 15px;
   box-sizing: border-box;
   height: 100%;
+
+  .left-section {
+    display: grid;
+    grid-template-areas:
+      "a b"
+      "c d";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 15px;
+    height: 100%;
+    overflow-y: hidden;
+    padding: 15px;
+    margin: -15px;
+  }
 
   .controls {
     display: grid;
