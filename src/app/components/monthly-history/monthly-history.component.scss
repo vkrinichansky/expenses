@@ -4,15 +4,4 @@
   display: flex;
   flex-direction: column;
   @include boxStyles();
-
-  .date {
-    border-bottom: 3px solid black;
-  }
-
-  .monthly-item {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    row-gap: 5px;
-    margin-left: 10px;
-  }
 }

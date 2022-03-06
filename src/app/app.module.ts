@@ -12,6 +12,7 @@ import { DailyHistoryComponent } from './components/daily-history/daily-history.
 import { DailyHistoryItemComponent } from './components/daily-history/daily-history-item/daily-history-item.component';
 import { DataControlsComponent } from './components/data-controls/data-controls.component';
 import { MonthlyHistoryComponent } from './components/monthly-history/monthly-history.component';
+import { MonthlyHistoryItemComponent } from './components/monthly-history/monthly-history-item/monthly-history-item.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MonthlyHistoryComponent } from './components/monthly-history/monthly-hi
     DailyHistoryItemComponent,
     DataControlsComponent,
     MonthlyHistoryComponent,
+    MonthlyHistoryItemComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],

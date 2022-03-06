@@ -25,32 +25,4 @@ export class MonthlyHistoryComponent implements OnInit {
       map((monthlyHistory) => Object.keys(monthlyHistory))
     );
   }
-
-  formatDate(date: string): string {
-    return date.substr(0, 1).toUpperCase() + date.substr(1);
-  }
-
-  getMonthColor(date: string): string {
-    const month = date.split(' ')[0];
-    switch (month) {
-      case 'декабрь':
-      case 'январь':
-      case 'февраль':
-        return 'text-blue';
-      case 'март':
-      case 'апрель':
-      case 'май':
-        return 'text-green';
-      case 'июнь':
-      case 'июль':
-      case 'август':
-        return 'text-orange';
-      case 'сентябрь':
-      case 'октябрь':
-      case 'ноябрь':
-        return 'text-red';
-      default:
-        return '';
-    }
-  }
 }

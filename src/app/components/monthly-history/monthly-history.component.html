@@ -1,28 +1,14 @@
 <p class="title">{{ words.MonthlyHistory }}</p>
 
 <div class="content">
-  <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
-    <ng-container *ngFor="let date of historyDates$ | async">
-      <div class="date-wrapper">
-        <div class="date {{ getMonthColor(date) }}">{{ formatDate(date) }}</div>
-
-        <ng-container *ngIf="history$ | async as history">
-          <div class="monthly-item">
-            <span class="text-red"
-              ><span class="bold">{{ tableTitles.Expenses }}</span
-              >: {{ history[date].expenses }} грн.</span
-            >
-            <span class="text-green"
-              ><span class="bold">{{ tableTitles.Income }}</span
-              >: {{ history[date].income }} грн.</span
-            >
-            <span class="text-blue"
-              ><span class="bold">{{ words.CurrentBalance }}</span
-              >: {{ history[date].balance }} грн.</span
-            >
-          </div>
-        </ng-container>
-      </div>
+  <ng-container *ngIf="history$ | async as history">
+    <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
+      <ng-container *ngFor="let date of historyDates$ | async">
+        <app-monthly-history-item
+          [date]="date"
+          [history]="history"
+        ></app-monthly-history-item>
+      </ng-container>
     </ng-container>
   </ng-container>
 
