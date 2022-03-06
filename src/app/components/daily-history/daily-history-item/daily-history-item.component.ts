@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { DailyHistoryCategoryItem } from '../../types';
-import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
+import { DailyHistoryCategoryItem } from '../../../types';
+import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../../consts';
 
 @Component({
   selector: 'app-daily-history-item',
