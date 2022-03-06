@@ -91,11 +91,16 @@ export class AppDataService {
     table: TablesTypesEnum,
     category: string
   ): void {
-    this.appData[table].map((item) => {
-      if (item.name === category) {
-        item.value += value;
-      }
-    });
+    this.appData = {
+      ...this.appData,
+      [table]: this.appData[table].map((item) => {
+        if (item.name === category) {
+          item.value += value;
+          return { ...item };
+        }
+        return item;
+      }),
+    };
 
     this.resolveAddedItemsHistory(table, category, value);
     if (table === TablesTypesEnum.Expenses) {

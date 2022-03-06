@@ -1,4 +1,9 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 import { TablesTypesEnum } from '../../../consts';
 import { TableItem } from '../../../types';
 
@@ -6,6 +11,7 @@ import { TableItem } from '../../../types';
   selector: 'app-table-item',
   templateUrl: './table-item.component.html',
   styleUrls: ['./table-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableItemComponent {
   @Input() item: TableItem;
