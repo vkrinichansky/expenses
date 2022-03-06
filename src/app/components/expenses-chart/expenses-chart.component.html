@@ -1,0 +1,6 @@
+<ng-container *ngIf="chartData$ | async as chartData">
+  <app-pie-chart
+    [title]="tableTitles.Expenses"
+    [pieChartData]="chartData"
+  ></app-pie-chart>
+</ng-container>

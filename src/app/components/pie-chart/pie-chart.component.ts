@@ -1,10 +1,15 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-pie-chart',
@@ -13,6 +18,8 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PieChartComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
   pieChartType: ChartType = 'pie';
   pieChartOptions: ChartConfiguration['options'];
 
@@ -21,7 +28,7 @@ export class PieChartComponent implements OnInit {
 
   @Input()
   pieChartData: ChartData<'pie', number[], string | string[]>;
-  constructor() {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.pieChartOptions = {
@@ -37,16 +44,16 @@ export class PieChartComponent implements OnInit {
             },
           },
         },
+        title: {
+          text: this.title,
+          display: true,
+          font: {
+            size: 16,
+            weight: 'bold',
+            family: 'Rubik',
+          },
+        },
       },
     };
   }
 }
-
-// = {
-//   labels: ['Download', 'In', 'Mail Sales', 'Download', 'In', 'Mail Sales'],
-//   datasets: [
-//     {
-//       data: [300, 500, 100, 300, 500, 100],
-//     },
-//   ],
-// };
