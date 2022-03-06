@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DailyHistory } from '../../types';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { AppDataService } from '../../services/app-data/app-data.service';
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   selector: 'app-daily-history',
   templateUrl: './daily-history.component.html',
   styleUrls: ['./daily-history.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DailyHistoryComponent implements OnInit {
   tableTitles = TablesTitlesEnum;

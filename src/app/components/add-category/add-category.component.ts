@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
@@ -15,8 +21,9 @@ enum FlowsEnum {
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
   styleUrls: ['./add-category.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddCategoryComponent implements OnInit {
+export class AddCategoryComponent implements OnInit, OnDestroy {
   tableTitles = TablesTitlesEnum;
   tables = [TablesTitlesEnum.Expenses, TablesTitlesEnum.Income];
   flows = FlowsEnum;
@@ -31,7 +38,10 @@ export class AddCategoryComponent implements OnInit {
   appData$: Observable<AppData>;
   isConfirmationOpen$ = new BehaviorSubject(false);
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(
+    private appDataService: AppDataService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.appData$ = this.appDataService.appData$;
@@ -59,8 +69,13 @@ export class AddCategoryComponent implements OnInit {
       .subscribe((categories) => {
         this.categories = categories;
         this.removeForm.controls.category.setValue(this.categories[0]);
+        this.cd.detectChanges();
       });
     this.removeForm.controls.table.setValue(this.tables[0]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   addCategory(): void {

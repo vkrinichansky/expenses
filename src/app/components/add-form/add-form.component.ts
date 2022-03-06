@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
@@ -10,6 +16,7 @@ import { map, switchMap } from 'rxjs/operators';
   selector: 'app-add-form',
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
@@ -23,7 +30,10 @@ export class AddFormComponent implements OnInit, OnDestroy {
   appData$: Observable<AppData>;
   isConfirmationOpen$ = new BehaviorSubject(false);
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(
+    private appDataService: AppDataService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.appData$ = this.appDataService.appData$;
@@ -46,6 +56,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
       .subscribe((categories) => {
         this.categories = categories;
         this.form.controls.category.setValue(this.categories[0]);
+        this.cd.detectChanges();
       });
 
     this.form.controls.table.setValue(this.tables[0]);
