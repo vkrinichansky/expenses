@@ -3,11 +3,11 @@ import { DailyHistoryCategoryItem } from '../../types';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 
 @Component({
-  selector: 'app-transaction-record',
-  templateUrl: './transaction-record.component.html',
-  styleUrls: ['./transaction-record.component.scss'],
+  selector: 'app-daily-history-item',
+  templateUrl: './daily-history-item.component.html',
+  styleUrls: ['./daily-history-item.component.scss'],
 })
-export class TransactionRecordComponent {
+export class DailyHistoryItemComponent {
   words = WordsEnum;
   tableTypes = TablesTypesEnum;
 
@@ -19,4 +19,7 @@ export class TransactionRecordComponent {
 
   @Input()
   items: DailyHistoryCategoryItem[];
+
+  @Input()
+  date: string;
 }

@@ -22,7 +22,7 @@ export class DailyHistoryComponent implements OnInit {
 
   ngOnInit() {
     this.history$ = this.appDataService.history$;
-    this.historyDates$ = this.appDataService.history$.pipe(
+    this.historyDates$ = this.history$.pipe(
       map((history) => Object.keys(history))
     );
   }

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionRecordComponent } from './transaction-record.component';
+import { DailyHistoryItemComponent } from './daily-history-item.component';
 
 describe('DateRecordComponent', () => {
-  let component: TransactionRecordComponent;
-  let fixture: ComponentFixture<TransactionRecordComponent>;
+  let component: DailyHistoryItemComponent;
+  let fixture: ComponentFixture<DailyHistoryItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TransactionRecordComponent],
+      declarations: [DailyHistoryItemComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransactionRecordComponent);
+    fixture = TestBed.createComponent(DailyHistoryItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

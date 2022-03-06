@@ -1,3 +1,5 @@
+<div class="date">{{ date }}</div>
+
 <div
   class="table-title {{
     tableType === tableTypes.Expenses ? 'text-red' : 'text-green'
@@ -7,7 +9,7 @@
 </div>
 
 <ng-container *ngIf="items?.length">
-  <div *ngFor="let item of items" class="record">
-    {{ item.categoryName }} : {{ item.value }} грн.
+  <div *ngFor="let item of items" class="category">
+    <span class="bold">{{ item.categoryName }}</span> : {{ item.value }} грн.
   </div>
 </ng-container>

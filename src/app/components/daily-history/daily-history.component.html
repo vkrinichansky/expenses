@@ -1,35 +1,35 @@
 <p class="title">{{ words.History }}</p>
 
 <div class="content">
-  <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
-    <ng-container *ngFor="let date of historyDates$ | async">
-      <div class="date-wrapper">
-        <div class="date">{{ date }}</div>
-
-        <ng-container *ngIf="history$ | async as history">
+  <ng-container *ngIf="history$ | async as history">
+    <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
+      <ng-container *ngFor="let date of historyDates$ | async">
+        <div class="date-wrapper">
           <ng-container
             *ngIf="history[date][tableTypes.Expenses] as expensesHistoryItems"
           >
-            <app-transaction-record
+            <app-daily-history-item
               *ngIf="expensesHistoryItems.length"
               [tableTitle]="tableTitles.Expenses"
               [tableType]="tableTypes.Expenses"
               [items]="expensesHistoryItems"
-            ></app-transaction-record>
+              [date]="date"
+            ></app-daily-history-item>
           </ng-container>
 
           <ng-container
             *ngIf="history[date][tableTypes.Income] as incomeHistoryItems"
           >
-            <app-transaction-record
+            <app-daily-history-item
               *ngIf="incomeHistoryItems.length"
               [tableTitle]="tableTitles.Income"
               [tableType]="tableTypes.Income"
               [items]="incomeHistoryItems"
-            ></app-transaction-record>
+              [date]="date"
+            ></app-daily-history-item>
           </ng-container>
-        </ng-container>
-      </div>
+        </div>
+      </ng-container>
     </ng-container>
   </ng-container>
 
