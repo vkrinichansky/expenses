@@ -1,7 +1,8 @@
 @import "src/styles/mixins";
 
 :host {
-  display: block;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
   box-sizing: border-box;
   @include boxStyles();
   padding: 0;
@@ -26,5 +27,11 @@
     text-align: center;
     color: white;
     padding: 5px 10px;
+  }
+
+  .content {
+    width: 100%;
+    box-sizing: border-box;
+    @include scrollBox();
   }
 }

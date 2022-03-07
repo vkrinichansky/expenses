@@ -16,15 +16,17 @@
 </div>
 
 <ng-container *ngIf="tableData$ | async as tableData">
-  <app-table-item
-    *ngFor="let item of tableData"
-    [item]="item"
-    [table]="
-      tableTitle === tableTitles.Expenses
-        ? tableTypes.Expenses
-        : tableTypes.Income
-    "
-  ></app-table-item>
+  <div class="content">
+    <app-table-item
+      *ngFor="let item of tableData"
+      [item]="item"
+      [table]="
+        tableTitle === tableTitles.Expenses
+          ? tableTypes.Expenses
+          : tableTypes.Income
+      "
+    ></app-table-item>
+  </div>
 
   <ng-container *ngIf="tableData.length">
     <app-table-item
