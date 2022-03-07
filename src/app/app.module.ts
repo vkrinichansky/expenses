@@ -16,6 +16,7 @@ import { MonthlyHistoryItemComponent } from './components/monthly-history/monthl
 import { NgChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { ExpensesChartComponent } from './components/expenses-chart/expenses-chart.component';
+import { IncomeChartComponent } from './components/income-chart/income-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ExpensesChartComponent } from './components/expenses-chart/expenses-cha
     MonthlyHistoryItemComponent,
     PieChartComponent,
     ExpensesChartComponent,
+    IncomeChartComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule],
   providers: [],

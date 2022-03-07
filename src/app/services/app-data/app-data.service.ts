@@ -165,11 +165,11 @@ export class AppDataService {
       ...this.appData,
       expenses: this.appData.expenses.map((category) => {
         category.value = 0;
-        return category;
+        return { ...category };
       }),
       income: this.appData.income.map((category) => {
         category.value = 0;
-        return category;
+        return { ...category };
       }),
     };
     this.setDataToStorage();

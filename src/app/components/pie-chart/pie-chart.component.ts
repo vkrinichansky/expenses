@@ -1,11 +1,8 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
@@ -28,7 +25,8 @@ export class PieChartComponent implements OnInit {
 
   @Input()
   pieChartData: ChartData<'pie', number[], string | string[]>;
-  constructor(private cd: ChangeDetectorRef) {}
+
+  constructor() {}
 
   ngOnInit(): void {
     this.pieChartOptions = {

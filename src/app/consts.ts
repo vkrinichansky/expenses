@@ -32,6 +32,7 @@ export enum WordsEnum {
   NoHistoryYet = 'История пуста',
   MonthlyReset = 'Ежемесячный сброс',
   MonthlyHistory = 'По месяцам',
+  NoChartData = 'Нет данных для отображения',
 }
 
 export enum TablesTypesEnum {
