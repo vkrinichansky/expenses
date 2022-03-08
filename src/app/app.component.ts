@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppDataService } from './services/app-data/app-data.service';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from './consts';
-import { AppData } from './types';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -18,10 +17,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isMessageShown$ = new BehaviorSubject(false);
   date: Date;
-
-  get appData(): AppData {
-    return this.appDataService.appData;
-  }
 
   constructor(private appDataService: AppDataService) {}
 
