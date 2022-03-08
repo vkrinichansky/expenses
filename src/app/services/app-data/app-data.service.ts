@@ -282,7 +282,6 @@ export class AppDataService {
   getDataFromStorage(): void {
     let state: AppState = JSON.parse(localStorage.getItem('appData') as string);
     if (!state) {
-      console.log('empty');
       state = {
         expenses: [],
         income: [],
