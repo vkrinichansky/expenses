@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
-import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { TablesTitlesEnum, WordsEnum } from '../../consts';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { AppData } from '../../types';
+import { resolveTable } from '../../utils';
 
 enum FlowsEnum {
   AddCategory = 'Add Category',
@@ -35,7 +35,6 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   categories: string[];
 
   flow$ = new BehaviorSubject<FlowsEnum | undefined>(undefined);
-  appData$: Observable<AppData>;
   isConfirmationOpen$ = new BehaviorSubject(false);
 
   constructor(
@@ -44,8 +43,6 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.appData$ = this.appDataService.appData$;
-
     this.addForm = new FormGroup({
       table: new FormControl(this.tables[0], Validators.required),
       category: new FormControl('', Validators.required),
@@ -59,10 +56,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.subscription = this.removeForm.controls.table.valueChanges
       .pipe(
         switchMap((table) =>
-          this.appData$.pipe(
-            map((appData) =>
-              appData[this.resolveTable(table)].map((category) => category.name)
-            )
+          this.appDataService[`${resolveTable(table)}$`].pipe(
+            map((table) => table.map((category) => category.name))
           )
         )
       )
@@ -81,7 +76,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   addCategory(): void {
     this.appDataService.addCategory(
       this.addForm.value.category,
-      this.resolveTable(this.addForm.value.table)
+      resolveTable(this.addForm.value.table)
     );
     this.addForm.controls.category.reset();
     this.closeConfirmation();
@@ -90,7 +85,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   removeCategory(): void {
     this.appDataService.removeCategory(
       this.removeForm.value.category,
-      this.resolveTable(this.removeForm.value.table)
+      resolveTable(this.removeForm.value.table)
     );
     this.removeForm.reset({
       table: this.tables[0],
@@ -113,13 +108,5 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   closeConfirmation(): void {
     this.isConfirmationOpen$.next(false);
-  }
-
-  private resolveTable(tableDisplayName: string): TablesTypesEnum {
-    if (tableDisplayName === TablesTitlesEnum.Expenses) {
-      return TablesTypesEnum.Expenses;
-    } else {
-      return TablesTypesEnum.Income;
-    }
   }
 }

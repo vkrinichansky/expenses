@@ -61,7 +61,7 @@ export class DataControlsComponent {
   }
 
   private resetHistory(): void {
-    this.appDataService.resetHistory();
+    this.appDataService.resetDailyHistory();
   }
 
   private resetMonthlyHistory(): void {

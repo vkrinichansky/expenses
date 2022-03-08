@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from '../../services/app-data/app-data.service';
-import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
-import { AppData } from '../../types';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { TablesTitlesEnum, WordsEnum } from '../../consts';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { resolveTable } from '../../utils';
 
 @Component({
   selector: 'app-add-form',
@@ -27,7 +27,6 @@ export class AddFormComponent implements OnInit, OnDestroy {
 
   tables = [TablesTitlesEnum.Expenses, TablesTitlesEnum.Income];
   categories: string[];
-  appData$: Observable<AppData>;
   isConfirmationOpen$ = new BehaviorSubject(false);
 
   constructor(
@@ -36,7 +35,6 @@ export class AddFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.appData$ = this.appDataService.appData$;
     this.form = new FormGroup({
       money: new FormControl(0, Validators.required),
       table: new FormControl(undefined, Validators.required),
@@ -46,10 +44,8 @@ export class AddFormComponent implements OnInit, OnDestroy {
     this.subscription = this.form.controls.table.valueChanges
       .pipe(
         switchMap((table) =>
-          this.appData$.pipe(
-            map((appData) =>
-              appData[this.resolveTable(table)].map((category) => category.name)
-            )
+          this.appDataService[`${resolveTable(table)}$`].pipe(
+            map((table) => table.map((category) => category.name))
           )
         )
       )
@@ -77,7 +73,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
   submit(): void {
     this.appDataService.addValueToCategory(
       this.form.value.money,
-      this.resolveTable(this.form.value.table),
+      resolveTable(this.form.value.table),
       this.form.value.category
     );
     this.form.reset({
@@ -86,13 +82,5 @@ export class AddFormComponent implements OnInit, OnDestroy {
       money: 0,
     });
     this.closeConfirmation();
-  }
-
-  private resolveTable(tableDisplayName: string): TablesTypesEnum {
-    if (tableDisplayName === TablesTitlesEnum.Expenses) {
-      return TablesTypesEnum.Expenses;
-    } else {
-      return TablesTypesEnum.Income;
-    }
   }
 }

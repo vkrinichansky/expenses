@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { emptyData, emptyHistoryItem, TablesTypesEnum } from '../../consts';
+import { emptyHistoryItem, TablesTypesEnum } from '../../consts';
 import { AppData, DailyHistory, MonthlyHistory, TableItem } from '../../types';
 import {
   addValueToDefiniteCategory,
@@ -94,22 +94,6 @@ export class AppDataService {
     this._dailyHistory$.next(history);
   }
 
-  private _appData$: BehaviorSubject<AppData> = new BehaviorSubject<AppData>(
-    emptyData
-  );
-
-  get appData(): AppData {
-    return this._appData$.getValue();
-  }
-
-  set appData(data: AppData) {
-    this._appData$.next(data);
-  }
-
-  get appData$(): Observable<AppData> {
-    return this._appData$;
-  }
-
   get expensesSum(): number {
     return this.expenses.reduce(
       (previousValue, currentValue) => previousValue + currentValue.value,
@@ -123,6 +107,8 @@ export class AppDataService {
       0
     );
   }
+
+  // Categories operations
 
   addCategory(category: string, table: TablesTypesEnum): void {
     this[table] = [...this[table], createNewTableItem(category)];
@@ -145,7 +131,7 @@ export class AppDataService {
       ),
     ];
     this.resolveBalanceOperation(table, value);
-    this.resolveAddedItemsHistory(table, category, value);
+    this.addValueToDailyHistory(table, category, value);
 
     this.setDataToStorage();
   }
@@ -161,7 +147,22 @@ export class AppDataService {
     }
   }
 
-  resolveAddedItemsHistory(
+  // Monthly Reset
+
+  monthlyReset(dateKey: string): void {
+    this.monthlyHistory = {
+      ...this.monthlyHistory,
+      [dateKey]: {
+        expenses: this.expensesSum,
+        income: this.incomeSum,
+        balance: this.balance,
+      },
+    };
+    this.setDataToStorage();
+  }
+
+  // Daily history operations
+  addValueToDailyHistory(
     table: TablesTypesEnum,
     category: string,
     value: number
@@ -245,6 +246,7 @@ export class AppDataService {
     this.addNewCategoryToDailyHistory(currentDate, table, category, value);
   }
 
+  // Resets
   resetTables(): void {
     const tables = [TablesTypesEnum.Expenses, TablesTypesEnum.Income];
 
@@ -264,7 +266,7 @@ export class AppDataService {
     this.balance = 0;
   }
 
-  resetHistory(): void {
+  resetDailyHistory(): void {
     this.dailyHistory = {};
     this.setDataToStorage();
   }
@@ -274,53 +276,16 @@ export class AppDataService {
     this.setDataToStorage();
   }
 
-  monthlyReset(dateKey: string): void {
-    this.monthlyHistory = {
-      ...this.monthlyHistory,
-      [dateKey]: {
-        expenses: this.expensesSum,
-        income: this.incomeSum,
-        balance: this.balance,
-      },
-    };
-    this.setDataToStorage();
-  }
-
   // Storage operations
   getDataFromStorage(): void {
     const state: AppData = JSON.parse(
       localStorage.getItem('appData') as string
     );
-    this.appData = JSON.parse(localStorage.getItem('appData') as string);
-    if ('expenses' in state) {
-      this.expenses = state.expenses;
-    } else {
-      this.expenses = [];
-    }
-
-    if ('income' in state) {
-      this.income = state.income;
-    } else {
-      this.income = [];
-    }
-
-    if ('balance' in state) {
-      this.balance = state.balance;
-    } else {
-      this.balance = 0;
-    }
-
-    if ('monthlyHistory' in state) {
-      this.monthlyHistory = state.monthlyHistory;
-    } else {
-      this.monthlyHistory = {};
-    }
-
-    if ('dailyHistory' in state) {
-      this.dailyHistory = state.dailyHistory;
-    } else {
-      this.dailyHistory = {};
-    }
+    this.getTableDataFromStorage(TablesTypesEnum.Expenses, state);
+    this.getTableDataFromStorage(TablesTypesEnum.Income, state);
+    this.getBalanceFromStorage(state);
+    this.getDailyHistoryFromStorage(state);
+    this.getMonthlyHistoryFromStorage(state);
   }
 
   setDataToStorage(): void {
@@ -332,5 +297,40 @@ export class AppDataService {
       dailyHistory: this.dailyHistory,
     };
     localStorage.setItem('appData', JSON.stringify(state));
+  }
+
+  private getBalanceFromStorage(state: AppData): void {
+    if ('balance' in state) {
+      this.balance = state.balance;
+    } else {
+      this.balance = 0;
+    }
+  }
+
+  private getTableDataFromStorage(
+    table: TablesTypesEnum,
+    state: AppData
+  ): void {
+    if (table in state) {
+      this[table] = state[table];
+    } else {
+      this[table] = [];
+    }
+  }
+
+  private getDailyHistoryFromStorage(state: AppData): void {
+    if ('dailyHistory' in state) {
+      this.dailyHistory = state.dailyHistory;
+    } else {
+      this.dailyHistory = {};
+    }
+  }
+
+  private getMonthlyHistoryFromStorage(state: AppData): void {
+    if ('monthlyHistory' in state) {
+      this.monthlyHistory = state.monthlyHistory;
+    } else {
+      this.monthlyHistory = {};
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { DailyHistoryCategoryItem, TableItem } from './types';
+import { TablesTitlesEnum, TablesTypesEnum } from './consts';
 
 export function noCategories(data: string[]): boolean {
   return !data.length;
@@ -45,4 +46,20 @@ export function addValueToDefiniteCategoryInDailyHistory(
     return { ...item };
   }
   return item;
+}
+
+export function getDateKey(date: Date): string {
+  const previousDate = new Date(date.getFullYear(), date.getMonth() - 1);
+  return previousDate.toLocaleDateString('ru-RU', {
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+export function resolveTable(tableDisplayName: string): TablesTypesEnum {
+  if (tableDisplayName === TablesTitlesEnum.Expenses) {
+    return TablesTypesEnum.Expenses;
+  } else {
+    return TablesTypesEnum.Income;
+  }
 }

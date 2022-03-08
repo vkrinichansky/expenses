@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppDataService } from './services/app-data/app-data.service';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from './consts';
 import { BehaviorSubject } from 'rxjs';
+import { getDateKey } from './utils';
 
 @Component({
   selector: 'app-root',
@@ -34,23 +35,14 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   reset(): void {
-    this.appDataService.monthlyReset(this.getDateKey(this.date));
+    this.appDataService.monthlyReset(getDateKey(this.date));
     this.isMessageShown$.next(false);
   }
 
   private shouldDoMonthlyReset(date: Date): boolean {
     const day = date.getDate();
     return (
-      day >= 1 &&
-      !(this.getDateKey(date) in this.appDataService.appData.monthlyHistory)
+      day >= 1 && !(getDateKey(date) in this.appDataService.monthlyHistory)
     );
-  }
-
-  private getDateKey(date: Date): string {
-    const previousDate = new Date(date.getFullYear(), date.getMonth() - 1);
-    return previousDate.toLocaleDateString('ru-RU', {
-      month: 'long',
-      year: 'numeric',
-    });
   }
 }
