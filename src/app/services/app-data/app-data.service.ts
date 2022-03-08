@@ -7,7 +7,6 @@ import {
   addValueToDefiniteCategoryInDailyHistory,
   createNewTableItem,
   getCurrentDate,
-  getDateKey,
 } from '../../utils';
 
 @Injectable({
