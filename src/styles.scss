@@ -46,6 +46,11 @@ body {
     border: 1px solid black;
     border-radius: 50px;
     box-sizing: border-box;
+    cursor: pointer;
+
+    &:hover {
+      outline: 1px solid black;
+    }
   }
 }
 

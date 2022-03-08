@@ -264,6 +264,7 @@ export class AppDataService {
 
   resetBalance(): void {
     this.balance = 0;
+    this.setDataToStorage();
   }
 
   resetDailyHistory(): void {

@@ -33,5 +33,6 @@
     width: 100%;
     box-sizing: border-box;
     @include scrollBox();
+    padding-right: 0;
   }
 }
