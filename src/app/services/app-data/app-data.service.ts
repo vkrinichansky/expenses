@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { emptyHistoryItem, TablesTypesEnum } from '../../consts';
-import { AppData, DailyHistory, MonthlyHistory, TableItem } from '../../types';
+import { AppState, DailyHistory, MonthlyHistory, TableItem } from '../../types';
 import {
   addValueToDefiniteCategory,
   addValueToDefiniteCategoryInDailyHistory,
@@ -278,7 +278,7 @@ export class AppDataService {
 
   // Storage operations
   getDataFromStorage(): void {
-    const state: AppData = JSON.parse(
+    const state: AppState = JSON.parse(
       localStorage.getItem('appData') as string
     );
     this.getTableDataFromStorage(TablesTypesEnum.Expenses, state);
@@ -289,7 +289,7 @@ export class AppDataService {
   }
 
   setDataToStorage(): void {
-    const state: AppData = {
+    const state: AppState = {
       expenses: this.expenses,
       income: this.income,
       balance: this.balance,
@@ -299,7 +299,7 @@ export class AppDataService {
     localStorage.setItem('appData', JSON.stringify(state));
   }
 
-  private getBalanceFromStorage(state: AppData): void {
+  private getBalanceFromStorage(state: AppState): void {
     if ('balance' in state) {
       this.balance = state.balance;
     } else {
@@ -309,7 +309,7 @@ export class AppDataService {
 
   private getTableDataFromStorage(
     table: TablesTypesEnum,
-    state: AppData
+    state: AppState
   ): void {
     if (table in state) {
       this[table] = state[table];
@@ -318,7 +318,7 @@ export class AppDataService {
     }
   }
 
-  private getDailyHistoryFromStorage(state: AppData): void {
+  private getDailyHistoryFromStorage(state: AppState): void {
     if ('dailyHistory' in state) {
       this.dailyHistory = state.dailyHistory;
     } else {
@@ -326,7 +326,7 @@ export class AppDataService {
     }
   }
 
-  private getMonthlyHistoryFromStorage(state: AppData): void {
+  private getMonthlyHistoryFromStorage(state: AppState): void {
     if ('monthlyHistory' in state) {
       this.monthlyHistory = state.monthlyHistory;
     } else {

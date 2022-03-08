@@ -5,7 +5,7 @@ export interface TableItem {
   value: number;
 }
 
-export interface AppData {
+export interface AppState {
   expenses: TableItem[];
   income: TableItem[];
   balance: number;
