@@ -7,6 +7,7 @@ import {
   addValueToDefiniteCategoryInDailyHistory,
   createNewTableItem,
   getCurrentDate,
+  getDateKey,
 } from '../../utils';
 
 @Injectable({
@@ -279,9 +280,17 @@ export class AppDataService {
 
   // Storage operations
   getDataFromStorage(): void {
-    const state: AppState = JSON.parse(
-      localStorage.getItem('appData') as string
-    );
+    let state: AppState = JSON.parse(localStorage.getItem('appData') as string);
+    if (!state) {
+      console.log('empty');
+      state = {
+        expenses: [],
+        income: [],
+        balance: 0,
+        monthlyHistory: {},
+        dailyHistory: {},
+      };
+    }
     this.getTableDataFromStorage(TablesTypesEnum.Expenses, state);
     this.getTableDataFromStorage(TablesTypesEnum.Income, state);
     this.getBalanceFromStorage(state);
