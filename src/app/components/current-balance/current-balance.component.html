@@ -9,3 +9,8 @@
     >{{ balance$ | async }} грн.</span
   >
 </ng-container>
+
+<app-monthly-reset
+  *ngIf="shouldDisplayMonthlyIndicator$ | async"
+  [date]="date"
+></app-monthly-reset>

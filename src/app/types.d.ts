@@ -11,6 +11,7 @@ export interface AppState {
   balance: number;
   dailyHistory: DailyHistory;
   monthlyHistory: MonthlyHistory;
+  monthWithoutReset: string;
 }
 
 export interface DailyHistoryCategoryItem {

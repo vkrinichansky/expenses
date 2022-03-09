@@ -33,6 +33,7 @@ export enum WordsEnum {
   MonthlyReset = 'Ежемесячный сброс',
   MonthlyHistory = 'По месяцам',
   NoChartData = 'Нет данных для отображения',
+  Reset = 'Сброс',
 }
 
 export enum TablesTypesEnum {

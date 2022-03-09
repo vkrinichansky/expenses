@@ -17,6 +17,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { ExpensesChartComponent } from './components/expenses-chart/expenses-chart.component';
 import { IncomeChartComponent } from './components/income-chart/income-chart.component';
+import { MonthlyResetComponent } from './components/monthly-reset/monthly-reset.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { IncomeChartComponent } from './components/income-chart/income-chart.com
     PieChartComponent,
     ExpensesChartComponent,
     IncomeChartComponent,
+    MonthlyResetComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule],
   providers: [],

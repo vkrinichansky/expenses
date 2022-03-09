@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   @include boxStyles();
+  position: relative;
 
   .value {
     font-size: 18px;

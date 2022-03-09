@@ -7,6 +7,7 @@ import {
   addValueToDefiniteCategoryInDailyHistory,
   createNewTableItem,
   getCurrentDate,
+  getDateKey,
 } from '../../utils';
 
 @Injectable({
@@ -92,6 +93,21 @@ export class AppDataService {
 
   set dailyHistory(history: DailyHistory) {
     this._dailyHistory$.next(history);
+  }
+
+  private _monthWithoutReset$: BehaviorSubject<string> =
+    new BehaviorSubject<string>(getDateKey(new Date()));
+
+  get monthWithoutReset$(): Observable<string> {
+    return this._monthWithoutReset$;
+  }
+
+  get monthWithoutReset(): string {
+    return this._monthWithoutReset$.getValue();
+  }
+
+  set monthWithoutReset(monthWithoutReset: string) {
+    this._monthWithoutReset$.next(monthWithoutReset);
   }
 
   get expensesSum(): number {
@@ -287,13 +303,16 @@ export class AppDataService {
         balance: 0,
         monthlyHistory: {},
         dailyHistory: {},
+        monthWithoutReset: getDateKey(new Date()),
       };
+      this.setDataToStorage();
     }
     this.getTableDataFromStorage(TablesTypesEnum.Expenses, state);
     this.getTableDataFromStorage(TablesTypesEnum.Income, state);
     this.getBalanceFromStorage(state);
     this.getDailyHistoryFromStorage(state);
     this.getMonthlyHistoryFromStorage(state);
+    this.getMonthlyWithoutResetFromStorage(state);
   }
 
   setDataToStorage(): void {
@@ -303,6 +322,7 @@ export class AppDataService {
       balance: this.balance,
       monthlyHistory: this.monthlyHistory,
       dailyHistory: this.dailyHistory,
+      monthWithoutReset: this.monthWithoutReset,
     };
     localStorage.setItem('appData', JSON.stringify(state));
   }
@@ -339,6 +359,14 @@ export class AppDataService {
       this.monthlyHistory = state.monthlyHistory;
     } else {
       this.monthlyHistory = {};
+    }
+  }
+
+  private getMonthlyWithoutResetFromStorage(state: AppState): void {
+    if ('monthWithoutReset' in state) {
+      this.monthWithoutReset = state.monthWithoutReset;
+    } else {
+      this.monthWithoutReset = getDateKey(new Date());
     }
   }
 }
