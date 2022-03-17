@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MonthlyHistory } from '../../../types';
 import { TablesTitlesEnum, WordsEnum } from '../../../consts';
 
@@ -13,7 +8,7 @@ import { TablesTitlesEnum, WordsEnum } from '../../../consts';
   styleUrls: ['./monthly-history-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MonthlyHistoryItemComponent implements OnInit {
+export class MonthlyHistoryItemComponent {
   words = WordsEnum;
   tableTitles = TablesTitlesEnum;
 
@@ -22,10 +17,6 @@ export class MonthlyHistoryItemComponent implements OnInit {
 
   @Input()
   date: string;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   formatDate(date: string): string {
     return date.substr(0, 1).toUpperCase() + date.substr(1);

@@ -59,6 +59,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.isConfirmationOpen$.complete();
     this.subscription.unsubscribe();
   }
 

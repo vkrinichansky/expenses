@@ -26,8 +26,6 @@ export class PieChartComponent implements OnInit {
   @Input()
   pieChartData: ChartData<'pie', number[], string | string[]>;
 
-  constructor() {}
-
   ngOnInit(): void {
     this.pieChartOptions = {
       responsive: true,

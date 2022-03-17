@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { AppDataService } from '../../services/app-data/app-data.service';
 import { WordsEnum } from '../../consts';
 import { BehaviorSubject } from 'rxjs';
@@ -16,7 +16,7 @@ enum FlowEnum {
   styleUrls: ['./data-controls.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DataControlsComponent {
+export class DataControlsComponent implements OnDestroy {
   words = WordsEnum;
   flows = FlowEnum;
 
@@ -24,6 +24,11 @@ export class DataControlsComponent {
   flow$ = new BehaviorSubject<FlowEnum | undefined>(undefined);
 
   constructor(private appDataService: AppDataService) {}
+
+  ngOnDestroy(): void {
+    this.isConfirmationOpen$.complete();
+    this.flow$.complete();
+  }
 
   openConfirmation(flow: FlowEnum): void {
     this.isConfirmationOpen$.next(true);

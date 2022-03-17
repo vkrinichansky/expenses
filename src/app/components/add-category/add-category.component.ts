@@ -70,6 +70,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.flow$.complete();
+    this.isConfirmationOpen$.complete();
     this.subscription.unsubscribe();
   }
 
