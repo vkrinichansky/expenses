@@ -6,7 +6,7 @@
 }
 
 @mixin scrollBox() {
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-right: -10px;
   margin-bottom: -10px;
   padding-right: 5px;

@@ -3,7 +3,13 @@
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
-  <select formControlName="category" class="dropdown">
+  <select
+    formControlName="category"
+    class="dropdown"
+    [ngClass]="{
+      disabled: !categories.length
+    }"
+  >
     <option *ngFor="let category of categories">
       {{ category }}
     </option>
