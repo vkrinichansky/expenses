@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { WordsEnum } from '../../consts';
 import { BehaviorSubject } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class DataControlsComponent implements OnDestroy {
   isConfirmationOpen$ = new BehaviorSubject(false);
   flow$ = new BehaviorSubject<FlowEnum | undefined>(undefined);
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnDestroy(): void {
     this.isConfirmationOpen$.complete();

@@ -18,6 +18,9 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { ExpensesChartComponent } from './components/expenses-chart/expenses-chart.component';
 import { IncomeChartComponent } from './components/income-chart/income-chart.component';
 import { MonthlyResetComponent } from './components/monthly-reset/monthly-reset.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './services/api-service/api.service';
+import { StateService } from './services/state-service/state.service';
 
 @NgModule({
   declarations: [
@@ -37,8 +40,14 @@ import { MonthlyResetComponent } from './components/monthly-reset/monthly-reset.
     IncomeChartComponent,
     MonthlyResetComponent,
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgChartsModule,
+    HttpClientModule,
+  ],
+  providers: [ApiService, StateService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

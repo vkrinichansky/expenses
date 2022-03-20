@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TablesTitlesEnum, WordsEnum } from '../../consts';
 import { Observable } from 'rxjs';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { map } from 'rxjs/operators';
 import { MonthlyHistory } from '../../types';
 
@@ -17,7 +17,7 @@ export class MonthlyHistoryComponent implements OnInit {
   historyDates$: Observable<string[]>;
   history$: Observable<MonthlyHistory>;
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnInit(): void {
     this.history$ = this.appDataService.monthlyHistory$;

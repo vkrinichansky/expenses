@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DailyHistory } from '../../types';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -19,7 +19,7 @@ export class DailyHistoryComponent implements OnInit {
   historyDates$: Observable<string[]>;
   history$: Observable<DailyHistory>;
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnInit() {
     this.history$ = this.appDataService.dailyHistory$;

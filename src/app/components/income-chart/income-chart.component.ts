@@ -3,7 +3,7 @@ import { TablesTitlesEnum, WordsEnum } from '../../consts';
 import { Observable } from 'rxjs';
 import { ChartData } from 'chart.js';
 import { map } from 'rxjs/operators';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { areAllCategoriesEmpty, noCategories } from '../../utils';
 
 @Component({
@@ -18,7 +18,7 @@ export class IncomeChartComponent implements OnInit {
   chartData$: Observable<
     ChartData<'pie', number[], string | string[]> | undefined
   >;
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnInit(): void {
     this.chartData$ = this.appDataService.income$.pipe(

@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { TableItem } from '../../types';
-import { AppDataService } from '../../services/app-data/app-data.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StateService } from '../../services/state-service/state.service';
 
 @Component({
   selector: 'app-table',
@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
   tableData$: Observable<TableItem[]>;
   tableSumItem$: Observable<TableItem>;
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnInit() {
     this.tableData$ =

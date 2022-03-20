@@ -9,11 +9,11 @@ import {
   getCurrentDate,
   getDateKey,
 } from '../../utils';
+import { ApiService } from '../api-service/api.service';
+import { take } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AppDataService {
+@Injectable()
+export class StateService {
   // expenses state
   private _expenses$: BehaviorSubject<TableItem[]> = new BehaviorSubject<
     TableItem[]
@@ -123,6 +123,8 @@ export class AppDataService {
       0
     );
   }
+
+  constructor(private apiService: ApiService) {}
 
   // Categories operations
 
@@ -294,9 +296,12 @@ export class AppDataService {
   }
 
   // Storage operations
-  getDataFromStorage(): void {
-    let state: AppState = JSON.parse(localStorage.getItem('appData') as string);
-    if (!state) {
+  async getDataFromStorage(): Promise<void> {
+    let state: AppState = await this.apiService
+      .getData()
+      .pipe(take(1))
+      .toPromise();
+    if (!state || !Object.keys(state).length) {
       state = {
         expenses: [],
         income: [],
@@ -305,7 +310,8 @@ export class AppDataService {
         dailyHistory: {},
         monthWithoutReset: getDateKey(new Date()),
       };
-      this.setDataToStorage();
+      await this.setDataToStorage();
+      await this.apiService.updateData(state).pipe(take(1)).toPromise();
     }
     this.getTableDataFromStorage(TablesTypesEnum.Expenses, state);
     this.getTableDataFromStorage(TablesTypesEnum.Income, state);
@@ -315,7 +321,7 @@ export class AppDataService {
     this.getMonthlyWithoutResetFromStorage(state);
   }
 
-  setDataToStorage(): void {
+  async setDataToStorage(): Promise<void> {
     const state: AppState = {
       expenses: this.expenses,
       income: this.income,
@@ -325,6 +331,7 @@ export class AppDataService {
       monthWithoutReset: this.monthWithoutReset,
     };
     localStorage.setItem('appData', JSON.stringify(state));
+    await this.apiService.updateData(state).pipe(take(1)).toPromise();
   }
 
   private getBalanceFromStorage(state: AppState): void {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { WordsEnum } from '../../consts';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { getDateKey } from '../../utils';
 
 @Component({
@@ -15,7 +15,7 @@ export class MonthlyResetComponent {
   @Input()
   date: Date;
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   monthlyReset(): void {
     this.appDataService.monthlyReset(getDateKey(this.date));

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AppDataService } from './services/app-data/app-data.service';
+import { StateService } from './services/state-service/state.service';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from './consts';
 
 @Component({
@@ -14,13 +14,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'expenses';
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
-  ngOnInit() {
-    this.appDataService.getDataFromStorage();
+  async ngOnInit(): Promise<void> {
+    await this.appDataService.getDataFromStorage();
   }
 
-  ngOnDestroy() {
-    this.appDataService.setDataToStorage();
+  async ngOnDestroy(): Promise<void> {
+    await this.appDataService.setDataToStorage();
   }
 }

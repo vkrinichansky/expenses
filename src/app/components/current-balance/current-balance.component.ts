@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { WordsEnum } from '../../consts';
 import { combineLatest, Observable } from 'rxjs';
 import { getDateKey } from '../../utils';
@@ -21,7 +21,7 @@ export class CurrentBalanceComponent implements OnInit {
 
   shouldDisplayMonthlyIndicator$: Observable<boolean>;
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnInit(): void {
     this.balance$ = this.appDataService.balance$;

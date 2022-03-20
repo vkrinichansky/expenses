@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { TablesTitlesEnum, WordsEnum } from '../../consts';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -30,7 +30,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
   isConfirmationOpen$ = new BehaviorSubject(false);
 
   constructor(
-    private appDataService: AppDataService,
+    private appDataService: StateService,
     private cd: ChangeDetectorRef
   ) {}
 

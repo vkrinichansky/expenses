@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TablesTitlesEnum, WordsEnum } from '../../consts';
-import { AppDataService } from '../../services/app-data/app-data.service';
+import { StateService } from '../../services/state-service/state.service';
 import { Observable } from 'rxjs';
 import { ChartData } from 'chart.js';
 import { map } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class ExpensesChartComponent implements OnInit {
     ChartData<'pie', number[], string | string[]> | undefined
   >;
 
-  constructor(private appDataService: AppDataService) {}
+  constructor(private appDataService: StateService) {}
 
   ngOnInit(): void {
     this.chartData$ = this.appDataService.expenses$.pipe(
