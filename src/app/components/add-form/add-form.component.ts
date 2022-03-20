@@ -72,16 +72,19 @@ export class AddFormComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
+    const table = this.form.value.table;
+    const category = this.form.value.category;
     this.appDataService.addValueToCategory(
       this.form.value.money,
       resolveTable(this.form.value.table),
       this.form.value.category
     );
     this.form.reset({
-      table: this.tables[0],
-      category: this.categories[0],
+      table: table,
+      category: category,
       money: 0,
     });
+    console.log(this.categories);
     this.closeConfirmation();
   }
 }
