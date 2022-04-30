@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
+@import "styles/palette";
 
 * {
   font-family: "Rubik", sans-serif;
@@ -12,6 +13,10 @@ body {
   overflow: hidden;
   width: 100%;
   height: 100%;
+}
+
+body {
+  background-color: $main-bg;
 }
 
 .frame {
@@ -56,7 +61,7 @@ body {
 
 .title {
   font-size: 20px;
-  margin: 0 0 15px;
+  margin: 0 0 12px;
   text-align: center;
   font-weight: bold;
   cursor: default;
@@ -112,42 +117,6 @@ button {
 .disabled {
   pointer-events: none;
   opacity: 0.5;
-}
-
-.bg-red {
-  background-color: darkred;
-}
-
-.text-red {
-  color: darkred;
-}
-
-.bg-green {
-  background-color: darkgreen;
-}
-
-.text-green {
-  color: darkgreen;
-}
-
-.bg-blue {
-  background-color: darkblue;
-}
-
-.text-blue {
-  color: darkblue;
-}
-
-.bg-orange {
-  background-color: chocolate;
-}
-
-.text-orange {
-  color: chocolate;
-}
-
-.bold {
-  font-weight: bold;
 }
 
 // scrollbar
