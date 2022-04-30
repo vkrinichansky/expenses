@@ -1,0 +1,47 @@
+$main-bg: #ffe7c3;
+
+$beige: #f4d7ab;
+$orange: #d44d1e;
+$red: #881d1d;
+$dark-green: #367055;
+$light-green: #72bd96;
+
+.bg-red {
+  background-color: $red;
+}
+
+.text-red {
+  color: $red;
+}
+
+.bg-dark-green {
+  background-color: $dark-green;
+}
+
+.text-dark-green {
+  color: $dark-green;
+}
+
+.bg-light-green {
+  background-color: $light-green;
+}
+
+.text-light-green {
+  color: $light-green;
+}
+
+.bg-blue {
+  background-color: darkblue;
+}
+
+.text-blue {
+  color: darkblue;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.text-orange {
+  color: $orange;
+}

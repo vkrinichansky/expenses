@@ -29,22 +29,29 @@ export class PieChartComponent implements OnInit {
   ngOnInit(): void {
     this.pieChartOptions = {
       responsive: true,
+      maintainAspectRatio: false,
+
       plugins: {
         legend: {
           display: true,
           position: 'left',
+          align: 'center',
+          
           labels: {
+            boxWidth: 16,
             font: {
-              size: 14,
+              size: 16,
               family: 'Rubik',
             },
+            color: '#f4d7ab'
           },
         },
         title: {
           text: this.title,
           display: true,
+          color: '#f4d7ab',
           font: {
-            size: 16,
+            size: 20,
             weight: 'bold',
             family: 'Rubik',
           },

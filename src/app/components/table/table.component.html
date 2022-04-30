@@ -8,7 +8,7 @@
     class="category-value-title"
     [ngClass]="{
       'bg-red': tableTitle === tableTitles.Expenses,
-      'bg-green': tableTitle === tableTitles.Income
+      'bg-dark-green': tableTitle === tableTitles.Income
     }"
   >
     {{ tableType === tableTypes.Expenses ? words.Spent : words.Received }},
