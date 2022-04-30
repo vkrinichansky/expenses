@@ -35,4 +35,31 @@
     @include scrollBox();
     padding-right: 0;
   }
+  .table-row {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    border-bottom: 1px solid black;
+
+    .category-name,
+    .category-value {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      padding: 5px 10px;
+    }
+
+    .category-value {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &.sum-item {
+      border: none;
+      border-top: 2px solid black;
+    }
+  }
 }
