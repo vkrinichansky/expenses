@@ -1,0 +1,65 @@
+@import '../../../styles/palette';
+
+:host {
+  display: block;
+
+  button {
+    cursor: pointer;
+    display: block;
+    padding: 4px 20px;
+    border: none;
+    font-size: 16px;
+    background-color: $beige;
+    color: $orange;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      display: block;
+    }
+
+    &::before,
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: $orange;
+      transform: translateY(-50%) rotate(45deg);
+      top: 50%;
+    }
+
+    &::before {
+      left: 6px;
+    }
+
+    &::after {
+      right: 6px;
+    }
+
+    &:hover {
+      background-color: $orange;
+      color: $beige;
+
+      &::before,
+      &::after {
+        background-color: $beige;
+      }
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+}

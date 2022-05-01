@@ -1,8 +1,21 @@
-@mixin boxStyles {
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 3px grey;
+@mixin boxStyles($bg-color: white, $dash-color: white) {
+  padding: 16px;
   overflow: hidden;
+  background-color: $bg-color;
+  position: relative;
+
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    border: 2px dashed $dash-color;
+    pointer-events: none;
+  }
 }
 
 @mixin scrollBox() {

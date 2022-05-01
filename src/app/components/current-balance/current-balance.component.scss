@@ -1,11 +1,15 @@
 @import "src/styles/mixins";
+@import "src/styles/palette";
 
 :host {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @include boxStyles();
-  position: relative;
+  @include boxStyles($beige, $orange);
+
+  .title {
+    margin: 0 0 8px;
+  }
 
   .value {
     font-size: 18px;

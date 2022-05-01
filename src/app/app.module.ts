@@ -8,7 +8,6 @@ import { CurrentBalanceComponent } from './components/current-balance/current-ba
 import { AddFormComponent } from './components/add-form/add-form.component';
 import { DailyHistoryComponent } from './components/daily-history/daily-history.component';
 import { DailyHistoryItemComponent } from './components/daily-history/daily-history-item/daily-history-item.component';
-import { DataControlsComponent } from './components/data-controls/data-controls.component';
 import { MonthlyHistoryComponent } from './components/monthly-history/monthly-history.component';
 import { MonthlyHistoryItemComponent } from './components/monthly-history/monthly-history-item/monthly-history-item.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -19,6 +18,8 @@ import { MonthlyResetComponent } from './components/monthly-reset/monthly-reset.
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api-service/api.service';
 import { StateService } from './services/state-service/state.service';
+import { ButtonComponent } from './components/button/button.component';
+import { DataResetComponent } from './components/data-reset/data-reset.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +30,14 @@ import { StateService } from './services/state-service/state.service';
     AddFormComponent,
     DailyHistoryComponent,
     DailyHistoryItemComponent,
-    DataControlsComponent,
+    DataResetComponent,
     MonthlyHistoryComponent,
     MonthlyHistoryItemComponent,
     PieChartComponent,
     ExpensesChartComponent,
     IncomeChartComponent,
     MonthlyResetComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

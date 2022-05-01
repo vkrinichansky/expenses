@@ -1,12 +1,8 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
+@import 'src/styles/palette';
+
 :host {
   position: relative;
-  display: block;
-  @include boxStyles();
-
-  .add-form {
-    .submit {
-      margin: 0;
-    }
-  }
+  display: flex;
+  @include boxStyles($dark-green, $beige);
 }

@@ -1,9 +1,9 @@
-<span class="title">{{ words.CurrentBalance }}</span>
+<span class="title text-orange">{{ words.CurrentBalance }}</span>
 <ng-container *ngIf="(balance$ | async) !== null">
   <span
     class="value"
     [ngClass]="{
-      'text-green': (balance$ | async)! > 0,
+      'text-dark-green': (balance$ | async)! > 0,
       'text-red': (balance$ | async)! < 0
     }"
     >{{ balance$ | async }} грн.</span

@@ -1,0 +1,24 @@
+@import 'src/styles/mixins';
+@import 'src/styles/palette';
+
+:host {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  @include boxStyles($dark-green, $beige);
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 100%;
+  }
+
+  .title {
+    margin: 0;
+  }
+
+  .confirmation {
+    margin: auto 0;
+  }
+}
