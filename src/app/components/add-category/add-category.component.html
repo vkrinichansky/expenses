@@ -1,21 +1,21 @@
 <div *ngIf="(flow$ | async) === undefined" class="choose-action">
-  <span class="title">{{ words.CategoryManagement }}</span>
+  <span class="title text-beige">{{ words.CategoryManagement }}</span>
   <div class="choose-action__buttons">
-    <button type="button" (click)="changeFlow(flows.AddCategory)">
+    <app-button (click)="changeFlow(flows.AddCategory)">
       {{ words.AddCategory }}
-    </button>
-    <button type="button" (click)="changeFlow(flows.RemoveCategory)">
+    </app-button>
+    <app-button (click)="changeFlow(flows.RemoveCategory)">
       {{ words.RemoveCategory }}
-    </button>
+    </app-button>
   </div>
 </div>
 
 <form
-  *ngIf="(flow$ | async) === flows.AddCategory"
+  *ngIf="(flow$ | async) === flows.AddCategory && !(isConfirmationOpen$ | async)"
   [formGroup]="addForm"
-  class="add-category frame form"
+  class="add-category form"
 >
-  <h3 class="title">{{ words.AddCategory }}</h3>
+  <span class="title text-beige">{{ words.AddCategory }}</span>
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
@@ -28,25 +28,20 @@
     value=""
     [placeholder]="words.AddCategoryPlaceholder"
   />
-  <button
-    class="submit"
-    type="button"
-    [disabled]="addForm.invalid"
-    (click)="openConfirmation()"
-  >
+  <app-button [disabled]="addForm.invalid" (click)="openConfirmation()">
     {{ words.Add }}
-  </button>
-  <button class="go-back" type="button" (click)="resetFlow()">
+  </app-button>
+  <app-button (click)="resetFlow()">
     {{ words.GoBack }}
-  </button>
+  </app-button>
 </form>
 
 <form
-  *ngIf="(flow$ | async) === flows.RemoveCategory"
-  class="remove-category frame form"
+  *ngIf="(flow$ | async) === flows.RemoveCategory && !(isConfirmationOpen$ | async)"
+  class="remove-category form"
   [formGroup]="removeForm"
 >
-  <h3 class="title">{{ words.RemoveCategory }}</h3>
+  <span class="title text-beige">{{ words.RemoveCategory }}</span>
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
@@ -61,53 +56,44 @@
       {{ category }}
     </option>
   </select>
-  <button
-    class="submit"
-    type="button"
-    [disabled]="removeForm.invalid"
-    (click)="openConfirmation()"
-  >
+  <app-button [disabled]="removeForm.invalid" (click)="openConfirmation()">
     {{ words.Remove }}
-  </button>
-  <button class="go-back" type="button" (click)="resetFlow()">
+  </app-button>
+  <app-button (click)="resetFlow()">
     {{ words.GoBack }}
-  </button>
+  </app-button>
 </form>
 
-<div *ngIf="isConfirmationOpen$ | async" class="confirmation frame">
+<div *ngIf="isConfirmationOpen$ | async" class="confirmation">
   <ng-container
-    *ngTemplateOutlet="
-      (flow$ | async) === flows.AddCategory
-        ? addConfirmation
-        : removeConfirmation
-    "
+    *ngTemplateOutlet="(flow$ | async) === flows.AddCategory ? addConfirmation : removeConfirmation"
   ></ng-container>
 </div>
 
 <ng-template #addConfirmation>
-  <span class="confirmation__message">
+  <span class="confirmation__message text-beige">
     Добавить <span class="bold">{{ addForm.value.category }}</span> в таблицу
     <span class="bold">{{ addForm.value.table }}</span
     >?</span
   >
   <div class="confirmation__buttons">
-    <button type="button" (click)="addCategory()">{{ words.Yes }}</button>
-    <button type="button" (click)="closeConfirmation()">
+    <app-button (click)="addCategory()">{{ words.Yes }}</app-button>
+    <app-button (click)="closeConfirmation()">
       {{ words.No }}
-    </button>
+    </app-button>
   </div>
 </ng-template>
 
 <ng-template #removeConfirmation>
-  <span class="confirmation__message">
+  <span class="confirmation__message text-beige">
     Удалить <span class="bold">{{ removeForm.value.category }}</span> из таблицы
     <span class="bold">{{ removeForm.value.table }}</span
     >?</span
   >
   <div class="confirmation__buttons">
-    <button type="button" (click)="removeCategory()">{{ words.Yes }}</button>
-    <button type="button" (click)="closeConfirmation()">
+    <app-button (click)="removeCategory()">{{ words.Yes }}</app-button>
+    <app-button (click)="closeConfirmation()">
       {{ words.No }}
-    </button>
+    </app-button>
   </div>
 </ng-template>

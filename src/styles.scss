@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
-@import "styles/palette";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@import 'styles/palette';
 
 * {
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 html,
@@ -33,28 +33,35 @@ body {
 .form {
   display: flex;
   flex-direction: column;
+  row-gap: 12px;
+  width: 100%;
+
+  .title {
+    margin: 0;
+  }
 
   .submit,
   .go-back {
     font-size: 16px;
   }
 
-  .submit {
-    margin: 0 0 15px;
-  }
-
   .dropdown,
   .input {
-    margin: 0 0 15px;
     padding: 5px 10px;
     font-size: 16px;
-    border: 1px solid black;
+    border: none;
     border-radius: 50px;
     box-sizing: border-box;
     cursor: pointer;
+    background-color: $beige;
+    color: $orange;
+
+    &:focus-visible {
+      outline: none;
+    }
 
     &:hover {
-      outline: 1px solid black;
+      outline: 2px solid $orange;
     }
   }
 }
@@ -75,13 +82,13 @@ body {
 
   &__message {
     text-align: center;
-    margin: 0 0 15px;
+    margin: 0 0 12px;
   }
 
   &__buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 15px;
+    column-gap: 12px;
 
     button {
       cursor: pointer;
@@ -90,33 +97,13 @@ body {
   }
 }
 
-button {
-  cursor: pointer;
-  border-radius: 50px;
-  border: none;
-  color: white;
-  font-size: 16px;
-  background-color: green;
-  padding: 5px 0;
-
-  &:hover {
-    background-color: darkgreen;
-  }
-
-  &:disabled {
-    cursor: default;
-    background-color: darkgray;
-    color: gray;
-
-    &:hover {
-      background-color: darkgray;
-    }
-  }
-}
-
 .disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 // scrollbar

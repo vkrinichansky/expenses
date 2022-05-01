@@ -1,5 +1,5 @@
-<form class="add-form form" [formGroup]="form">
-  <h3 class="title">{{ words.AddToTable }}</h3>
+<form *ngIf="!(isConfirmationOpen$ | async)" class="add-form form" [formGroup]="form">
+  <h3 class="title text-beige">{{ words.AddToTable }}</h3>
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
@@ -15,27 +15,21 @@
     </option>
   </select>
   <input class="input" formControlName="money" type="number" />
-  <button
-    class="submit"
-    type="button"
-    [disabled]="form.invalid || form.controls.money.value === 0"
-    (click)="openConfirmation()"
-  >
+  <app-button [disabled]="form.invalid || form.controls.money.value === 0" (click)="openConfirmation()">
     {{ words.Add }}
-  </button>
+  </app-button>
 </form>
 
-<div *ngIf="isConfirmationOpen$ | async" class="confirmation frame">
-  <span class="confirmation__message">
+<div *ngIf="isConfirmationOpen$ | async" class="confirmation">
+  <span class="confirmation__message text-beige">
     Добавить <span class="bold">{{ form.value.money }}</span> в таблицу
-    <span class="bold">{{ form.value.table }}</span> в категорию
-    <span class="bold">{{ form.value.category }}</span
-    >?</span
-  >
+    <span class="bold">{{ form.value.table }}</span> в категорию <span class="bold">{{ form.value.category }}</span
+    >?
+  </span>
   <div class="confirmation__buttons">
-    <button type="button" (click)="submit()">{{ words.Yes }}</button>
-    <button type="button" (click)="closeConfirmation()">
+    <app-button (click)="submit()">{{ words.Yes }}</app-button>
+    <app-button type="button" (click)="closeConfirmation()">
       {{ words.No }}
-    </button>
+    </app-button>
   </div>
 </div>

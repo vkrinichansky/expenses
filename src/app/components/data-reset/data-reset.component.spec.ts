@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataControlsComponent } from './data-controls.component';
+import { DataResetComponent } from './data-reset.component';
 
-describe('DataControlsComponent', () => {
-  let component: DataControlsComponent;
-  let fixture: ComponentFixture<DataControlsComponent>;
+describe('DataResetComponent', () => {
+  let component: DataResetComponent;
+  let fixture: ComponentFixture<DataResetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataControlsComponent ]
+      declarations: [ DataResetComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DataControlsComponent);
+    fixture = TestBed.createComponent(DataResetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

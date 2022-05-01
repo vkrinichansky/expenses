@@ -1,9 +1,0 @@
-@import "src/styles/mixins";
-
-:host {
-  position: relative;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  row-gap: 15px;
-  @include boxStyles();
-}

@@ -12,11 +12,11 @@ enum FlowEnum {
 
 @Component({
   selector: 'app-data-controls',
-  templateUrl: './data-controls.component.html',
-  styleUrls: ['./data-controls.component.scss'],
+  templateUrl: './data-reset.component.html',
+  styleUrls: ['./data-reset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DataControlsComponent implements OnDestroy {
+export class DataResetComponent implements OnDestroy {
   words = WordsEnum;
   flows = FlowEnum;
 
