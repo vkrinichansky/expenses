@@ -5,6 +5,8 @@ $orange: #d44d1e;
 $red: #881d1d;
 $dark-green: #367055;
 $light-green: #72bd96;
+$brown: #5e412f;
+$blue: #3a6289;
 
 .bg-red {
   background-color: $red;
@@ -31,11 +33,11 @@ $light-green: #72bd96;
 }
 
 .bg-blue {
-  background-color: darkblue;
+  background-color: $blue;
 }
 
 .text-blue {
-  color: darkblue;
+  color: $blue;
 }
 
 .bg-orange {
@@ -52,4 +54,12 @@ $light-green: #72bd96;
 
 .text-beige {
   color: $beige;
+}
+
+.bg-brown {
+  background-color: $brown;
+}
+
+.text-brown {
+  color: $brown;
 }

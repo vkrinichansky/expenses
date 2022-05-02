@@ -1,18 +1,21 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
+@import 'src/styles/palette';
 
 :host {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  box-sizing: border-box;
-  @include boxStyles();
-  padding: 0;
+  @include boxStyles($orange, $beige);
+
+  .table {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    height: 100%;
+  }
 
   .primary-header {
     padding: 5px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: $beige;
   }
 
   .secondary-header {
@@ -25,41 +28,38 @@
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    color: white;
-    padding: 5px 10px;
+    color: $beige;
+    padding: 4px 12px;
   }
 
   .content {
     width: 100%;
     box-sizing: border-box;
     @include scrollBox();
-    padding-right: 0;
   }
   .table-row {
     display: grid;
     align-items: stretch;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px dashed $brown;
+    color: $brown;
+    padding: 4px 0;
+
+    &.last {
+      border: none;
+    }
 
     .category-name,
     .category-value {
       font-size: 16px;
       font-weight: bold;
       text-align: center;
-      margin: 0;
-      padding: 5px 10px;
-    }
-
-    .category-value {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     &.sum-item {
       border: none;
-      border-top: 2px solid black;
+      border-top: 2px solid $brown;
     }
   }
 }

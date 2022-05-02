@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
 import { TableItem } from '../../types';
 import { Observable } from 'rxjs';
@@ -18,10 +13,10 @@ import { StateService } from '../../services/state-service/state.service';
 })
 export class TableComponent implements OnInit {
   tableTitles = TablesTitlesEnum;
-  tableTypes = TablesTypesEnum;
   words = WordsEnum;
 
   @Input() tableTitle: TablesTitlesEnum;
+  @Input() rightColumnTitle: string;
   @Input() tableType: TablesTypesEnum;
 
   tableData$: Observable<TableItem[]>;
@@ -31,9 +26,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.tableData$ =
-      this.tableType === this.tableTypes.Expenses
-        ? this.appDataService.expenses$
-        : this.appDataService.income$;
+      this.tableTitle === this.tableTitles.Expenses ? this.appDataService.expenses$ : this.appDataService.income$;
 
     this.tableSumItem$ = this.tableData$.pipe(
       map((data) => ({
@@ -44,9 +37,6 @@ export class TableComponent implements OnInit {
   }
 
   private calcSum(data: TableItem[]): number {
-    return data.reduce(
-      (previousValue, currentValue) => previousValue + currentValue.value,
-      0
-    );
+    return data.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0);
   }
 }

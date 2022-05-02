@@ -12,8 +12,6 @@ export class AppComponent implements OnInit, OnDestroy {
   tablesTypesEnum = TablesTypesEnum;
   words = WordsEnum;
 
-  title = 'expenses';
-
   constructor(private appDataService: StateService) {}
 
   async ngOnInit(): Promise<void> {

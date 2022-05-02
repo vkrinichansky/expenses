@@ -2,10 +2,13 @@
   <app-table
     [tableTitle]="tablesTitlesEnum.Expenses"
     [tableType]="tablesTypesEnum.Expenses"
+    [rightColumnTitle]="words.Spent"
   ></app-table>
+
   <app-table
     [tableTitle]="tablesTitlesEnum.Income"
     [tableType]="tablesTypesEnum.Income"
+    [rightColumnTitle]="words.Received"
   ></app-table>
 
   <app-expenses-chart></app-expenses-chart>

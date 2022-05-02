@@ -1,36 +1,41 @@
-<div class="primary-header bg-orange">
-  <span>{{ tableTitle }}</span>
-</div>
-
-<div class="secondary-header">
-  <div class="category-title bg-blue">{{ words.Category }}</div>
-  <div
-    class="category-value-title"
-    [ngClass]="{
-      'bg-red': tableTitle === tableTitles.Expenses,
-      'bg-dark-green': tableTitle === tableTitles.Income
-    }"
-  >
-    {{ tableType === tableTypes.Expenses ? words.Spent : words.Received }},
-    {{ words.Currency }}
-  </div>
-</div>
-
-<ng-container *ngIf="tableData$ | async as tableData">
-  <div class="content">
-    <div *ngFor="let item of tableData" class="table-row">
-      <span class="category-name">{{ item.name }}</span>
-      <span class="category-value">{{ item.value }}</span>
-    </div>
+<div class="table bg-beige">
+  <div class="primary-header bg-brown">
+    <span>{{ tableTitle }}</span>
   </div>
 
-  <ng-container *ngIf="tableData.length">
+  <div class="secondary-header">
+    <div class="category-title bg-blue">{{ words.Category }}</div>
     <div
-      *ngIf="tableSumItem$ | async as tableSumItem"
-      class="table-row sum-item"
+      class="category-value-title"
+      [ngClass]="{
+        'bg-red': tableTitle === tableTitles.Expenses,
+        'bg-dark-green': tableTitle === tableTitles.Income
+      }"
     >
-      <span class="category-name">{{ tableSumItem.name }}</span>
-      <span class="category-value">{{ tableSumItem.value }}</span>
+      {{ rightColumnTitle }},
+      {{ words.Currency }}
     </div>
+  </div>
+
+  <ng-container *ngIf="tableData$ | async as tableData">
+    <div class="content">
+      <div
+        *ngFor="let item of tableData; last as isLast"
+        class="table-row"
+        [ngClass]="{
+          last: isLast
+        }"
+      >
+        <span class="category-name">{{ item.name }}</span>
+        <span class="category-value">{{ item.value }}</span>
+      </div>
+    </div>
+
+    <ng-container *ngIf="tableData.length">
+      <div *ngIf="tableSumItem$ | async as tableSumItem" class="table-row sum-item">
+        <span class="category-name">{{ tableSumItem.name }}</span>
+        <span class="category-value">{{ tableSumItem.value }}</span>
+      </div>
+    </ng-container>
   </ng-container>
-</ng-container>
+</div>

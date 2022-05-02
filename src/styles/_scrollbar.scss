@@ -1,0 +1,13 @@
+@import './palette';
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba($brown, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $brown;
+}
