@@ -1,11 +1,15 @@
-@import "src/styles/mixins";
-@import "src/styles/palette";
+@import 'src/styles/mixins';
+@import 'src/styles/palette';
 
 :host {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  @include boxStyles($beige, $orange);
+  @include boxStyles($brown, $beige);
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px;
+  }
 
   .title {
     margin: 0 0 8px;

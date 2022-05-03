@@ -1,7 +1,8 @@
-@import "src/styles/history";
+@import 'src/styles/history';
+@import 'src/styles/palette';
 
 :host {
   display: flex;
   flex-direction: column;
-  @include boxStyles();
+  @include boxStyles($brown, $beige);
 }

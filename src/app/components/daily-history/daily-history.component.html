@@ -1,11 +1,11 @@
-<p class="title">{{ words.History }}</p>
+<span class="title">{{ words.History }}</span>
 
-<div class="content">
+<div class="content bg-beige">
   <ng-container *ngIf="history$ | async as history">
     <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
       <ng-container *ngFor="let date of historyDates$ | async">
         <div class="wrapper">
-          <div class="date">{{ date }}</div>
+          <div class="date text-brown">{{ date }}</div>
 
           <ng-container
             *ngIf="history[date][tableTypes.Expenses] as expensesHistoryItems"

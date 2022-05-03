@@ -1,6 +1,6 @@
 <p class="title">{{ words.MonthlyHistory }}</p>
 
-<div class="content">
+<div class="content bg-beige">
   <ng-container *ngIf="history$ | async as history">
     <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
       <ng-container *ngFor="let date of historyDates$ | async">

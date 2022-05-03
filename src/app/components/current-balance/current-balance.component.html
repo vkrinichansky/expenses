@@ -1,16 +1,17 @@
-<span class="title text-orange">{{ words.CurrentBalance }}</span>
-<ng-container *ngIf="(balance$ | async) !== null">
-  <span
-    class="value"
-    [ngClass]="{
-      'text-dark-green': (balance$ | async)! > 0,
-      'text-red': (balance$ | async)! < 0
-    }"
-    >{{ balance$ | async }} грн.</span
-  >
-</ng-container>
+<ng-container *ngVar="balance$ | async as balance">
+  <div class="wrapper bg-beige">
+    <span class="title text-orange">{{ words.CurrentBalance }}</span>
+    <span
+      class="value"
+      [ngClass]="{
+        'text-dark-green': balance > 0,
+        'text-red': balance < 0,
+        'text-brown': balance === 0
+      }"
+    >
+      {{ balance }} грн.
+    </span>
 
-<app-monthly-reset
-  *ngIf="shouldDisplayMonthlyIndicator$ | async"
-  [date]="date"
-></app-monthly-reset>
+    <app-monthly-reset *ngIf="shouldDisplayMonthlyIndicator$ | async" [date]="date"></app-monthly-reset>
+  </div>
+</ng-container>

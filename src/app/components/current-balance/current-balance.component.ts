@@ -26,25 +26,19 @@ export class CurrentBalanceComponent implements OnInit {
   ngOnInit(): void {
     this.balance$ = this.appDataService.balance$;
     this.date = new Date();
-    this.shouldDisplayMonthlyIndicator$ = combineLatest(
+    this.shouldDisplayMonthlyIndicator$ = combineLatest([
       this.appDataService.monthWithoutReset$,
-      this.appDataService.monthlyHistory$
-    ).pipe(
+      this.appDataService.monthlyHistory$,
+    ]).pipe(
       map(([monthWithoutReset, monthlyHistory]) =>
         this.shouldDoMonthlyReset(this.date, monthWithoutReset, monthlyHistory)
       )
     );
   }
 
-  private shouldDoMonthlyReset(
-    date: Date,
-    monthWithoutReset: string,
-    monthlyHistory: MonthlyHistory
-  ): boolean {
+  private shouldDoMonthlyReset(date: Date, monthWithoutReset: string, monthlyHistory: MonthlyHistory): boolean {
     const day = date.getDate();
     const dateKey = getDateKey(date);
-    return (
-      day >= 1 && !(dateKey in monthlyHistory) && dateKey !== monthWithoutReset
-    );
+    return day >= 1 && !(dateKey in monthlyHistory) && dateKey !== monthWithoutReset;
   }
 }

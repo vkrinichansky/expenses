@@ -20,6 +20,7 @@ import { ApiService } from './services/api-service/api.service';
 import { StateService } from './services/state-service/state.service';
 import { ButtonComponent } from './components/button/button.component';
 import { DataResetComponent } from './components/data-reset/data-reset.component';
+import { NgVarDirective } from './directives/ng-var.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DataResetComponent } from './components/data-reset/data-reset.component
     IncomeChartComponent,
     MonthlyResetComponent,
     ButtonComponent,
+    NgVarDirective,
   ],
   imports: [
     BrowserModule,
