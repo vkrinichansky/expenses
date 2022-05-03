@@ -3,8 +3,12 @@
 <div class="content bg-beige">
   <ng-container *ngIf="history$ | async as history">
     <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
-      <ng-container *ngFor="let date of historyDates$ | async">
+      <ng-container *ngFor="let date of historyDates$ | async; first as isFirst; last as isLast">
         <app-monthly-history-item
+          [ngClass]="{
+            first: isFirst,
+            last: isLast
+          }"
           [date]="date"
           [history]="history"
         ></app-monthly-history-item>

@@ -32,7 +32,7 @@ export class MonthlyHistoryItemComponent {
       case 'март':
       case 'апрель':
       case 'май':
-        return 'text-green';
+        return 'text-dark-green';
       case 'июнь':
       case 'июль':
       case 'август':

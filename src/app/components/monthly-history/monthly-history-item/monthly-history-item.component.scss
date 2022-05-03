@@ -2,16 +2,26 @@
 
 :host {
   display: block;
-  border-bottom: 1px dashed $brown;
+  border-bottom: 2px solid $brown;
+  border-top: 2px solid $brown;
   margin: 0 0 12px;
+  padding: 4px 0;
+
+  &.first {
+    border-top: none;
+  }
+
+  &.last {
+    margin: 0;
+    border-bottom: none;
+  }
 
   .date {
-    border-bottom: 3px dashed $brown;
+    border-bottom: 2px dashed $brown;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    color: $brown;
-    padding: 4px 0;
+    padding-bottom: 4px;
   }
 
   .monthly-item {
@@ -19,6 +29,6 @@
     grid-template-rows: 1fr 1fr 1fr;
     row-gap: 4px;
     margin-left: 8px;
-    padding: 4px 0;
+    padding-top: 4px;
   }
 }
