@@ -41,6 +41,11 @@ export enum TablesTypesEnum {
   Income = 'income',
 }
 
+export enum HistoryTypesEnum {
+  Daily = 'daily',
+  Monthly = 'Monthly',
+}
+
 export const emptyHistoryItem: DailyHistoryItem = {
   [TablesTypesEnum.Expenses]: [],
   [TablesTypesEnum.Income]: [],

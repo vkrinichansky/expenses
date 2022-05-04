@@ -6,10 +6,9 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrentBalanceComponent } from './components/current-balance/current-balance.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
-import { DailyHistoryComponent } from './components/daily-history/daily-history.component';
-import { DailyHistoryItemComponent } from './components/daily-history/daily-history-item/daily-history-item.component';
-import { MonthlyHistoryComponent } from './components/monthly-history/monthly-history.component';
-import { MonthlyHistoryItemComponent } from './components/monthly-history/monthly-history-item/monthly-history-item.component';
+import { DailyHistoryItemComponent } from './components/history/daily-history-item/daily-history-item.component';
+import { HistoryComponent } from './components/history/history.component';
+import { MonthlyHistoryItemComponent } from './components/history/monthly-history-item/monthly-history-item.component';
 import { NgChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { ExpensesChartComponent } from './components/expenses-chart/expenses-chart.component';
@@ -29,10 +28,9 @@ import { NgVarDirective } from './directives/ng-var.directive';
     AddCategoryComponent,
     CurrentBalanceComponent,
     AddFormComponent,
-    DailyHistoryComponent,
     DailyHistoryItemComponent,
     DataResetComponent,
-    MonthlyHistoryComponent,
+    HistoryComponent,
     MonthlyHistoryItemComponent,
     PieChartComponent,
     ExpensesChartComponent,
@@ -41,13 +39,7 @@ import { NgVarDirective } from './directives/ng-var.directive';
     ButtonComponent,
     NgVarDirective,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgChartsModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule, HttpClientModule],
   providers: [ApiService, StateService],
   bootstrap: [AppComponent],
 })

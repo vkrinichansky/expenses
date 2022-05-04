@@ -1,0 +1,42 @@
+<span class="title">{{ words.MonthlyHistory }}</span>
+
+<div
+  *ngVar="{ history: history$ | async, historyDates: historyDates$ | async } as templateData"
+  class="content bg-brown"
+>
+  <ng-container *ngIf="templateData.historyDates?.length; else noHistoryYet">
+    <ng-container
+      *ngTemplateOutlet="
+        historyType === historyTypes.Daily ? daily : monthly;
+        context: { templateData: this.templateData }
+      "
+    ></ng-container>
+  </ng-container>
+</div>
+
+<ng-template #noHistoryYet>
+  <span class="no-history">{{ words.NoHistoryYet }}</span>
+</ng-template>
+
+<ng-template #daily let-templateData="templateData">
+  <app-daily-history-item
+    *ngFor="let date of templateData.historyDates; last as isLast"
+    [date]="date"
+    [history]="templateData.history"
+    [ngClass]="{
+      last: isLast
+    }"
+  ></app-daily-history-item>
+</ng-template>
+
+<ng-template #monthly let-templateData="templateData">
+  <app-monthly-history-item
+    *ngFor="let date of templateData.historyDates; first as isFirst; last as isLast"
+    [ngClass]="{
+      first: isFirst,
+      last: isLast
+    }"
+    [date]="date"
+    [history]="templateData.history"
+  ></app-monthly-history-item>
+</ng-template>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DailyHistory, DailyHistoryCategoryItem } from '../../../types';
-import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../../consts';
+import { DailyHistory } from '../../../types';
+import { TablesTitlesEnum, TablesTypesEnum } from '../../../consts';
 
 @Component({
   selector: 'app-daily-history-item',
@@ -9,7 +9,6 @@ import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../../consts';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DailyHistoryItemComponent {
-  words = WordsEnum;
   tableTypes = TablesTypesEnum;
   tableTitles = TablesTitlesEnum;
 
