@@ -21,7 +21,7 @@ export enum WordsEnum {
   CurrentBalance = 'Баланс',
   ResetBalance = 'Баланс',
   ResetTables = 'Таблицы',
-  History = 'История',
+  History = 'По дням',
   AddToTable = 'Добавление',
   Yes = 'Да',
   No = 'Нет',

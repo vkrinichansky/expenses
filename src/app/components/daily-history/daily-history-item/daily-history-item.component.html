@@ -1,9 +1,25 @@
-<div class="table-title {{ tableType === tableTypes.Expenses ? 'text-red' : 'text-dark-green' }}">
-  {{ tableTitle }}
-</div>
+<div class="date text-brown">{{ date }}</div>
 
-<ng-container *ngIf="items?.length">
-  <div *ngFor="let item of items" class="category text-brown">
-    <span class="bold">{{ item.categoryName }}</span> : {{ item.value }} грн.
-  </div>
+<ng-container *ngVar="history[date][tableTypes.Expenses] as expensesItems">
+  <ng-container
+    *ngTemplateOutlet="table; context: { items: expensesItems, title: tableTitles.Expenses }"
+  ></ng-container>
 </ng-container>
+
+<ng-container *ngVar="history[date][tableTypes.Income] as incomeItems">
+  <ng-container *ngTemplateOutlet="table; context: { items: incomeItems, title: tableTitles.Income }"></ng-container>
+</ng-container>
+
+<ng-template #table let-items="items" let-title="title">
+  <ng-container *ngIf="items?.length">
+    <div class="table-title {{ title === tableTitles.Expenses ? 'text-red' : 'text-dark-green' }}">
+      {{ title }}
+    </div>
+
+    <div class="list">
+      <div *ngFor="let item of items" class="category text-brown">
+        <span class="bold">{{ item.categoryName }}</span> : {{ item.value }} грн.
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

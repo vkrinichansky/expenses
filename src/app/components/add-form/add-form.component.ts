@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StateService } from '../../services/state-service/state.service';
 import { TablesTitlesEnum, WordsEnum } from '../../consts';
@@ -29,10 +23,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
   categories: string[];
   isConfirmationOpen$ = new BehaviorSubject(false);
 
-  constructor(
-    private appDataService: StateService,
-    private cd: ChangeDetectorRef
-  ) {}
+  constructor(private appDataService: StateService, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -44,9 +35,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
     this.subscription = this.form.controls.table.valueChanges
       .pipe(
         switchMap((table) =>
-          this.appDataService[`${resolveTable(table)}$`].pipe(
-            map((table) => table.map((category) => category.name))
-          )
+          this.appDataService[`${resolveTable(table)}$`].pipe(map((table) => table.map((category) => category.name)))
         )
       )
       .subscribe((categories) => {
@@ -84,7 +73,6 @@ export class AddFormComponent implements OnInit, OnDestroy {
       category: category,
       money: 0,
     });
-    console.log(this.categories);
     this.closeConfirmation();
   }
 }

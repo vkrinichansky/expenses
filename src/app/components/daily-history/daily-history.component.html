@@ -1,41 +1,21 @@
 <span class="title">{{ words.History }}</span>
 
-<div class="content bg-beige">
-  <ng-container *ngIf="history$ | async as history">
-    <ng-container *ngIf="(historyDates$ | async)?.length; else noHistoryYet">
-      <ng-container *ngFor="let date of historyDates$ | async">
-        <div class="wrapper">
-          <div class="date text-brown">{{ date }}</div>
-
-          <ng-container
-            *ngIf="history[date][tableTypes.Expenses] as expensesHistoryItems"
-          >
-            <app-daily-history-item
-              *ngIf="expensesHistoryItems.length"
-              [tableTitle]="tableTitles.Expenses"
-              [tableType]="tableTypes.Expenses"
-              [items]="expensesHistoryItems"
-              [date]="date"
-            ></app-daily-history-item>
-          </ng-container>
-
-          <ng-container
-            *ngIf="history[date][tableTypes.Income] as incomeHistoryItems"
-          >
-            <app-daily-history-item
-              *ngIf="incomeHistoryItems.length"
-              [tableTitle]="tableTitles.Income"
-              [tableType]="tableTypes.Income"
-              [items]="incomeHistoryItems"
-              [date]="date"
-            ></app-daily-history-item>
-          </ng-container>
-        </div>
-      </ng-container>
-    </ng-container>
+<div
+  *ngVar="{ history: history$ | async, historyDates: historyDates$ | async } as templateData"
+  class="content bg-brown"
+>
+  <ng-container *ngIf="templateData.historyDates?.length; else noHistoryYet">
+    <app-daily-history-item
+      *ngFor="let date of templateData.historyDates; last as isLast"
+      [date]="date"
+      [history]="templateData.history"
+      [ngClass]="{
+        last: isLast
+      }"
+    ></app-daily-history-item>
   </ng-container>
-
-  <ng-template #noHistoryYet>
-    <span class="no-history">{{ words.NoHistoryYet }}</span>
-  </ng-template>
 </div>
+
+<ng-template #noHistoryYet>
+  <span class="no-history text-brown">{{ words.NoHistoryYet }}</span>
+</ng-template>

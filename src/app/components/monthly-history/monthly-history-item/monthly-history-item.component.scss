@@ -2,18 +2,12 @@
 
 :host {
   display: block;
-  border-bottom: 2px solid $brown;
-  border-top: 2px solid $brown;
   margin: 0 0 12px;
   padding: 4px 0;
-
-  &.first {
-    border-top: none;
-  }
+  background-color: $beige;
 
   &.last {
     margin: 0;
-    border-bottom: none;
   }
 
   .date {

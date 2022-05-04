@@ -2,19 +2,38 @@
 
 :host {
   display: block;
+  margin: 0 0 12px;
+  background-color: $beige;
+
+  &.last {
+    margin: 0;
+  }
 
   .table-title {
     border-bottom: 2px dashed $brown;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+    border-top: 2px dashed $brown;
+    border-bottom: 2px dashed $brown;
+    padding: 4px 0;
+  }
+
+  .date {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px 0;
   }
 
   .category {
     margin-left: 8px;
+  }
 
-    &:not(:last-child) {
-      margin-bottom: 4px;
-    }
+  .list {
+    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
   }
 }

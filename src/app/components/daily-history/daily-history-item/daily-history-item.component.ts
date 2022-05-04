@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DailyHistoryCategoryItem } from '../../../types';
+import { DailyHistory, DailyHistoryCategoryItem } from '../../../types';
 import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../../consts';
 
 @Component({
@@ -11,15 +11,10 @@ import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../../consts';
 export class DailyHistoryItemComponent {
   words = WordsEnum;
   tableTypes = TablesTypesEnum;
+  tableTitles = TablesTitlesEnum;
 
   @Input()
-  tableTitle: TablesTitlesEnum;
-
-  @Input()
-  tableType: TablesTypesEnum;
-
-  @Input()
-  items: DailyHistoryCategoryItem[];
+  history: DailyHistory;
 
   @Input()
   date: string;
