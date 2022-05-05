@@ -17,8 +17,8 @@
 
 <div class="info">
   <app-current-balance></app-current-balance>
-  <app-history [historyType]="historyTypes.Daily"></app-history>
-  <app-history [historyType]="historyTypes.Monthly"></app-history>
+  <app-history [title]="words.DailyHistory" [historyType]="historyTypes.Daily"></app-history>
+  <app-history [title]="words.MonthlyHistory" [historyType]="historyTypes.Monthly"></app-history>
 </div>
 
 <div class="controls">

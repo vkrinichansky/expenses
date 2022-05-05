@@ -18,6 +18,9 @@ export class HistoryComponent implements OnInit {
   @Input()
   historyType: HistoryTypesEnum;
 
+  @Input()
+  title: string;
+
   historyDates$: Observable<string[]>;
   history$: Observable<DailyHistory | MonthlyHistory>;
 
