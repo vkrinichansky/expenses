@@ -4,7 +4,7 @@
   *ngVar="{ history: history$ | async, historyDates: historyDates$ | async } as templateData"
   class="content bg-brown"
 >
-  <ng-container *ngIf="templateData.historyDates?.length; else noHistoryYet">
+  <ng-container *ngIf="templateData?.historyDates?.length; else noHistoryYet">
     <ng-container
       *ngTemplateOutlet="
         historyType === historyTypes.Daily ? daily : monthly;

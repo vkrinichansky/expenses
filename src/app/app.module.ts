@@ -11,8 +11,6 @@ import { HistoryComponent } from './components/history/history.component';
 import { MonthlyHistoryItemComponent } from './components/history/monthly-history-item/monthly-history-item.component';
 import { NgChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
-import { ExpensesChartComponent } from './components/expenses-chart/expenses-chart.component';
-import { IncomeChartComponent } from './components/income-chart/income-chart.component';
 import { MonthlyResetComponent } from './components/monthly-reset/monthly-reset.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api-service/api.service';
@@ -33,8 +31,6 @@ import { NgVarDirective } from './directives/ng-var.directive';
     HistoryComponent,
     MonthlyHistoryItemComponent,
     PieChartComponent,
-    ExpensesChartComponent,
-    IncomeChartComponent,
     MonthlyResetComponent,
     ButtonComponent,
     NgVarDirective,

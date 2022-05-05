@@ -11,8 +11,10 @@
     [rightColumnTitle]="words.Received"
   ></app-table>
 
-  <app-expenses-chart></app-expenses-chart>
-  <app-income-chart></app-income-chart>
+  <!-- <app-expenses-chart></app-expenses-chart> -->
+  <!-- <app-income-chart></app-income-chart> -->
+  <app-pie-chart [title]="tablesTitlesEnum.Expenses"></app-pie-chart>
+  <app-pie-chart [title]="tablesTitlesEnum.Income"></app-pie-chart>
 </div>
 
 <div class="info">

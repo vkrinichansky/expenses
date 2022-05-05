@@ -1,9 +1,9 @@
-<div class="wrapper">
-  <canvas
-    baseChart
-    [options]="pieChartOptions"
-    [type]="pieChartType"
-    [data]="pieChartData"
-  >
-  </canvas>
-</div>
+<ng-container *ngIf="chartData$ | async as chartData; else noData">
+  <div class="wrapper">
+    <canvas baseChart [options]="pieChartOptions" [type]="pieChartType" [data]="chartData"> </canvas>
+  </div>
+</ng-container>
+
+<ng-template #noData>
+  <span class="no-chart-data">{{ words.NoChartData }}</span>
+</ng-template>
