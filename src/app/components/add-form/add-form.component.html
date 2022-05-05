@@ -1,5 +1,5 @@
 <form *ngIf="!(isConfirmationOpen$ | async)" class="add-form form" [formGroup]="form">
-  <h3 class="title text-beige">{{ words.AddToTable }}</h3>
+  <h3 class="title text-beige">{{ words.Adding }}</h3>
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>

@@ -6,34 +6,33 @@ export enum TablesTitlesEnum {
 }
 
 export enum WordsEnum {
-  Category = 'Категория',
   Spent = 'Потрачено',
   Received = 'Получено',
+  Category = 'Категория',
   Currency = 'грн.',
   Total = 'Всего',
-  Controls = 'Управление',
-  AddCategory = 'Добавить',
-  RemoveCategory = 'Удалить',
-  AddCategoryPlaceholder = 'Название...',
+  //***
   Add = 'Добавить',
   Remove = 'Удалить',
-  Adding = 'Добавление',
-  CurrentBalance = 'Баланс',
-  ResetBalance = 'Баланс',
-  ResetTables = 'Таблицы',
+  //***
+  Balance = 'Баланс',
+  Tables = 'Таблицы',
   DailyHistory = 'По дням',
-  AddToTable = 'Добавление',
+  MonthlyHistory = 'По месяцам',
+  //***
   Yes = 'Да',
   No = 'Нет',
+  //***
+  NoHistoryYet = 'История пуста',
+  NoChartData = 'Нет данных для отображения',
+  //***
+  AddCategoryPlaceholder = 'Название...',
+  Adding = 'Добавление',
   CategoryManagement = 'Категории',
   GoBack = 'Назад',
-  CleanHistory = 'История',
-  CleanMonthlyHistory = 'По месяцам',
-  NoHistoryYet = 'История пуста',
-  MonthlyReset = 'Ежемесячный сброс',
-  MonthlyHistory = 'По месяцам',
-  NoChartData = 'Нет данных для отображения',
   Reset = 'Сброс',
+  Clean = 'Очистить',
+  CleanHistory = 'Очистить историю',
 }
 
 export enum TablesTypesEnum {

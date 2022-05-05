@@ -2,10 +2,10 @@
   <span class="title text-beige">{{ words.CategoryManagement }}</span>
   <div class="choose-action__buttons">
     <app-button (click)="changeFlow(flows.AddCategory)">
-      {{ words.AddCategory }}
+      {{ words.Add }}
     </app-button>
     <app-button (click)="changeFlow(flows.RemoveCategory)">
-      {{ words.RemoveCategory }}
+      {{ words.Add }}
     </app-button>
   </div>
 </div>
@@ -15,7 +15,7 @@
   [formGroup]="addForm"
   class="add-category form"
 >
-  <span class="title text-beige">{{ words.AddCategory }}</span>
+  <span class="title text-beige">{{ words.Add }}</span>
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
@@ -41,7 +41,7 @@
   class="remove-category form"
   [formGroup]="removeForm"
 >
-  <span class="title text-beige">{{ words.RemoveCategory }}</span>
+  <span class="title text-beige">{{ words.Remove }}</span>
   <select formControlName="table" class="dropdown">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
