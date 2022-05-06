@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { StateService } from '../../services/state-service/state.service';
-import { WordsEnum } from '../../consts';
+import { DictionaryEnum } from '../../consts';
 import { BehaviorSubject } from 'rxjs';
 
-enum FlowEnum {
+enum FlowsEnum {
   ResetTables = 'Reset Tables',
   ResetBalance = 'Reset Balance',
   CleanHistory = 'Clean History',
@@ -17,11 +17,11 @@ enum FlowEnum {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataResetComponent implements OnDestroy {
-  words = WordsEnum;
-  flows = FlowEnum;
+  dictionary = DictionaryEnum;
+  flows = FlowsEnum;
 
   isConfirmationOpen$ = new BehaviorSubject(false);
-  flow$ = new BehaviorSubject<FlowEnum | undefined>(undefined);
+  flow$ = new BehaviorSubject<FlowsEnum | undefined>(undefined);
 
   constructor(private appDataService: StateService) {}
 
@@ -30,7 +30,7 @@ export class DataResetComponent implements OnDestroy {
     this.flow$.complete();
   }
 
-  openConfirmation(flow: FlowEnum): void {
+  openConfirmation(flow: FlowsEnum): void {
     this.isConfirmationOpen$.next(true);
     this.flow$.next(flow);
   }
@@ -41,16 +41,16 @@ export class DataResetComponent implements OnDestroy {
 
   resolveAction(): void {
     switch (this.flow$.getValue()) {
-      case FlowEnum.ResetTables:
+      case FlowsEnum.ResetTables:
         this.resetTables();
         break;
-      case FlowEnum.ResetBalance:
+      case FlowsEnum.ResetBalance:
         this.resetBalance();
         break;
-      case FlowEnum.CleanHistory:
+      case FlowsEnum.CleanHistory:
         this.resetHistory();
         break;
-      case FlowEnum.CleanMonthlyHistory:
+      case FlowsEnum.CleanMonthlyHistory:
         this.resetMonthlyHistory();
         break;
     }

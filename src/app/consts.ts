@@ -5,7 +5,7 @@ export enum TablesTitlesEnum {
   Income = 'Доходы',
 }
 
-export enum WordsEnum {
+export enum DictionaryEnum {
   Spent = 'Потрачено',
   Received = 'Получено',
   Category = 'Категория',

@@ -18,6 +18,7 @@ import { StateService } from './services/state-service/state.service';
 import { ButtonComponent } from './components/button/button.component';
 import { DataResetComponent } from './components/data-reset/data-reset.component';
 import { NgVarDirective } from './directives/ng-var.directive';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgVarDirective } from './directives/ng-var.directive';
     MonthlyResetComponent,
     ButtonComponent,
     NgVarDirective,
+    ConfirmationComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule, HttpClientModule],
   providers: [ApiService, StateService],

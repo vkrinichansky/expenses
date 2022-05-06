@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StateService } from '../../services/state-service/state.service';
-import { TablesTitlesEnum, WordsEnum } from '../../consts';
+import { TablesTitlesEnum, DictionaryEnum } from '../../consts';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { resolveTable } from '../../utils';
@@ -27,7 +27,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   tableTitles = TablesTitlesEnum;
   tables = [TablesTitlesEnum.Expenses, TablesTitlesEnum.Income];
   flows = FlowsEnum;
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
   addForm: FormGroup;
   removeForm: FormGroup;
 

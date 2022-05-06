@@ -29,29 +29,6 @@ body {
   cursor: default;
 }
 
-.confirmation {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 18px;
-
-  &__message {
-    text-align: center;
-    margin: 0 0 12px;
-  }
-
-  &__buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 12px;
-
-    button {
-      cursor: pointer;
-      font-size: 16px;
-    }
-  }
-}
-
 .disabled {
   pointer-events: none;
   opacity: 0.5;

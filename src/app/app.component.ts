@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StateService } from './services/state-service/state.service';
-import { HistoryTypesEnum, TablesTitlesEnum, TablesTypesEnum, WordsEnum } from './consts';
+import { HistoryTypesEnum, TablesTitlesEnum, TablesTypesEnum, DictionaryEnum } from './consts';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit, OnDestroy {
   tablesTitlesEnum = TablesTitlesEnum;
   tablesTypesEnum = TablesTypesEnum;
   historyTypes = HistoryTypesEnum;
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
 
   constructor(private appDataService: StateService) {}
 

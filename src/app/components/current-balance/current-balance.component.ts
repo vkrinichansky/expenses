@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { StateService } from '../../services/state-service/state.service';
-import { WordsEnum } from '../../consts';
+import { DictionaryEnum } from '../../consts';
 import { combineLatest, Observable } from 'rxjs';
 import { getDateKey } from '../../utils';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { MonthlyHistory } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentBalanceComponent implements OnInit {
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
 
   balance$: Observable<number>;
 

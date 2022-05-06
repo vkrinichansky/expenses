@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { TablesTitlesEnum, TablesTypesEnum, WordsEnum } from '../../consts';
+import { TablesTitlesEnum, TablesTypesEnum, DictionaryEnum } from '../../consts';
 import { TableItem } from '../../types';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { StateService } from '../../services/state-service/state.service';
 })
 export class TableComponent implements OnInit {
   tableTitles = TablesTitlesEnum;
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
 
   @Input() tableTitle: TablesTitlesEnum;
   @Input() rightColumnTitle: string;
@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
 
     this.tableSumItem$ = this.tableData$.pipe(
       map((data) => ({
-        name: this.words.Total,
+        name: this.dictionary.Total,
         value: this.calcSum(data),
       }))
     );

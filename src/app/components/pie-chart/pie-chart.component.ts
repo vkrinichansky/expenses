@@ -3,7 +3,7 @@ import { ChartConfiguration, ChartData, ChartType, ChartTypeRegistry } from 'cha
 import { BaseChartDirective } from 'ng2-charts';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TablesTitlesEnum, WordsEnum } from 'src/app/consts';
+import { TablesTitlesEnum, DictionaryEnum } from 'src/app/consts';
 import { StateService } from 'src/app/services/state-service/state.service';
 import { TableItem } from 'src/app/types';
 import { noCategories, areAllCategoriesEmpty } from 'src/app/utils';
@@ -16,7 +16,7 @@ import { noCategories, areAllCategoriesEmpty } from 'src/app/utils';
 })
 export class PieChartComponent implements OnInit {
   tableTitles = TablesTitlesEnum;
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 

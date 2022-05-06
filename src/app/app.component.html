@@ -2,13 +2,13 @@
   <app-table
     [tableTitle]="tablesTitlesEnum.Expenses"
     [tableType]="tablesTypesEnum.Expenses"
-    [rightColumnTitle]="words.Spent"
+    [rightColumnTitle]="dictionary.Spent"
   ></app-table>
 
   <app-table
     [tableTitle]="tablesTitlesEnum.Income"
     [tableType]="tablesTypesEnum.Income"
-    [rightColumnTitle]="words.Received"
+    [rightColumnTitle]="dictionary.Received"
   ></app-table>
 
   <!-- <app-expenses-chart></app-expenses-chart> -->
@@ -19,8 +19,8 @@
 
 <div class="info">
   <app-current-balance></app-current-balance>
-  <app-history [title]="words.DailyHistory" [historyType]="historyTypes.Daily"></app-history>
-  <app-history [title]="words.MonthlyHistory" [historyType]="historyTypes.Monthly"></app-history>
+  <app-history [title]="dictionary.DailyHistory" [historyType]="historyTypes.Daily"></app-history>
+  <app-history [title]="dictionary.MonthlyHistory" [historyType]="historyTypes.Monthly"></app-history>
 </div>
 
 <div class="controls">

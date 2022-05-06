@@ -1,6 +1,6 @@
 import { DailyHistory } from './../../types.d';
 import { Component, Input, OnInit } from '@angular/core';
-import { HistoryTypesEnum, WordsEnum } from '../../consts';
+import { HistoryTypesEnum, DictionaryEnum } from '../../consts';
 import { Observable } from 'rxjs';
 import { StateService } from '../../services/state-service/state.service';
 import { map } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { MonthlyHistory } from '../../types';
   styleUrls: ['./history.component.scss'],
 })
 export class HistoryComponent implements OnInit {
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
   historyTypes = HistoryTypesEnum;
 
   @Input()

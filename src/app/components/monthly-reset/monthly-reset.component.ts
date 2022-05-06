@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { WordsEnum } from '../../consts';
+import { DictionaryEnum } from '../../consts';
 import { StateService } from '../../services/state-service/state.service';
 import { getDateKey } from '../../utils';
 
@@ -10,7 +10,7 @@ import { getDateKey } from '../../utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonthlyResetComponent {
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
 
   @Input()
   date: Date;

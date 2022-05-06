@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MonthlyHistory } from '../../../types';
-import { TablesTitlesEnum, WordsEnum } from '../../../consts';
+import { TablesTitlesEnum, DictionaryEnum } from '../../../consts';
 
 @Component({
   selector: 'app-monthly-history-item',
@@ -9,7 +9,7 @@ import { TablesTitlesEnum, WordsEnum } from '../../../consts';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonthlyHistoryItemComponent {
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
   tableTitles = TablesTitlesEnum;
 
   @Input()

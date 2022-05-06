@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StateService } from '../../services/state-service/state.service';
-import { TablesTitlesEnum, WordsEnum } from '../../consts';
+import { TablesTitlesEnum, DictionaryEnum } from '../../consts';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { resolveTable } from '../../utils';
@@ -16,7 +16,7 @@ export class AddFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   form: FormGroup;
 
-  words = WordsEnum;
+  dictionary = DictionaryEnum;
   tableTitles = TablesTitlesEnum;
 
   tables = [TablesTitlesEnum.Expenses, TablesTitlesEnum.Income];
