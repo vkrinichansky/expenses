@@ -1,13 +1,9 @@
-$main-bg: #ffe7c3;
-
 $beige: #f4d7ab;
 $orange: #d44d1e;
 $red: #881d1d;
 $dark-green: #367055;
-$light-green: #72bd96;
 $brown: #5e412f;
 $blue: #3a6289;
-$light-blue: #68aeb8;
 
 .bg-red {
   background-color: $red;
@@ -23,14 +19,6 @@ $light-blue: #68aeb8;
 
 .text-dark-green {
   color: $dark-green;
-}
-
-.bg-light-green {
-  background-color: $light-green;
-}
-
-.text-light-green {
-  color: $light-green;
 }
 
 .bg-blue {

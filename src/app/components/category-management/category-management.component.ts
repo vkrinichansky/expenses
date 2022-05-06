@@ -18,12 +18,12 @@ enum FlowsEnum {
 }
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.scss'],
+  selector: 'app-category-management',
+  templateUrl: './category-management.component.html',
+  styleUrls: ['./category-management.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddCategoryComponent implements OnInit, OnDestroy {
+export class CategoryManagementComponent implements OnInit, OnDestroy {
   tableTitles = TablesTitlesEnum;
   tables = [TablesTitlesEnum.Expenses, TablesTitlesEnum.Income];
   flows = FlowsEnum;
