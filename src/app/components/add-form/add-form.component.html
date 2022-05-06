@@ -1,21 +1,19 @@
-<form *ngIf="!(isConfirmationOpen$ | async)" class="add-form form" [formGroup]="form">
-  <h3 class="title text-beige">{{ words.Adding }}</h3>
-  <select formControlName="table" class="dropdown">
+<form *ngIf="!(isConfirmationOpen$ | async)" [formGroup]="form">
+  <span class="title text-beige">{{ words.Adding }}</span>
+  <select formControlName="table">
     <option *ngFor="let table of tables" [ngValue]="table">{{ table }}</option>
   </select>
   <select
     formControlName="category"
-    class="dropdown"
     [ngClass]="{
       disabled: !categories.length
     }"
   >
     <option *ngFor="let category of categories" [ngValue]="category">
       {{ category }}
-
     </option>
   </select>
-  <input class="input" formControlName="money" type="number" />
+  <input formControlName="money" type="number" />
   <app-button [disabled]="form.invalid || form.controls.money.value === 0" (click)="openConfirmation()">
     {{ words.Add }}
   </app-button>

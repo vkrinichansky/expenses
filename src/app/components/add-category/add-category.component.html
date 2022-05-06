@@ -10,24 +10,13 @@
   </div>
 </div>
 
-<form
-  *ngIf="(flow$ | async) === flows.AddCategory && !(isConfirmationOpen$ | async)"
-  [formGroup]="addForm"
-  class="add-category form"
->
+<form *ngIf="(flow$ | async) === flows.AddCategory && !(isConfirmationOpen$ | async)" [formGroup]="addForm">
   <span class="title text-beige">{{ words.Add }}</span>
-  <select formControlName="table" class="dropdown">
+  <select formControlName="table">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
 
-  <input
-    class="input"
-    formControlName="category"
-    type="text"
-    required
-    value=""
-    [placeholder]="words.AddCategoryPlaceholder"
-  />
+  <input formControlName="category" type="text" [placeholder]="words.AddCategoryPlaceholder" />
   <app-button [disabled]="addForm.invalid" (click)="openConfirmation()">
     {{ words.Add }}
   </app-button>
@@ -36,18 +25,13 @@
   </app-button>
 </form>
 
-<form
-  *ngIf="(flow$ | async) === flows.RemoveCategory && !(isConfirmationOpen$ | async)"
-  class="remove-category form"
-  [formGroup]="removeForm"
->
+<form *ngIf="(flow$ | async) === flows.RemoveCategory && !(isConfirmationOpen$ | async)" [formGroup]="removeForm">
   <span class="title text-beige">{{ words.Remove }}</span>
-  <select formControlName="table" class="dropdown">
+  <select formControlName="table">
     <option *ngFor="let table of tables">{{ table }}</option>
   </select>
   <select
     formControlName="category"
-    class="dropdown"
     [ngClass]="{
       disabled: !categories.length
     }"

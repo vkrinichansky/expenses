@@ -1,0 +1,35 @@
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  width: 100%;
+
+  .title {
+    margin: 0;
+  }
+
+  select,
+  input {
+    padding: 4px 12px;
+    font-size: 16px;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: $beige;
+    color: $orange;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:hover {
+      outline: 2px solid $orange;
+    }
+  }
+
+  input {
+    &::placeholder {
+      color: rgba($orange, 0.7);
+    }
+  }
+}
