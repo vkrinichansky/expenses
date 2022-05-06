@@ -17,8 +17,8 @@
     </div>
   </div>
 
-  <ng-container *ngIf="tableData$ | async as tableData">
-    <div class="content">
+  <ng-container *ngVar="tableData$ | async as tableData">
+    <div *ngIf="tableData && tableData.length; else noData" class="content">
       <div
         *ngFor="let item of tableData; last as isLast"
         class="table-row"
@@ -39,3 +39,7 @@
     </ng-container>
   </ng-container>
 </div>
+
+<ng-template #noData>
+  <app-no-data [isDark]="true"></app-no-data>
+</ng-template>

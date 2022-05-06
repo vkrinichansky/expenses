@@ -23,8 +23,7 @@ export enum DictionaryEnum {
   Yes = 'Да',
   No = 'Нет',
   //***
-  NoHistoryYet = 'История пуста',
-  NoChartData = 'Нет данных для отображения',
+  NoData = 'Нет данных',
   //***
   AddCategoryPlaceholder = 'Название...',
   Adding = 'Добавление',

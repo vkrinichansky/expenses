@@ -1,0 +1,23 @@
+@import '../../../styles/palette';
+
+:host {
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  &.dark {
+    .no-data {
+      color: $brown;
+    }
+  }
+
+  .no-data {
+    color: $beige;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+}

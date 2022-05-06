@@ -19,6 +19,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { DataResetComponent } from './components/data-reset/data-reset.component';
 import { NgVarDirective } from './directives/ng-var.directive';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     ButtonComponent,
     NgVarDirective,
     ConfirmationComponent,
+    NoDataComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule, HttpClientModule],
   providers: [ApiService, StateService],

@@ -15,9 +15,7 @@ import { take } from 'rxjs/operators';
 @Injectable()
 export class StateService {
   // expenses state
-  private _expenses$: BehaviorSubject<TableItem[]> = new BehaviorSubject<
-    TableItem[]
-  >([]);
+  private _expenses$: BehaviorSubject<TableItem[]> = new BehaviorSubject<TableItem[]>([]);
 
   get expenses$(): Observable<TableItem[]> {
     return this._expenses$;
@@ -32,9 +30,7 @@ export class StateService {
   }
 
   // income state
-  private _income$: BehaviorSubject<TableItem[]> = new BehaviorSubject<
-    TableItem[]
-  >([]);
+  private _income$: BehaviorSubject<TableItem[]> = new BehaviorSubject<TableItem[]>([]);
 
   get income$(): Observable<TableItem[]> {
     return this._income$;
@@ -64,8 +60,7 @@ export class StateService {
   }
 
   // monthlyHistory state
-  private _monthlyHistory$: BehaviorSubject<MonthlyHistory> =
-    new BehaviorSubject<MonthlyHistory>({});
+  private _monthlyHistory$: BehaviorSubject<MonthlyHistory> = new BehaviorSubject<MonthlyHistory>({});
 
   get monthlyHistory$(): Observable<MonthlyHistory> {
     return this._monthlyHistory$;
@@ -80,8 +75,7 @@ export class StateService {
   }
 
   // dailyHistory state
-  private _dailyHistory$: BehaviorSubject<DailyHistory> =
-    new BehaviorSubject<DailyHistory>({});
+  private _dailyHistory$: BehaviorSubject<DailyHistory> = new BehaviorSubject<DailyHistory>({});
 
   get dailyHistory$(): Observable<DailyHistory> {
     return this._dailyHistory$;
@@ -95,8 +89,7 @@ export class StateService {
     this._dailyHistory$.next(history);
   }
 
-  private _monthWithoutReset$: BehaviorSubject<string> =
-    new BehaviorSubject<string>(getDateKey(new Date()));
+  private _monthWithoutReset$: BehaviorSubject<string> = new BehaviorSubject<string>(getDateKey(new Date()));
 
   get monthWithoutReset$(): Observable<string> {
     return this._monthWithoutReset$;
@@ -111,17 +104,11 @@ export class StateService {
   }
 
   get expensesSum(): number {
-    return this.expenses.reduce(
-      (previousValue, currentValue) => previousValue + currentValue.value,
-      0
-    );
+    return this.expenses.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0);
   }
 
   get incomeSum(): number {
-    return this.income.reduce(
-      (previousValue, currentValue) => previousValue + currentValue.value,
-      0
-    );
+    return this.income.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0);
   }
 
   constructor(private apiService: ApiService) {}
@@ -129,6 +116,10 @@ export class StateService {
   // Categories operations
 
   addCategory(category: string, table: TablesTypesEnum): void {
+    const tableItem = this[table].find((item) => item.name === category);
+    if (tableItem) {
+      return;
+    }
     this[table] = [...this[table], createNewTableItem(category)];
     this.setDataToStorage();
   }
@@ -138,16 +129,8 @@ export class StateService {
     this.setDataToStorage();
   }
 
-  addValueToCategory(
-    value: number,
-    table: TablesTypesEnum,
-    category: string
-  ): void {
-    this[table] = [
-      ...this[table].map((item) =>
-        addValueToDefiniteCategory(item, category, value)
-      ),
-    ];
+  addValueToCategory(value: number, table: TablesTypesEnum, category: string): void {
+    this[table] = [...this[table].map((item) => addValueToDefiniteCategory(item, category, value))];
     this.resolveBalanceOperation(table, value);
     this.addValueToDailyHistory(table, category, value);
 
@@ -180,34 +163,18 @@ export class StateService {
   }
 
   // Daily history operations
-  addValueToDailyHistory(
-    table: TablesTypesEnum,
-    category: string,
-    value: number
-  ): void {
+  addValueToDailyHistory(table: TablesTypesEnum, category: string, value: number): void {
     const currentDate = getCurrentDate();
 
     if (currentDate in this.dailyHistory) {
-      const foundItem = this.dailyHistory[currentDate][table].find(
-        (item) => item.categoryName === category
-      );
+      const foundItem = this.dailyHistory[currentDate][table].find((item) => item.categoryName === category);
       if (foundItem) {
-        this.addValueToExistingCategoryInDailyHistory(
-          currentDate,
-          table,
-          category,
-          value
-        );
+        this.addValueToExistingCategoryInDailyHistory(currentDate, table, category, value);
       } else {
         this.addNewCategoryToDailyHistory(currentDate, table, category, value);
       }
     } else {
-      this.addNewDateAndCategoryToDailyHistory(
-        currentDate,
-        table,
-        category,
-        value
-      );
+      this.addNewDateAndCategoryToDailyHistory(currentDate, table, category, value);
     }
   }
 
@@ -297,10 +264,7 @@ export class StateService {
 
   // Storage operations
   async getDataFromStorage(): Promise<void> {
-    let state: AppState = await this.apiService
-      .getData()
-      .pipe(take(1))
-      .toPromise();
+    let state: AppState = await this.apiService.getData().pipe(take(1)).toPromise();
     if (!state || !Object.keys(state).length) {
       state = {
         expenses: [],
@@ -342,10 +306,7 @@ export class StateService {
     }
   }
 
-  private getTableDataFromStorage(
-    table: TablesTypesEnum,
-    state: AppState
-  ): void {
+  private getTableDataFromStorage(table: TablesTypesEnum, state: AppState): void {
     if (table in state) {
       this[table] = state[table];
     } else {
