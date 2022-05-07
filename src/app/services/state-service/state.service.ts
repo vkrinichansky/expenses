@@ -159,6 +159,8 @@ export class StateService {
         balance: this.balance,
       },
     };
+    this.resetTables();
+    this.resetDailyHistory();
     this.setDataToStorage();
   }
 

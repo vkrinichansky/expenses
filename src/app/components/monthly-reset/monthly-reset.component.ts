@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
 import { DictionaryEnum } from '../../consts';
 import { StateService } from '../../services/state-service/state.service';
-import { getDateKey } from '../../utils';
 
 @Component({
   selector: 'app-monthly-reset',
@@ -17,7 +16,9 @@ export class MonthlyResetComponent {
 
   constructor(private appDataService: StateService) {}
 
+  @HostListener('click')
   monthlyReset(): void {
-    this.appDataService.monthlyReset(getDateKey(this.date));
+    console.log(1);
+    // this.appDataService.monthlyReset(getDateKey(this.date));
   }
 }

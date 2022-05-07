@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { StateService } from '../../services/state-service/state.service';
 import { DictionaryEnum } from '../../consts';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { getDateKey } from '../../utils';
 import { map } from 'rxjs/operators';
 import { MonthlyHistory } from '../../types';
@@ -26,14 +26,15 @@ export class CurrentBalanceComponent implements OnInit {
   ngOnInit(): void {
     this.balance$ = this.appDataService.balance$;
     this.date = new Date();
-    this.shouldDisplayMonthlyIndicator$ = combineLatest([
-      this.appDataService.monthWithoutReset$,
-      this.appDataService.monthlyHistory$,
-    ]).pipe(
-      map(([monthWithoutReset, monthlyHistory]) =>
-        this.shouldDoMonthlyReset(this.date, monthWithoutReset, monthlyHistory)
-      )
-    );
+    this.shouldDisplayMonthlyIndicator$ = of(true);
+    // combineLatest([
+    //   this.appDataService.monthWithoutReset$,
+    //   this.appDataService.monthlyHistory$,
+    // ]).pipe(
+    //   map(([monthWithoutReset, monthlyHistory]) =>
+    //     this.shouldDoMonthlyReset(this.date, monthWithoutReset, monthlyHistory)
+    //   )
+    // );
   }
 
   private shouldDoMonthlyReset(date: Date, monthWithoutReset: string, monthlyHistory: MonthlyHistory): boolean {

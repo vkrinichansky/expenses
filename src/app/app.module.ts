@@ -20,6 +20,7 @@ import { DataResetComponent } from './components/data-reset/data-reset.component
 import { NgVarDirective } from './directives/ng-var.directive';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     ConfirmationComponent,
     NoDataComponent,
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, NgChartsModule, HttpClientModule, NoopAnimationsModule],
   providers: [ApiService, StateService],
   bootstrap: [AppComponent],
 })
